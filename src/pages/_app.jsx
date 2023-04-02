@@ -1,13 +1,17 @@
 import '@/styles/globals.scss'
 import { ToastContainer } from 'react-toastify'
-import { appWithTranslation } from 'next-i18next'
 
-import appWithSession from '@/hoc/appWithSession'
+import { AuthProvider } from '@/contexts/auth'
+
+import CompsLayoutsNavbar from '@/layouts/Navbar'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <CompsLayoutsNavbar />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
@@ -23,4 +27,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default appWithSession(appWithTranslation(MyApp))
+export default MyApp
