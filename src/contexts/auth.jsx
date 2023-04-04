@@ -1,9 +1,10 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/router'
 
 import { auth } from '@/services/firebase'
 
+// const auth = getAuth();
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
@@ -21,6 +22,18 @@ export function AuthProvider({ children }) {
 
   const apiSignOut = () => signOut(auth)
 
+  // const apiSignIn = () => {}
+  const apiSignIn = (values) => new Promise((resolve, reject) => {
+    signInWithEmailAndPassword(auth, values.email, values.password).then((result) => {
+      resolve(result)
+      console.log('logged in')
+      // said to do sth else? QQ
+      router.push('/test')
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+
   const apiSignup = (values) => new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, values.email, values.password).then((result) => {
       resolve(result)
@@ -31,11 +44,14 @@ export function AuthProvider({ children }) {
     })
   })
 
+  console.log(user)
+
   const data = {
     user,
     isLoading,
-    apiSignup,
-    apiSignOut
+    apiSignOut,
+    apiSignIn,
+    apiSignup
   }
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>

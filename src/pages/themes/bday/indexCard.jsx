@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
 
 import { useRouter } from 'next/router'
 // import { apiGetFiles } from '@/pages/api/test' //  { test }
@@ -31,48 +32,32 @@ export default function BdayIndex({ templateFiles }) { // props: cards
   if (router.isFallback) return <div>Loading...</div>
   if (!templateFiles) return <div>No such template</div>
 
-  // EXTRACT TEMPLATE NAME
   return (
     <Container>
-      <Row>
+      <Row xs={1} md={2} className="g-4">
         {templateFiles.map((template) => (
-          <Col
-            lg={3}
-            xs={12}
-            sm={6}
-            className="border border-primary border-2"
-            height="50%"
-            key={template}
-          >
-            <Link href={`/draft/template?${template.replace(/\.[^/.]+$/, '')}`}>
-              <div onClick={() => {
-                console.log('HOW')
-              }}
-              >
+          <Link href="/test" width="100%">
+            <Col>
+
+              <Card>
                 <iframe
                   src={`/templates/bday/${template}`}
                   onClick={() => {
                     console.log('HOW')
                   }}
                 />
-              </div>
-            </Link>
-          </Col>
+              </Card>
+
+            </Col>
+          </Link>
         ))}
+
       </Row>
     </Container>
 
   )
 }
 
-/*           <div id="iframe-container" className="position-absolute">
-                <iframe
-                  src={`/templates/bday/${template}`}
-                  onClick={() => {
-                    console.log('HOW')
-                  }}
-                />
-              </div> */
 /*
 export async function getStaticProps({ params }) {
   const card = await apiGetCard(params.id)

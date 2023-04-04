@@ -4,8 +4,9 @@ import * as Yup from 'yup'
 
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '@/services/firebase'
+import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
 /* const initialValues = {
@@ -54,33 +55,32 @@ const createCard2 = (values) => new Promise((resolve, reject) => {
 })
 
 // Function to get get form values
-function getInputVal(id) {
+/* function getInputVal(id) {
   return document.getElementById(id).value
-}
-
-const createCard = async (values) => { // values
-  console.log(values)
-  try {
-    // const { id } = doc(collection(db, 'bloodDonation'))
-    // const newDonationRef = doc(db, 'bloodDonation', id)
-  //  await setDoc(newDonationRef, values)
-    const docRef = await addDoc(collection(db, 'greetingcards'), {
-      senderName: getInputVal('senderName'),
-      senderEmail: getInputVal('senderEmail'),
-      recipientName: getInputVal('recipientName'),
-      recipientEmail: getInputVal('recipientEmail'),
-      message: getInputVal('message')
-    })
-
-    // redirect to preview page
-    console.log('Document written with ID: ', docRef.id) // cardId
-    // router.push('/test')
-  } catch (e) {
-    console.error('Error adding document: ', e)
-  }
-}
+} */
 
 function FormsCardsChange() { // props
+  const router = useRouter()
+  const { user } = useAuth()
+  const createCard = async (values) => { // values
+    // const newValues = {
+    //   ...values,
+    //   userId: user.uid,
+    // }
+    console.log(values)
+    try {
+      // const { id } = doc(collection(db, 'bloodDonation'))
+      // const newDonationRef = doc(db, 'bloodDonation', id)
+    //  await setDoc(newDonationRef, values)
+      const docRef = await addDoc(collection(db, 'greetingcards'), values)
+      // redirect to preview page
+      console.log('Document written with ID: ', docRef.id) // cardId
+      router.push('/test')
+    } catch (e) {
+      console.error('Error adding document: ', e)
+    }
+  }
+
   return (
     <Formik
       initialValues={{
@@ -88,9 +88,9 @@ function FormsCardsChange() { // props
         senderEmail: '',
         recipientName: '',
         recipientEmail: '',
-        message: ''
+        message: '',
+        userId: user?.uid || ''
         // dateToSend: '',
-      //  cardId: ''
       }}
       onSubmit={createCard}
       enableReinitialize
@@ -100,9 +100,9 @@ function FormsCardsChange() { // props
           senderEmail: Yup.string().required().label('SenderEmail'),
           recipientName: Yup.string().required().label('RecipientName'),
           recipientEmail: Yup.string().required().label('RecipientEmail'),
-          message: Yup.string().required().label('Message')
+          message: Yup.string().required().label('Message'),
+          userId: Yup.string()
           // dateToSend: Yup.string().required().label('DateToSend'),
-          // cardId: ''
         })
       }
     >
@@ -113,11 +113,11 @@ function FormsCardsChange() { // props
               <label>Sender Name</label>
               <Field
                 id="senderName"
-                class={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="senderName"
               />
               <ErrorMessage
-                class="invalid-feedback"
+                className="invalid-feedback"
                 name="senderName"
                 component="div"
               />
@@ -126,14 +126,14 @@ function FormsCardsChange() { // props
             <div>
               <label>Sender Email</label>
               <Field
-                class={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="senderEmail"
                 id="senderEmail"
                 type="email"
                 placeholder="adam.chan@gmail.com"
               />
               <ErrorMessage
-                class="invalid-feedback"
+                className="invalid-feedback"
                 name="senderEmail"
                 component="div"
               />
@@ -142,12 +142,12 @@ function FormsCardsChange() { // props
             <div className="mb-3">
               <label>Recipient Name</label>
               <Field
-                class={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="recipientName"
                 id="recipientName"
               />
               <ErrorMessage
-                class="invalid-feedback"
+                className="invalid-feedback"
                 name="recipientName"
                 component="div"
               />
@@ -156,14 +156,14 @@ function FormsCardsChange() { // props
             <div className="mb-3">
               <label>Recipient Email</label>
               <Field
-                class={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="recipientEmail"
                 type="email"
                 id="recipientEmail"
                 placeholder="adam.chan@gmail.com"
               />
               <ErrorMessage
-                class="invalid-feedback"
+                className="invalid-feedback"
                 name="recipientEmail"
                 component="div"
               />
@@ -173,7 +173,7 @@ function FormsCardsChange() { // props
               <label>Message</label>
               <Field
                 component="textarea"
-               // class={`form-control ${e?.password && t?.password && 'is-invalid'}`}
+               // className={`form-control ${e?.password && t?.password && 'is-invalid'}`}
                 name="message"
                 type="textarea"
                 id="message"
@@ -181,7 +181,7 @@ function FormsCardsChange() { // props
                 cols="50"
               />
               <ErrorMessage
-                class="invalid-feedback"
+                className="invalid-feedback"
                 name="message"
                 component="div"
               />

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import FormsAuthLogin from '@/components/forms/auth/Login'
-// import useAuth from '@/hooks/useAuth'
 
 function PagesAuthLogin() {
   // const { apiLogin } = useAuth()

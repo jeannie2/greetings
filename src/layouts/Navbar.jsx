@@ -1,16 +1,13 @@
+// auth/my/cards?
 import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
-import { useSession, signIn, signOut } from 'next-auth/react'
 
 import { useAuth } from '@/contexts/auth'
 
-console.log('bday')
-
 export default function CompsLayoutsNavbar() {
-  // const { apiSignOut } = useAuth()
-  // const { data: session } = useSession()
+  const { user } = useAuth()
 
   return (
     <Navbar bg="light" expand="lg">
@@ -19,14 +16,26 @@ export default function CompsLayoutsNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto container-fluid">
+            {
+              user ? (
+                <>
+                  <Nav.Link as={Link} href="/my/cards" className="ms-lg-auto">My Cards</Nav.Link>
+                  <Nav.Link as={Link} href="/auth/signOut" className="ms-lg-auto">Sign out</Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link as={Link} href="/auth/login" className="ms-lg-auto">Login</Nav.Link>
+                  <Nav.Link as={Link} href="/auth/signup" className="ms-lg-auto">Sign up</Nav.Link>
+
+                </>
+              )
+            }
+
             <Nav.Link as={Link} href="/themes/bday" className="border border-dark border-2 mx-lg-4">Birthday</Nav.Link>
             <Nav.Link as={Link} href="/themes/thankyou" className="border border-dark border-2 mx-lg-4">Thank you</Nav.Link>
             <Nav.Link as={Link} href="/themes/congrats" className="border border-dark border-2 mx-lg-4">Congrats</Nav.Link>
 
             <Nav.Link as={Link} href="/private" className="border border-dark border-2 mx-lg-4">Private</Nav.Link>
-
-            <Nav.Link as={Link} href="/auth/login" className="ms-lg-auto">Login</Nav.Link>
-            <Nav.Link as={Link} href="/auth/signup" className="ms-lg-auto">Sign up</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
@@ -36,7 +45,7 @@ export default function CompsLayoutsNavbar() {
 }
 
 /*
-  <Nav.Link as={Link} href="/themes/bday" class="nav-link">Birthday</Nav.Link>
+  <Nav.Link as={Link} href="/themes/bday" className="nav-link">Birthday</Nav.Link>
 
  <Nav.Link onClick={() => { apiSignOut({ callbackUrl: '/' }) }}>Sign Out</Nav.Link>
 

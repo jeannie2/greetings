@@ -2,16 +2,18 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
-const initialValues = {
-  email: '',
-  password: ''
-}
+import { useAuth } from '@/contexts/auth'
 
-function FormsAuthLogin(props) {
+function FormsAuthLogin() {
+  const { apiSignIn } = useAuth()
+
   return (
     <Formik
-      initialValues={props.initialValues || initialValues}
-      onSubmit={props.onSubmit}
+      initialValues={{
+        email: '',
+        password: ''
+      }}
+      onSubmit={apiSignIn}
       enableReinitialize
       validationSchema={
         Yup.object({

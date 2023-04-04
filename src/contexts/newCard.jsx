@@ -1,6 +1,0 @@
-import React, { useState, createContext, useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
-// import { doc, setDoc } from 'firebase/firestore'
-// import { collection, addDoc, getDocs } from 'firebase/firestore'
-import { collection, addDoc, getDocs } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'

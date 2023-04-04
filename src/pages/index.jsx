@@ -5,6 +5,7 @@
 }
 */
 
+import { useAuth } from '@/contexts/auth'
 import { useEffect } from 'react'
 import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'firebase/auth'
 import { collection, query, where, addDoc, getDocs } from 'firebase/firestore'
@@ -80,6 +81,7 @@ export default function Home() {
     })
   }
 
+  const { apiSignOut } = useAuth()
   // where equal to param. preview the card
   /* const getUser = async () => {
     const q = query(collection(db, 'users'), where('first', '==', 'sarah'))
@@ -110,6 +112,7 @@ export default function Home() {
       <button onClick={addUser} type="button">Add User</button>
       <button onClick={getUsers} type="button">Get Users</button>
       <button onClick={getUser} type="button">Get 1 User</button>
+      <button onClick={apiSignOut} type="button">Logout</button>
     </div>
   )
 }
