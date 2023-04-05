@@ -1,4 +1,9 @@
+import withAuth from '@/hoc/withAuth'
 // get id of logged in user and display all cards with that userId
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Link from 'next/link'
 
 // import getMyCardHook from '@/hooks/getMyCardHook'
 
@@ -64,7 +69,27 @@ export default function MyCardsIndex() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
 
-  return myCards.map((card) => (
-    <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName}</div>
-  ))
+  return (
+    <Container>
+      <Row xs={1} md={2} className="g-4">
+        {myCards.map((card) => (
+          <>
+            <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+            <Col>
+              <iframe
+                src={`${card.iframe}.html`}
+              />
+              <Link href={`/my/cards/${card.id}`}>VIEW 1 CARD</Link>
+            </Col>
+          </>
+        ))}
+      </Row>
+    </Container>
+  )
 }
+
+/*
+ return myCards.map((card) => (
+    <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+  ))
+  */

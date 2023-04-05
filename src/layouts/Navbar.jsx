@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav'
 import { useAuth } from '@/contexts/auth'
 
 export default function CompsLayoutsNavbar() {
-  const { user } = useAuth()
+  const { user, apiSignOut } = useAuth()
 
   return (
     <Navbar bg="light" expand="lg">
@@ -20,7 +20,7 @@ export default function CompsLayoutsNavbar() {
               user ? (
                 <>
                   <Nav.Link as={Link} href="/my/cards" className="ms-lg-auto">My Cards</Nav.Link>
-                  <Nav.Link as={Link} href="/auth/signOut" className="ms-lg-auto">Sign out</Nav.Link>
+                  <Nav.Link onClick={apiSignOut} className="ms-lg-auto">Sign out</Nav.Link>
                 </>
               ) : (
                 <>

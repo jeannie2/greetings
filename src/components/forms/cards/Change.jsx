@@ -9,60 +9,14 @@ import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
-/* const initialValues = {
-  senderName: '',
-  senderEmail: '',
-  recipientName: '',
-  recipientEmail: '',
-  message: '',
-  dateToSend: '',
-  cardId: ''
-} */
-
-/* const greetingcards = firebase.database().ref('greetingcards')
-
-const createCard = () => {
-  const newCardRef = greetingcards.push()
-  newCardRef.set({
-    senderName: Field.senderName,
-    senderEmail: Field.senderEmail,
-    recipientName: Field.recipientName,
-    recipientEmail: Field.recipientEmail,
-    message: Field.message
-  })
-}
-
- const apiSignup = (values) => new Promise((resolve, reject) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password).then((result) => {
-      resolve(result)
-      router.push('/test')
-    }).catch((error) => {
-      reject(error)
-    })
-  })
-
-*/
-
-const createCard2 = (values) => new Promise((resolve, reject) => {
-  const router = useRouter()
-  addCard(values.senderName, values.senderEmail, values.recipientName, values.recipientEmail, values.message).then((result) => {
-    resolve(result)
-    resetForm()
-    router.push('/test')
-  }).catch((error) => {
-    reject(error)
-  })
-})
-
-// Function to get get form values
-/* function getInputVal(id) {
-  return document.getElementById(id).value
-} */
-
+/// www.draft/new?bday1
 function FormsCardsChange() { // props
   const router = useRouter()
   const { user } = useAuth()
-  const createCard = async (values) => { // values
+
+  const param = router.query
+  // console.log(`router query${router.query}`)
+  const createCard = async (values) => {
     // const newValues = {
     //   ...values,
     //   userId: user.uid,
@@ -71,9 +25,8 @@ function FormsCardsChange() { // props
     try {
       // const { id } = doc(collection(db, 'bloodDonation'))
       // const newDonationRef = doc(db, 'bloodDonation', id)
-    //  await setDoc(newDonationRef, values)
+      //  await setDoc(newDonationRef, values)
       const docRef = await addDoc(collection(db, 'greetingcards'), values)
-      // redirect to preview page
       console.log('Document written with ID: ', docRef.id) // cardId
       router.push('/test')
     } catch (e) {
@@ -89,8 +42,9 @@ function FormsCardsChange() { // props
         recipientName: '',
         recipientEmail: '',
         message: '',
-        userId: user?.uid || ''
-        // dateToSend: '',
+        iframe: param?.new || '',
+        userId: user?.uid || '',
+        deliveryDate: ''
       }}
       onSubmit={createCard}
       enableReinitialize
@@ -101,8 +55,9 @@ function FormsCardsChange() { // props
           recipientName: Yup.string().required().label('RecipientName'),
           recipientEmail: Yup.string().required().label('RecipientEmail'),
           message: Yup.string().required().label('Message'),
-          userId: Yup.string()
-          // dateToSend: Yup.string().required().label('DateToSend'),
+          iframe: Yup.string(),
+          userId: Yup.string(),
+          deliveryDate: Yup.string() // correct?
         })
       }
     >
@@ -198,3 +153,15 @@ function FormsCardsChange() { // props
 export default FormsCardsChange
 
 // need is-invalid?
+/*
+const createCard2 = (values) => new Promise((resolve, reject) => {
+  const router = useRouter()
+  addCard(values.senderName, values.senderEmail, values.recipientName, values.recipientEmail, values.message).then((result) => {
+    resolve(result)
+    resetForm()
+    router.push('/test')
+  }).catch((error) => {
+    reject(error)
+  })
+})
+ */

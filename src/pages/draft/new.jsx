@@ -2,6 +2,8 @@ import React from 'react'
 
 import FormsCardsChange from '@/components/forms/cards/Change'
 
+/// draft/new?iframe=bday1
+
 /// /iframe src= queryparam
 // actual card on the side with iframe
 function PagesCardsNew() {

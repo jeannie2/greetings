@@ -1,7 +1,5 @@
-// templtes/bday wasnt working
 // need getStaticPaths?
 // http://localhost:3000/api/test
-// or make bday part of api and export several
 
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
@@ -9,8 +7,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import { useRouter } from 'next/router'
-// import { apiGetFiles } from '@/pages/api/test' //  { test }
-// react bootstrap can use bootstrap syntax or import row and container?
 
 /*   <div className="col-12 col-sm-6 col-lg-3">
       <a className="card animate__animated animate__flipInX text-body" href="/listings/${listing.id}" style="text-decoration: none;">
@@ -23,6 +19,7 @@ import { useRouter } from 'next/router'
     </div>
   */
 
+// EXTRACT TEMPLATE NAME - more elegant way
 export default function BdayIndex({ templateFiles }) { // props: cards
   // const bdayTemplates = ['bday1', 'bday2', 'bday3', 'bday4', 'bday5']
 
@@ -31,11 +28,10 @@ export default function BdayIndex({ templateFiles }) { // props: cards
   if (router.isFallback) return <div>Loading...</div>
   if (!templateFiles) return <div>No such template</div>
 
-  // EXTRACT TEMPLATE NAME
   return (
     <Container>
       <Row>
-        {templateFiles.map((template) => (
+        {templateFiles.bday.map((template) => (
           <Col
             lg={3}
             xs={12}
@@ -44,7 +40,7 @@ export default function BdayIndex({ templateFiles }) { // props: cards
             height="50%"
             key={template}
           >
-            <Link href={`/draft/template?${template.replace(/\.[^/.]+$/, '')}`}>
+            <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
                 console.log('HOW')
               }}
@@ -65,42 +61,9 @@ export default function BdayIndex({ templateFiles }) { // props: cards
   )
 }
 
-/*           <div id="iframe-container" className="position-absolute">
-                <iframe
-                  src={`/templates/bday/${template}`}
-                  onClick={() => {
-                    console.log('HOW')
-                  }}
-                />
-              </div> */
-/*
-export async function getStaticProps({ params }) {
-  const card = await apiGetCard(params.id)
-
-  return {
-    props: {
-      card
-    }
-  }
-} */
-
-export async function getStaticPropsOG() {
-  // const templateFiles = await apiGetFiles()
-  // const res = await fetch('http://localhost:3000/api/test')
-
-  // const templateFiles = await res.json()
-  // console.log(`HANN${apiGetFiles()}`)
-
-  return {
-    props: {
-      templateFiles
-    }
-  }
-}
-
 export async function getStaticProps() {
   // const templateFiles = await apiGetFiles()
-  const res = await fetch('http://localhost:3000/api/test')
+  const res = await fetch('http://localhost:3000/api/allTemplates')
 
   const templateFiles = await res.json()
   // console.log(`HANN${apiGetFiles()}`)
@@ -113,6 +76,8 @@ export async function getStaticProps() {
 }
 
 /*
+import { apiGetFiles } from '@/pages/api/test' //  { test }
+
  <Link href={`/cards/${template}`}>
 
    <div className="container">
@@ -173,4 +138,40 @@ return (
     </Container>
 
   )
-} */
+}
+
+-----
+
+/*           <div id="iframe-container" className="position-absolute">
+                <iframe
+                  src={`/templates/bday/${template}`}
+                  onClick={() => {
+                    console.log('HOW')
+                  }}
+                />
+              </div> */
+/*
+export async function getStaticProps({ params }) {
+  const card = await apiGetCard(params.id)
+
+  return {
+    props: {
+      card
+    }
+  }
+}
+
+export async function getStaticPropsOG() {
+  // const templateFiles = await apiGetFiles()
+  // const res = await fetch('http://localhost:3000/api/test')
+
+  // const templateFiles = await res.json()
+  // console.log(`HANN${apiGetFiles()}`)
+
+  return {
+    props: {
+      templateFiles
+    }
+  }
+}
+*/
