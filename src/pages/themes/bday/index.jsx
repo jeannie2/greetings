@@ -20,7 +20,7 @@ import { useRouter } from 'next/router'
   */
 
 // EXTRACT TEMPLATE NAME - more elegant way
-export default function BdayIndex({ templateFiles }) { // props: cards
+export default function BdayIndexPage({ templateFiles }) { // props: cards
   // const bdayTemplates = ['bday1', 'bday2', 'bday3', 'bday4', 'bday5']
 
   const router = useRouter()

@@ -20,7 +20,7 @@ import { useRouter } from 'next/router'
   */
 
 // EXTRACT TEMPLATE NAME - more elegant way
-export default function ThankYouIndex({ templateFiles }) { // props: cards
+export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   const router = useRouter()
 
   if (router.isFallback) return <div>Loading...</div>

@@ -11,7 +11,7 @@ import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
 /// www.draft/new?bday1
-function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
+function FormsCardsChange(iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
 
@@ -19,7 +19,6 @@ function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <-
 
   console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
-
   const createCard = async (values) => {
     // const newValues = {
     //   ...values,
@@ -35,20 +34,18 @@ function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <-
     }
   }
 
-  const initialValues = {
-    senderName: '',
-    senderEmail: '',
-    recipientName: '',
-    recipientEmail: '',
-    message: '',
-    iframe: iframe?.iframe || '', // param?.new || '',
-    userId: user?.uid || '',
-    deliveryDate: ''
-  }
-
   return (
     <Formik
-      initialValues={props.initialValues || initialValues}
+      initialValues={{
+        senderName: '',
+        senderEmail: '',
+        recipientName: '',
+        recipientEmail: '',
+        message: '',
+        iframe: iframe?.iframe || '', // param?.new || '',
+        userId: user?.uid || '',
+        deliveryDate: ''
+      }}
       onSubmit={createCard}
       enableReinitialize
       validationSchema={

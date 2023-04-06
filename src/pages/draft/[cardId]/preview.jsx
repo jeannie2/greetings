@@ -4,17 +4,21 @@
 // use document id to retrieve contents of 1 document including iframe
 // dont show the other info... recipientemail, deliverydate, etc
 
-import { useCard } from '@/contexts/card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useRouter } from 'next/router'
 
-export default function PreviewPage() {
-  const router = useRouter()
-  const { card, isLoading, error } = useCard()
+import { useCard } from '@/contexts/card'
 
-  console.log(`MYCARDCONTEN${card}`) // null
+export default function PreviewCardPage() {
+  const { query: { cardId } } = useRouter()
+  const { card, isLoading, error } = useCard(cardId)
+  const router = useRouter()
+
+  // added
+  const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
+
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
 
@@ -22,20 +26,27 @@ export default function PreviewPage() {
     <Container>
       <Row xs={1} md={2} className="g-4">
         <h1>PREVIEW PAGE</h1>
-        {card.map((item) => (
-          <>
-            <div key={item.id}>WHATEVER{item.recipientName} {item.message} EE</div>
-            <Col>
-              <iframe
-                src={`${item.iframe}.html`}
-              />
-            </Col>
-          </>
-        ))}
+        <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
+        <Col>
+          <iframe
+            src={`/templates/${folder}/${card.iframe}.html`}
+            className="border"
+          />
+          <div> To: {card.recipientName}</div>
+          <div>Message: {card.message}</div>
+        </Col>
       </Row>
-      <button onClick={() => router.push(`/draft/${card.id}/submitted?iframe=${item.iframe}`)} type="button">SEND</button>
-      <button onClick={() => router.push(`/draft/${card.id}/edit?iframe=${item.iframe}`)} type="button">EDIT</button>
-    </Container>
+      <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button">SEND</button>
+      <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)} type="button">EDIT</button>
 
+    </Container>
   )
 }
+
+/*
+     <button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>
+      <div>{(card.iframe).replace(/\d+/g, '')}</div>
+
+  <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+
+  */

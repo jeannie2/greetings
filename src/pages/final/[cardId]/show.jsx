@@ -15,3 +15,7 @@ updateDoc(docRef, data)
 .catch(error => {
     console.log(error);
 })
+
+export default FinalCardPage() {
+
+}

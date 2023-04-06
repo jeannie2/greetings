@@ -63,23 +63,28 @@ import Link from 'next/link'
 
 import { useMyCards } from '@/contexts/myCards'
 
-export default function MyCardsIndex() {
+function MyCardsIndex() { // export default function MyCardsIndex() {
   const { myCards, isLoading, error } = useMyCards()
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
+
+  // const folder = myCard.iframe?.replace(/\d+/g, '') // added
 
   return (
     <Container>
       <Row xs={1} md={2} className="g-4">
         {myCards.map((card) => (
           <>
-            <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+            <div key={card.id} />
             <Col>
               <iframe
-                src={`${card.iframe}.html`}
+                src={`/templates/${card?.iframe?.replace(/\d+/g, '')}/${card.iframe}.html`}
+                className="border"
               />
-              <Link href={`/my/cards/${card.id}`}>VIEW 1 CARD</Link>
+              <Link href={`/my/cards/${card.id}`}>View Details</Link>
+              <div>To: {card.recipientName} </div>
+
             </Col>
           </>
         ))}
@@ -88,9 +93,13 @@ export default function MyCardsIndex() {
   )
 }
 
+export default withAuth(MyCardsIndex)
+
+// <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
 // export default withAuth(MyCardsIndex)
 /*
  return myCards.map((card) => (
     <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
   ))
+
   */

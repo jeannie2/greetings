@@ -1,104 +1,80 @@
 // get card based on router query cardId
 // can use for final?cardId: show page as well?
-import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, documentId } from 'firebase/firestore'
 
-import { useAuth } from '@/contexts/auth'
+import React, { useEffect, useState, createContext, useContext } from 'react'
+import { getDoc, doc, updateDoc, getFirestore } from 'firebase/firestore'
+
 import { db } from '@/services/firebase'
-import { useRouter } from 'next/router'
 
 const CardContext = createContext()
 
 export function CardProvider({ children }) {
-  const router = useRouter()
-  // const r = useRouter()
-  // const { asPath, pathname } = useRouter()
-  // console.log(`asPath: ${asPath}`)
-  // console.log(`pathname: ${pathname}`)
-
-  console.log(`router.query?.draft${router.query.cardId}`)
-
-  // get docid from param
-  const docId = router.query.cardId
-  console.log(`docId: ${docId}`)
-  // const url = router.query
-
-  // const putty = asPath.split('/').pop()
-  // console.log(`puttyfinal${putty}`)
-
-  // const urlOG = pathname.split('/')
-  // const url = urlOG.pop()
-  // console.log(`URL${url}`)
-  // const { user } = useAuth()
-
   const [card, setCard] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    if (docId) {
-      const getCard = async () => {
-        try {
-          const newCard = []
-          const q = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
-          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
-          const documentSnapshot = await getDoc(q)
-          // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
-          console.log(documentSnapshot)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
-          // newMyCard.push(querySnapshot)
-          /* querySnapshot.forEach((doc) => newMyCard.push({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setMyCard(newMyCard) */
-          setIsLoading(false)
-        } catch (err) {
-          console.log(err) // eslint-disable-line
-          setError(err)
-        }
-      }
-
-      getCard()
+  const getCard = async (cardId) => {
+    try {
+      const docRef = doc(db, 'greetingcards', cardId)
+      const docSnap = await getDoc(docRef)
+      setCard(docSnap.data())
+      setIsLoading(false)
+    } catch (err) {
+      console.log(err) // eslint-disable-line
+      setError(err)
     }
-  }, [])
+  }
+
+  const editCard = async (cardId) => {
+    try {
+      // const db = getFirestore()
+      const docRef = doc(db, 'greetingcards', cardId)
+      const newData = {
+        iframe: 'PASTA'
+      }
+      updateDoc(docRef, newData)
+      console.log('Value of an Existing Document Field has been updated')
+      // setCard(docSnap.data())
+      setIsLoading(false)
+    } catch (err) {
+     console.log(err) // eslint-disable-line
+      setError(err)
+    }
+  }
 
   const data = {
     card,
     isLoading,
-    error
+    error,
+    getCard,
+    editCard
   }
 
   return <CardContext.Provider value={data}>{children}</CardContext.Provider>
 }
 
-export function useCard() {
-  return useContext(CardContext)
+export function useCard(cardId) {
+  const { getCard, ...rest } = useContext(CardContext)
+
+  console.log('hook', cardId, rest)
+
+  useEffect(() => {
+    if (cardId) getCard(cardId)
+  }, [cardId])
+
+  return rest
 }
 
-/*
- useEffectOG(() => {
-    if (putty) {
-      const getCard = async () => {
-        try {
-          const newMyCard = []
-          const q = query(collection(db, 'greetingcards'), where(documentId(), '==', putty))
-          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
-          const querySnapshot = await getDocs(q)
-          // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
-          console.log(querySnapshot)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
-          // newMyCard.push(querySnapshot)
-          querySnapshot.forEach((doc) => newMyCard.push({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setMyCard(newMyCard)
-          setIsLoading(false)
-        } catch (err) {
-          console.log(err) // eslint-disable-line
-          setError(err)
-        }
-      }
+// export default function updateCard(cardId)
 
-      getCard()
-    }
-  }, []) */
+export function updateCard(cardId) {
+  const { editCard, ...rest } = useContext(CardContext)
+
+  console.log('hook', cardId, rest)
+
+  useEffect(() => {
+    if (cardId) editCard(cardId)
+  }, [cardId])
+
+  return rest
+}

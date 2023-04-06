@@ -1,61 +1,47 @@
-import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, doc, documentId } from 'firebase/firestore'
+import React, { useEffect, useState, createContext, useContext } from 'react'
+import { getDoc, doc } from 'firebase/firestore'
 
-import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
-import { useRouter } from 'next/router'
 
 const MyCardContext = createContext()
 
 export function MyCardProvider({ children }) {
-  // const router = useRouter()
-  const { asPath } = useRouter()
-  console.log(`asPath: ${asPath}`)
-  // console.log(pathname)
-  // const url = router.query
-
-  const docId = asPath.split('/').pop()
-  console.log(`docID: ${docId}`)
-
-  // const urlOG = pathname.split('/')
-  // const url = urlOG.pop()
-  // console.log(`URL${url}`)
-  // const { user } = useAuth()
-
   const [myCard, setMyCard] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    if (docId) {
-      const getCard = async () => {
-        try {
-          const docRef = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
-          const docSnap = await getDoc(docRef)
-          setMyCard(docSnap.data())
-          console.log(`docsnapdata: ${docSnap.data()}`)
-          setIsLoading(false)
-        } catch (err) {
-          console.log(err) // eslint-disable-line
-          setError(err)
-        }
-      }
-
-      getCard()
+  const getMyCard = async (cardId) => {
+    try {
+      const docRef = doc(db, 'greetingcards', cardId)
+      const docSnap = await getDoc(docRef)
+      setMyCard(docSnap.data())
+      setIsLoading(false)
+    } catch (err) {
+      console.log(err) // eslint-disable-line
+      setError(err)
     }
-  }, [])
+  }
 
   const data = {
     myCard,
     isLoading,
-    error
+    error,
+    getMyCard
   }
 
   return <MyCardContext.Provider value={data}>{children}</MyCardContext.Provider>
 }
 
-export function useMyCard() {
-  return useContext(MyCardContext)
+export function useMyCard(cardId) {
+  const { getMyCard, ...rest } = useContext(MyCardContext)
+
+  console.log('hook', cardId, rest)
+
+  useEffect(() => {
+    if (cardId) getMyCard(cardId)
+  }, [cardId])
+
+  return rest
 }
 
 /*

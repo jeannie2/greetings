@@ -44,8 +44,6 @@ export function AuthProvider({ children }) {
     })
   })
 
-  console.log(user)
-
   const data = {
     user,
     isLoading,

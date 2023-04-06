@@ -2,23 +2,21 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-function PagesCardSubmitted() {
+function CardSubmittedPage() {
   const router = useRouter()
 
   // const [queries] = useSearchParams()
   // const tipId = queries.get('tipId')
   // diff way instead of tipId bc already have id at edit/preview stage
   useEffect(() => {
-    if (tipId) {
-      setTimeout(() => {
-        router.push('/test')
-      }, 3000)
-    }
-  }, [tipId])
+    setTimeout(() => {
+      router.push('/')
+    }, 3000)
+  }, [])
 
   return (
-    <h1>Card sent, thank you</h1>
+    <h1 className="text-align: center">Card sent, thank you!</h1>
   )
 }
 
-export default PagesCardSubmitted
+export default CardSubmittedPage

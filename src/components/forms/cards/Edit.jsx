@@ -9,29 +9,42 @@ import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
+import { useCard, UpdateCard } from '@/contexts/card'
 
 /// www.draft/new?bday1
-function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
+function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
+
+  // const [isLoading, setIsLoading] = useState(true)
+  // const [error, setError] = useState(null)
 
   // const param = router.query
 
   console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  const createCard = async (values) => {
-    // const newValues = {
-    //   ...values,
-    //   userId: user.uid,
-    // }
-    console.log(values)
+  const editCard = async (cardId) => {
+    // const { query: { cardId } } = useRouter()
+    // const { card, isLoading, error } = useCard(cardId)
+
     try {
-      const docRef = await addDoc(collection(db, 'greetingcards'), values)
-      console.log('Document written with ID: ', docRef.id) // cardId
-      router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
-    } catch (e) {
-      console.error('Error adding document: ', e)
+      // const db = getFirestore()
+      const docRef = doc(db, 'greetingcards', cardId)
+      const newData = {
+        iframe: 'PASTA'
+        // form data? QQ
+      }
+      updateDoc(docRef, newData)
+      // updateDoc(docRef, newData)
+      console.log('Value of an Existing Document Field has been updated')
+      router.push(`/draft/${docRef.id}/preview`)
+      // display the results of updated record
+      // setCard(docSnap.data())
+      // setIsLoading(false) need? QQ
+    } catch (err) {
+     console.log(err) // eslint-disable-line
+      // setError(err) need? QQ
     }
   }
 
@@ -49,7 +62,7 @@ function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <-
   return (
     <Formik
       initialValues={props.initialValues || initialValues}
-      onSubmit={createCard}
+      onSubmit={editCard}
       enableReinitialize
       validationSchema={
         Yup.object({
@@ -153,7 +166,7 @@ function FormsCardsChange(props, iframe) { // props //{ iframe } ({ iframe }) <-
   )
 }
 
-export default FormsCardsChange
+export default FormsCardsEdit
 
 // need is-invalid?
 /*
