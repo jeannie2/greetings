@@ -88,6 +88,7 @@ export default function MyCardsIndex() {
   )
 }
 
+// export default withAuth(MyCardsIndex)
 /*
  return myCards.map((card) => (
     <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>

@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 import { useMyCard } from '@/contexts/myCard'
 
-export default function MyCardIndex() {
+export default function MyCardSnow() {
   const { myCard, isLoading, error } = useMyCard()
 
   if (isLoading) return <div>Loading...</div>
@@ -22,7 +22,6 @@ export default function MyCardIndex() {
         {myCard.map((card) => (
           <>
             <h1>  1 CARD SHOWING NOW</h1>
-            <div key={card.id}>WHATEVER{card.id} EE</div>
             <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
             <Col>
               <iframe
@@ -37,6 +36,7 @@ export default function MyCardIndex() {
   )
 }
 
+// export default withAuth(MyCardShow)
 /*
  <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
 

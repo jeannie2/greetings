@@ -11,7 +11,7 @@ export default function withAuth(Component) {
       unauthorized: '/api/auth/login'
     })
 
-    console.log(status)
+    console.log(`status${status}`)
     if (status === 'loading') return <div>Loading...</div>
     if (status === false) {
       return {

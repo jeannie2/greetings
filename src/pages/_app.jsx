@@ -4,19 +4,25 @@ import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from '@/contexts/auth'
 import { MyCardsProvider } from '@/contexts/myCards'
 import { MyCardProvider } from '@/contexts/myCard'
+import { CardProvider } from '@/contexts/card'
 
 import CompsLayoutsNavbar from '@/layouts/Navbar'
 
+// CardProvider correct order below? QQ
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <AuthProvider>
-        <MyCardsProvider>
-          <MyCardProvider>
-            <CompsLayoutsNavbar />
-            <Component {...pageProps} />
-          </MyCardProvider>
-        </MyCardsProvider>
+        <CardProvider>
+          <MyCardsProvider>
+            <MyCardProvider>
+
+              <CompsLayoutsNavbar />
+              <Component {...pageProps} />
+
+            </MyCardProvider>
+          </MyCardsProvider>
+        </CardProvider>
       </AuthProvider>
       <ToastContainer
         position="bottom-left"

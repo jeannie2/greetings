@@ -1,4 +1,5 @@
 // import React from 'react'
+// ok to pass value like this to render iframe? QQ instead of getting param
 import { Formik, Field, Form, ErrorMessage, resetForm } from 'formik'
 import * as Yup from 'yup'
 
@@ -10,11 +11,13 @@ import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
 /// www.draft/new?bday1
-function FormsCardsChange() { // props
+function FormsCardsChange(iframe) { // props
   const router = useRouter()
   const { user } = useAuth()
 
-  const param = router.query
+  // const param = router.query
+
+  console.log(`iframe: ${iframe.iframe}`)
   // console.log(`router query${router.query}`)
   const createCard = async (values) => {
     // const newValues = {
@@ -28,7 +31,7 @@ function FormsCardsChange() { // props
       //  await setDoc(newDonationRef, values)
       const docRef = await addDoc(collection(db, 'greetingcards'), values)
       console.log('Document written with ID: ', docRef.id) // cardId
-      router.push('/test')
+      router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
       console.error('Error adding document: ', e)
     }
@@ -42,7 +45,7 @@ function FormsCardsChange() { // props
         recipientName: '',
         recipientEmail: '',
         message: '',
-        iframe: param?.new || '',
+        iframe: iframe?.iframe || '', // param?.new || '',
         userId: user?.uid || '',
         deliveryDate: ''
       }}
@@ -142,7 +145,7 @@ function FormsCardsChange() { // props
               />
             </div>
 
-            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
+            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
       }

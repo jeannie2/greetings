@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, doc, documentId } from 'firebase/firestore'
+import { collection, getDocs, query, where, getDoc, documentId } from 'firebase/firestore'
 
 import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
@@ -10,12 +10,12 @@ const MyCardContext = createContext()
 export function MyCardProvider({ children }) {
   // const router = useRouter()
   const { asPath } = useRouter()
-  console.log(`asPath: ${asPath}`)
+  console.log(`PUTTY${asPath}`)
   // console.log(pathname)
   // const url = router.query
 
-  const docId = asPath.split('/').pop()
-  console.log(`docID: ${docId}`)
+  const putty = asPath.split('/').pop()
+  console.log(`puttyfinal${putty}`)
 
   // const urlOG = pathname.split('/')
   // const url = urlOG.pop()
@@ -27,13 +27,26 @@ export function MyCardProvider({ children }) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    if (docId) {
+    if (putty) {
       const getCard = async () => {
         try {
-          const docRef = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
-          const docSnap = await getDoc(docRef)
-          setMyCard(docSnap.data())
-          console.log(`docsnapdata: ${docSnap.data()}`)
+          const newMyCard = []
+          const q = query(collection(db, 'greetingcards'), where(documentId(), '==', putty))
+          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+          // const docSnap = await getDoc(q)
+          const documentSnapshot = await getDoc(q)
+          // const newMyCard = docSnap
+          // const newMyCard = documentSnapshot
+          // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
+          console.log(`docsnapshot${documentSnapshot}`)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          // newMyCard.push(documentSnapshot)
+          // newMyCard.push(docSnap)
+          /* querySnapshot.forEach((doc) => newMyCard.push({
+            id: doc.id,
+            ...doc.data()
+          })) */
+          // setMyCard(documentSnapshot)
+          // setMyCard(newMyCard)
           setIsLoading(false)
         } catch (err) {
           console.log(err) // eslint-disable-line

@@ -1,28 +1,37 @@
+// get card based on router query cardId
+// can use for final?cardId: show page as well?
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, doc, documentId } from 'firebase/firestore'
+import { collection, getDocs, query, where, getDoc, documentId } from 'firebase/firestore'
 
 import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
 import { useRouter } from 'next/router'
 
-const MyCardContext = createContext()
+const CardContext = createContext()
 
-export function MyCardProvider({ children }) {
-  // const router = useRouter()
-  const { asPath } = useRouter()
-  console.log(`asPath: ${asPath}`)
-  // console.log(pathname)
+export function CardProvider({ children }) {
+  const router = useRouter()
+  // const r = useRouter()
+  // const { asPath, pathname } = useRouter()
+  // console.log(`asPath: ${asPath}`)
+  // console.log(`pathname: ${pathname}`)
+
+  console.log(`router.query?.draft${router.query.cardId}`)
+
+  // get docid from param
+  const docId = router.query.cardId
+  console.log(`docId: ${docId}`)
   // const url = router.query
 
-  const docId = asPath.split('/').pop()
-  console.log(`docID: ${docId}`)
+  // const putty = asPath.split('/').pop()
+  // console.log(`puttyfinal${putty}`)
 
   // const urlOG = pathname.split('/')
   // const url = urlOG.pop()
   // console.log(`URL${url}`)
   // const { user } = useAuth()
 
-  const [myCard, setMyCard] = useState(null)
+  const [card, setCard] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -30,10 +39,18 @@ export function MyCardProvider({ children }) {
     if (docId) {
       const getCard = async () => {
         try {
-          const docRef = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
-          const docSnap = await getDoc(docRef)
-          setMyCard(docSnap.data())
-          console.log(`docsnapdata: ${docSnap.data()}`)
+          const newCard = []
+          const q = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
+          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+          const documentSnapshot = await getDoc(q)
+          // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
+          console.log(documentSnapshot)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          // newMyCard.push(querySnapshot)
+          /* querySnapshot.forEach((doc) => newMyCard.push({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setMyCard(newMyCard) */
           setIsLoading(false)
         } catch (err) {
           console.log(err) // eslint-disable-line
@@ -46,16 +63,16 @@ export function MyCardProvider({ children }) {
   }, [])
 
   const data = {
-    myCard,
+    card,
     isLoading,
     error
   }
 
-  return <MyCardContext.Provider value={data}>{children}</MyCardContext.Provider>
+  return <CardContext.Provider value={data}>{children}</CardContext.Provider>
 }
 
-export function useMyCard() {
-  return useContext(MyCardContext)
+export function useCard() {
+  return useContext(CardContext)
 }
 
 /*

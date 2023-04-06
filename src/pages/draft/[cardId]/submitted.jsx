@@ -1,23 +1,24 @@
 // get iframe from cardid not param?
 import React, { useEffect } from 'react'
-// import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/router'
 
-function PagesTipsSubmitted() {
-  const navigate = useNavigate()
-  const [queries] = useSearchParams()
-  const tipId = queries.get('tipId')
+function PagesCardSubmitted() {
+  const router = useRouter()
 
+  // const [queries] = useSearchParams()
+  // const tipId = queries.get('tipId')
+  // diff way instead of tipId bc already have id at edit/preview stage
   useEffect(() => {
     if (tipId) {
       setTimeout(() => {
-        navigate('/wanted/topten')
+        router.push('/test')
       }, 3000)
     }
   }, [tipId])
 
   return (
-    <h1 className="text-xl text-white text-center italic mt-20">Tip successfully submitted, thank you</h1>
+    <h1>Card sent, thank you</h1>
   )
 }
 
-export default PagesTipsSubmitted
+export default PagesCardSubmitted

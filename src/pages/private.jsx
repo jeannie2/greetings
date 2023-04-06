@@ -1,6 +1,6 @@
 import withAuth from '@/hoc/withAuth'
 
-export function Private() {
+function Private() {
   // const { data } = useSWR('/api/private', fetcher)
   // console.log(data) // eslint-disable-line
 
