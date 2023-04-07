@@ -35,7 +35,7 @@ export default function EditCardPage() {
     <div id="pages-auth-signup" className="container">
       <div className="row">
         <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <h1 className="text-center">EDIT PAGE</h1>
+          <h1 className="text-center">Edit Card</h1>
           <iframe src={`/templates/${folder}/${card.iframe}.html`} className="border" />
           <FormsCardsEdit initialValues={card} />
 

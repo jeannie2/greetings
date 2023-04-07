@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import { useAuth } from '@/contexts/auth'
 import { useRouter } from 'next/router'
+// QQ why toastify twice? toastify for handleErrors in a _utils.jsx file, with alert appearing on pages with catch (err)?
+// actually toastify, private pages redundant - unless hv locked cards. WWW
+
+import { toast } from 'react-toastify'
 
 export default function withAuth(Component) {
   return (props) => {
@@ -9,6 +13,7 @@ export default function withAuth(Component) {
 
     useEffect(() => {
       if (!isLoading && !user) {
+        toast.warning('You need to login first!')
         router.push('/auth/login')
       }
     }, [user, isLoading])

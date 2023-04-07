@@ -11,10 +11,20 @@ import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 import { useCard, UpdateCard } from '@/contexts/card'
 
+import useEditCardHook from '@/hooks/useEditCardHook'
+
+function EditCard() {
+  const router = useRouter()
+  console.log('WT')
+  const docRef = doc(db, 'greetingcards', cardId)
+  router.push(`/draft/${docRef.id}/preview`)
+}
+
 /// www.draft/new?bday1
 function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
+  const useEditCard = useEditCardHook()
 
   // const [isLoading, setIsLoading] = useState(true)
   // const [error, setError] = useState(null)
@@ -24,7 +34,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
   console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  const editCard = async (cardId) => {
+  const editCardOG = async (cardId) => {
     // const { query: { cardId } } = useRouter()
     // const { card, isLoading, error } = useCard(cardId)
 
@@ -62,7 +72,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
   return (
     <Formik
       initialValues={props.initialValues || initialValues}
-      onSubmit={editCard}
+      onSubmit={EditCard}
       enableReinitialize
       validationSchema={
         Yup.object({
