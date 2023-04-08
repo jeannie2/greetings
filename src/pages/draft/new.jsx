@@ -15,14 +15,15 @@ function NewCardPage() {
   const { iframe } = url.query
   const folder = iframe?.replace(/\d+/g, '')
 
-  const { createCard } = '@/contexts/card'
+  // const { createCard } = '@/contexts/card'
+  console.log(`url: ${url.query}`)
+  console.log(`iframe on new page: ${iframe}`)
 
   return (
-    <div id="pages-auth-signup" className="container">
+    <div id="pages-auth-signup" className="container text-center mt-2 border">
       <div className="row">
-        <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <h1 className="text-center">New Card Page</h1>
-          <iframe src={`/templates/${folder}/${iframe}.html`} className="border" />
+        <div className="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+          <iframe src={`/templates/${folder}/${iframe}.html`} className="border embed-responsive-item" allowFullScreen />
           <FormsCardsChange iframe={iframe} />
         </div>
       </div>
@@ -31,6 +32,7 @@ function NewCardPage() {
 }
 
 export default NewCardPage
+//          <h1 className="text-center">New Card Page</h1>
 // onSubmit={createCard}
 /*  <FormsAuthSignup
             onSubmit={apiSignup}

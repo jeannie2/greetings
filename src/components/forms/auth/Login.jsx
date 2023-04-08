@@ -24,14 +24,14 @@ function FormsAuthLogin() {
     >
       {
         ({ errors: e, touched: t, isSubmitting }) => (
-          <Form>
+          <Form className="text-center">
             <div className="mb-3">
               <label>Email</label>
               <Field
                 className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
                 name="email"
                 type="email"
-                placeholder="adam.chan@gmail.com"
+                placeholder="yourname@gmail.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -54,7 +54,7 @@ function FormsAuthLogin() {
               />
             </div>
 
-            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Submit</button>
+            <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )
       }

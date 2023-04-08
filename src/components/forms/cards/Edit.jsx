@@ -8,53 +8,39 @@ import { useRouter } from 'next/router'
 import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
-// update to react bootstrap code
 import { useCard, UpdateCard } from '@/contexts/card'
 
-import useEditCardHook from '@/hooks/useEditCardHook'
-
-function EditCard() {
-  const router = useRouter()
-  console.log('WT')
-  const docRef = doc(db, 'greetingcards', cardId)
-  router.push(`/draft/${docRef.id}/preview`)
-}
+// dont pass iframe here?
 
 /// www.draft/new?bday1
-function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
+function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
-  const useEditCard = useEditCardHook()
+  const { query: { cardId } } = useRouter()
+  // const { asPath, pathname } = useRouter()
+  // const useEditCard = useEditCardHook()
 
   // const [isLoading, setIsLoading] = useState(true)
   // const [error, setError] = useState(null)
-
+  // console.log(`aspath: ${asPath} pathname: ${pathname}`)
   // const param = router.query
 
-  console.log(`iframe: ${iframe?.iframe}`)
+  // console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  const editCardOG = async (cardId) => {
-    // const { query: { cardId } } = useRouter()
-    // const { card, isLoading, error } = useCard(cardId)
-
+  // useRecord if no work - hook
+  const updateRecord = async (values) => {
+    // cardId not docId or else cannot read properties of undefined - reading indexof error
+    // const { query: { docId } } = useRouter()
     try {
-      // const db = getFirestore()
-      const docRef = doc(db, 'greetingcards', cardId)
-      const newData = {
-        iframe: 'PASTA'
-        // form data? QQ
-      }
-      updateDoc(docRef, newData)
-      // updateDoc(docRef, newData)
-      console.log('Value of an Existing Document Field has been updated')
-      router.push(`/draft/${docRef.id}/preview`)
-      // display the results of updated record
-      // setCard(docSnap.data())
-      // setIsLoading(false) need? QQ
-    } catch (err) {
-     console.log(err) // eslint-disable-line
-      // setError(err) need? QQ
+      // const cardId = docId
+      console.log(`cardId: ${cardId}`)
+      await updateDoc(doc(db, 'greetingcards', cardId), {
+        ...values
+      })
+      router.push(`/draft/${cardId}/preview`)
+    } catch (e) {
+      console.log(e)
     }
   }
 
@@ -64,7 +50,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
     recipientName: '',
     recipientEmail: '',
     message: '',
-    iframe: iframe?.iframe || '', // param?.new || '',
+    iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
     deliveryDate: ''
   }
@@ -72,7 +58,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
   return (
     <Formik
       initialValues={props.initialValues || initialValues}
-      onSubmit={EditCard}
+      onSubmit={updateRecord}
       enableReinitialize
       validationSchema={
         Yup.object({
@@ -111,7 +97,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
                 name="senderEmail"
                 id="senderEmail"
                 type="email"
-                placeholder="adam.chan@gmail.com"
+                placeholder="yourname@gmail.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -141,7 +127,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
                 name="recipientEmail"
                 type="email"
                 id="recipientEmail"
-                placeholder="adam.chan@gmail.com"
+                placeholder="yourname@gmail.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -152,6 +138,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
 
             <div className="mb-3">
               <label>Message</label>
+              <br />
               <Field
                 component="textarea"
                // className={`form-control ${e?.password && t?.password && 'is-invalid'}`}
@@ -168,7 +155,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
               />
             </div>
 
-            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Preview</button>
+            <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
       }
@@ -178,6 +165,55 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
 
 export default FormsCardsEdit
 
+/*
+function EditCard() {
+  const router = useRouter()
+  console.log('WT')
+  const docRef = doc(db, 'greetingcards', cardId)
+  router.push(`/draft/${docRef.id}/preview`)
+}
+
+ import useEditCardHook from '@/hooks/useEditCardHook'
+ const { query: { cardId } } = useRouter()
+ const router = useRouter()
+
+/* const reviseRecord2 = (values, docId) => new Promise((resolve, reject) => {
+  updateDoc(doc(db, 'greetingcards', docId), {
+    ...values
+  }).then((result) => {
+    resolve(result)
+    console.log('updated')
+    // said to do sth else? QQ
+    // router.push('/test')
+  }).catch((error) => {
+    reject(error)
+  })
+})
+
+  const editCardOG = async (cardId) => {
+    // const { query: { cardId } } = useRouter()
+    // const { card, isLoading, error } = useCard(cardId)
+
+    try {
+      // const db = getFirestore()
+      const docRef = doc(db, 'greetingcards', cardId)
+      const newData = {
+        iframe: 'PASTA'
+        // form data? QQ
+      }
+      updateDoc(docRef, newData)
+      // updateDoc(docRef, newData)
+      console.log('Value of an Existing Document Field has been updated')
+      router.push(`/draft/${docRef.id}/preview`)
+      // display the results of updated record
+      // setCard(docSnap.data())
+      // setIsLoading(false) need? QQ
+    } catch (err) {
+     console.log(err) // eslint-disable-line
+      // setError(err) need? QQ
+    }
+  }
+  */
 // need is-invalid?
 /*
 const createCard2 = (values) => new Promise((resolve, reject) => {
@@ -194,4 +230,6 @@ const createCard2 = (values) => new Promise((resolve, reject) => {
   const { id } = doc(collection(db, 'bloodDonation'))
  const newDonationRef = doc(db, 'bloodDonation', id)
   await setDoc(newDonationRef, values)
+
+  -----------
  */

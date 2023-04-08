@@ -10,62 +10,37 @@ export default function CompsLayoutsNavbar() {
   const { user, apiSignOut } = useAuth()
 
   return (
-
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <Link href="/" className="navbar-brand">Home Greeting Cards</Link>
-
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul id="navbar-dynamic-links" className="navbar-nav mb-2 mb-lg-0" />
-
-          <li className="nav-item">
-            <Link href="/themes/bday" className="text-decoration-none">Birthday</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link href="/themes/thankyou" className="text-decoration-none">Thank You</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link href="/themes/congrats" className="text-decoration-none">Congrats</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link href="/private" className="text-decoration-none">Private</Link>
-          </li>
-
-          {
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand as={Link} href="/">HOME GREETING CARDS</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto container-fluid">
+            {
               user ? (
                 <>
-                  <li className="nav-item ms-auto">
-                    <Link href="/my/cards" className="text-decoration-none">My Cards</Link>
-                  </li>
-
-                  <li className="nav-item ml-1">
-                    <Link href="" onClick={apiSignOut} className="text-decoration-none">Sign out</Link>
-                  </li>
+                  <Nav.Link as={Link} href="/my/cards" className="ms-lg-auto">My Cards</Nav.Link>
+                  <Nav.Link onClick={apiSignOut} className="ms-lg-auto">Sign out</Nav.Link>
                 </>
               ) : (
                 <>
-                  <li className="nav-item ms-auto">
-                    <Link href="/auth/login" className="text-decoration-none">Login</Link>
-                  </li>
+                  <Nav.Link as={Link} href="/auth/login" className="ms-lg-auto">Login</Nav.Link>
+                  <Nav.Link as={Link} href="/auth/signup" className="ms-lg-auto">Sign up</Nav.Link>
 
-                  <li className="nav-item ml-1">
-                    <Link href="/auth/signup" className="text-decoration-none">Sign up</Link>
-                  </li>
                 </>
               )
             }
 
-        </div>
-      </div>
-    </nav>
+            <Nav.Link as={Link} href="/themes/bday" className="navbar-nav navbar-left">Birthday</Nav.Link>
+            <Nav.Link as={Link} href="/themes/thankyou" className="navbar-nav navbar-left">Thank you</Nav.Link>
+            <Nav.Link as={Link} href="/themes/congrats" className="navbar-nav navbar-left">Congrats</Nav.Link>
 
+            <Nav.Link as={Link} href="/private" className="navbar-right">Private</Nav.Link>
+
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

@@ -8,7 +8,7 @@
 import { useAuth } from '@/contexts/auth'
 import { useEffect } from 'react'
 import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'firebase/auth'
-import { collection, query, where, addDoc, getDocs } from 'firebase/firestore'
+import { collection, query, where, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '@/services/firebase'
 
 export default function Home() {
@@ -81,6 +81,28 @@ export default function Home() {
     })
   }
 
+  // const router = useRouter()
+
+  const updateRecord = async () => {
+    try {
+      const docId = '70IUJ0slyirjNjr1XnG3'
+      await updateDoc(doc(db, 'greetingcards', docId), {
+        message: 'skidmore'
+      })
+      // router.push('/test')
+    } catch (e) {
+      console.log(error)
+    }
+  }
+
+  /*
+  const updateRecordOG = async () => {
+      const docId = '70IUJ0slyirjNjr1XnG3'
+      await updateDoc(doc(db, 'greetingcards', docId), {
+        message: 'skidmore'
+      })
+  } */
+
   const { apiSignOut } = useAuth()
   // where equal to param. preview the card
   /* const getUser = async () => {
@@ -113,6 +135,7 @@ export default function Home() {
       <button onClick={getUsers} type="button">Get Users</button>
       <button onClick={getUser} type="button">Get 1 User</button>
       <button onClick={apiSignOut} type="button">Logout</button>
+      <button onClick={updateRecord} type="button">Update record</button>
     </div>
   )
 }

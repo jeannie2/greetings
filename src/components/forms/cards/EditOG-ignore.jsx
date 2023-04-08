@@ -9,29 +9,90 @@ import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
+import { useCard, UpdateCard } from '@/contexts/card'
+
+// import useEditCardHook from '@/hooks/useEditCardHook'
+
+// const { query: { cardId } } = useRouter()
+
+// const router = useRouter()
+
+/* const reviseRecord2 = (values, docId) => new Promise((resolve, reject) => {
+  updateDoc(doc(db, 'greetingcards', docId), {
+    ...values
+  }).then((result) => {
+    resolve(result)
+    console.log('updated')
+    // said to do sth else? QQ
+    // router.push('/test')
+  }).catch((error) => {
+    reject(error)
+  })
+})
+ */
+
+// dont pass iframe here?
+
+function EditCard() {
+  const router = useRouter()
+  console.log('WT')
+  const docRef = doc(db, 'greetingcards', cardId)
+  router.push(`/draft/${docRef.id}/preview`)
+}
 
 /// www.draft/new?bday1
-function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doesnt get written to db. but how make work if use one form with props || initial values? props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
+function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
+  const { query: { cardId } } = useRouter()
+  const { asPath, pathname } = useRouter()
+  // const useEditCard = useEditCardHook()
 
+  // const [isLoading, setIsLoading] = useState(true)
+  // const [error, setError] = useState(null)
+  console.log(`aspath: ${asPath} pathname: ${pathname}`)
   // const param = router.query
 
   console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  const createCard = async (values) => {
-    // const newValues = {
-    //   ...values,
-    //   userId: user.uid,
-    // }
-    console.log(values)
+  const editCardOG = async (cardId) => {
+    // const { query: { cardId } } = useRouter()
+    // const { card, isLoading, error } = useCard(cardId)
+
     try {
-      const docRef = await addDoc(collection(db, 'greetingcards'), values)
-      console.log('Document written with ID: ', docRef.id) // cardId
-      router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
+      // const db = getFirestore()
+      const docRef = doc(db, 'greetingcards', cardId)
+      const newData = {
+        iframe: 'PASTA'
+        // form data? QQ
+      }
+      updateDoc(docRef, newData)
+      // updateDoc(docRef, newData)
+      console.log('Value of an Existing Document Field has been updated')
+      router.push(`/draft/${docRef.id}/preview`)
+      // display the results of updated record
+      // setCard(docSnap.data())
+      // setIsLoading(false) need? QQ
+    } catch (err) {
+     console.log(err) // eslint-disable-line
+      // setError(err) need? QQ
+    }
+  }
+
+  // useRecord if no work - hook
+  const updateRecord = async (values) => {
+    // cardId not docId or else cannot read properties of undefined - reading indexof error
+    // const { query: { docId } } = useRouter()
+    try {
+      // const cardId = docId
+      console.log(`cardId: ${cardId}`)
+      await updateDoc(doc(db, 'greetingcards', cardId), {
+        ...values
+      })
+    // router.push('/test')
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.log(e)
     }
   }
 
@@ -48,8 +109,8 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
   return (
     <Formik
-      initialValues={initialValues} // props.initialValues ||initialValues
-      onSubmit={createCard}
+      initialValues={props.initialValues || initialValues}
+      onSubmit={updateRecord}
       enableReinitialize
       validationSchema={
         Yup.object({
@@ -88,7 +149,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
                 name="senderEmail"
                 id="senderEmail"
                 type="email"
-                placeholder="yourname@gmail.com"
+                placeholder="adam.chan@gmail.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -118,7 +179,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
                 name="recipientEmail"
                 type="email"
                 id="recipientEmail"
-                placeholder="yourname@gmail.com"
+                placeholder="adam.chan@gmail.com"
               />
               <ErrorMessage
                 className="invalid-feedback"
@@ -129,7 +190,6 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
             <div className="mb-3">
               <label>Message</label>
-              <br />
               <Field
                 component="textarea"
                // className={`form-control ${e?.password && t?.password && 'is-invalid'}`}
@@ -146,7 +206,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
               />
             </div>
 
-            <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
+            <button className="btn btn-primary float-end" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
       }
@@ -154,7 +214,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
   )
 }
 
-export default FormsCardsChange
+export default FormsCardsEdit
 
 // need is-invalid?
 /*

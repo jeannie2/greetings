@@ -13,16 +13,21 @@ export default function TemplateIndexPage() {
 
   // console.log(`url query : ${url.query}`)
   console.log(`url.query.iframe : ${url.query.iframe}`)
-  console.log(`iframe: ${iframe}`)
+  console.log(`iframe iframe: ${iframe}`)
 
   return (
-    <>
-      <h1>Themes: 1 card view</h1>
-      <iframe className="border" src={`/templates/${folder}/${iframe}.html`} />
-      <button onClick={() => router.push(`/draft/new?iframe=${iframe}`)} type="button">Send</button>
-    </>
+    <div className="container mt-5 mx-auto text-center border">
+      <div className="row">
+        <div className="col-12">
+          <iframe src={`/templates/${folder}/${iframe}.html`} className="border embed-responsive-item vh-90" allowFullScreen width="80%" height="400px" />
+          <button onClick={() => router.push(`/draft/new?iframe=${iframe}`)} type="button" className="btn btn-primary d-block mx-auto">Send</button>
+        </div>
+      </div>
+    </div>
+
   )
 }
 
+//  <h1>Themes: 1 card view</h1>
 // export default IndexTemplate
 /* className="btn btn-primary float-end" type="submit" disabled={isSubmitting}> */

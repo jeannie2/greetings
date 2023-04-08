@@ -32,11 +32,12 @@ export default function EditCardPage() {
  */
 
   return (
-    <div id="pages-auth-signup" className="container">
+    <div id="pages-auth-signup" className="container text-center mt-2 border">
+
       <div className="row">
-        <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <h1 className="text-center">Edit Card</h1>
-          <iframe src={`/templates/${folder}/${card.iframe}.html`} className="border" />
+        <div className="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+
+          <iframe src={`/templates/${folder}/${card.iframe}.html`} className="border embed-responsive-item" allowFullScreen />
           <FormsCardsEdit initialValues={card} />
 
         </div>
@@ -44,7 +45,7 @@ export default function EditCardPage() {
     </div>
   )
 }
-/*
+/*  <h3 className="text-center">Edit Card</h3>
   <FormsCardsChange
     initialValues={card}
     onSubmit={editCard}

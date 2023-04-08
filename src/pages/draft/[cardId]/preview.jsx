@@ -16,34 +16,55 @@ export default function PreviewCardPage() {
   const { card, isLoading, error } = useCard(cardId)
   const router = useRouter()
 
+  // const iframe = card?.iframe
+  const folder = card?.iframe.replace(/\d+/g, '')
+
+  /*
+  const url = useRouter()
+  const { iframe } = url.query
+  const folder = iframe?.replace(/\d+/g, '')
+ */
+
   // added
-  const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
+  // OLD: const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
+
+  console.log(`iframe on preview page: ${card?.iframe}`)
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
 
   return (
-    <Container>
-      <Row xs={1} md={2} className="g-4">
-        <h1>PREVIEW PAGE</h1>
-        <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
-        <Col>
+    <div className="container mt-5 mx-auto text-center border">
+      <div className="row">
+        <div className="col-1" />
+
+        <div className="col-lg-10">
+          <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button" className="btn btn-primary button mx-auto">SEND</button>
+          <button onClick={() => router.push(`/draft/${cardId}/edit`)} type="button" className="btn btn-primary button mx-2 float-right">EDIT</button>
+          <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
+
           <iframe
             src={`/templates/${folder}/${card.iframe}.html`}
-            className="border"
+            className="border embed-responsive-item vh-90"
+            allowFullScreen
+            width="70%"
+            height="400px"
           />
-          <div> To: {card.recipientName}</div>
-          <div>Message: {card.message}</div>
-        </Col>
-      </Row>
-      <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button">SEND</button>
-      <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)} type="button">EDIT</button>
 
-    </Container>
+          <div className="border">To: {card.recipientName}</div>
+          <div className="border">Message: {card.message}</div>
+
+        </div>
+        <div className="col-1" />
+      </div>
+
+    </div>
   )
 }
 
-/*
+/* <h1>PREVIEW PAGE</h1>
+ORIGINAL VERSION: <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)}
+
      <button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>
       <div>{(card.iframe).replace(/\d+/g, '')}</div>
 
