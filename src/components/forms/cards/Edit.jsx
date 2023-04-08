@@ -35,7 +35,8 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     try {
       // const cardId = docId
       console.log(`cardId: ${cardId}`)
-      await updateDoc(doc(db, 'greetingcards', cardId), {
+      // await updateDoc(doc(db, 'greetingcards', cardId), {
+      await updateDoc(doc(db, 'greetings2', cardId), {
         ...values
       })
       router.push(`/draft/${cardId}/preview`)

@@ -15,7 +15,9 @@ function CardSubmittedPage() {
   }, [])
 
   return (
-    <h1 className="text-align: center">Card sent, thank you!</h1>
+    <div className="container text-center pt-5 mt-5" id="sent-message">
+      <h1>Card sent, thank you!</h1>
+    </div>
   )
 }
 

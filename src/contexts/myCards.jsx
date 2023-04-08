@@ -18,7 +18,8 @@ export function MyCardsProvider({ children }) {
       const getCards = async () => {
         try {
           const newMyCards = []
-          const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+          const q = query(collection(db, 'greetings2'), where('userId', '==', user.uid))
           const querySnapshot = await getDocs(q)
           querySnapshot.forEach((doc) => newMyCards.push({
             id: doc.id,

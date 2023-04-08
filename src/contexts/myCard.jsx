@@ -12,7 +12,8 @@ export function MyCardProvider({ children }) {
 
   const getMyCard = async (cardId) => {
     try {
-      const docRef = doc(db, 'greetingcards', cardId)
+      // const docRef = doc(db, 'greetingcards', cardId)
+      const docRef = doc(db, 'greetings2', cardId)
       const docSnap = await getDoc(docRef)
       setMyCard(docSnap.data())
       setIsLoading(false)

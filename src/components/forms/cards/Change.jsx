@@ -27,7 +27,8 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     // }
     console.log(values)
     try {
-      const docRef = await addDoc(collection(db, 'greetingcards'), values)
+      // const docRef = await addDoc(collection(db, 'greetingcards'), values)
+      const docRef = await addDoc(collection(db, 'greetings2'), values)
       console.log('Document written with ID: ', docRef.id) // cardId
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {

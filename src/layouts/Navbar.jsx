@@ -1,8 +1,8 @@
 // auth/my/cards?
 import Link from 'next/link'
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
+// import Navbar from 'react-bootstrap/Navbar'
+// import Container from 'react-bootstrap/Container'
+// import Nav from 'react-bootstrap/Nav'
 
 import { useAuth } from '@/contexts/auth'
 
@@ -23,19 +23,19 @@ export default function CompsLayoutsNavbar() {
           <ul id="navbar-dynamic-links" className="navbar-nav mb-2 mb-lg-0" />
 
           <li className="nav-item">
-            <Link href="/themes/bday" className="text-decoration-none">Birthday</Link>
+            <Link href="/themes/bday" className="text-decoration-none border p-2">Birthday</Link>
           </li>
 
           <li className="nav-item">
-            <Link href="/themes/thankyou" className="text-decoration-none">Thank You</Link>
+            <Link href="/themes/thankyou" className="text-decoration-none border p-2">Thank You</Link>
           </li>
 
           <li className="nav-item">
-            <Link href="/themes/congrats" className="text-decoration-none">Congrats</Link>
+            <Link href="/themes/congrats" className="text-decoration-none border p-2">Congrats</Link>
           </li>
 
           <li className="nav-item">
-            <Link href="/private" className="text-decoration-none">Private</Link>
+            <Link href="/private" className="text-decoration-none border p-2">Private</Link>
           </li>
 
           {

@@ -86,7 +86,8 @@ export default function Home() {
   const updateRecord = async () => {
     try {
       const docId = '70IUJ0slyirjNjr1XnG3'
-      await updateDoc(doc(db, 'greetingcards', docId), {
+      //   await updateDoc(doc(db, 'greetingcards', docId), {
+      await updateDoc(doc(db, 'greetings2', docId), {
         message: 'skidmore'
       })
       // router.push('/test')

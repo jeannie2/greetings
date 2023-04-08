@@ -41,10 +41,11 @@ export default function BdayIndexPage({ templateFiles }) { // props: cards
                   onClick={() => {
                     console.log('HOW')
                   }}
-                  className="mb-2 card-img-top"
+                  className="border mb-2 card-img-top embed-responsive-item"
+                  allowFullScreen
                 />
                 <div className="card-body text-center" />
-                <h6 className="card-title mb-2">PLACEHOLDER</h6>
+                <h6 className="card-title mb-2 mx-auto text-center">send card</h6>
               </div>
             </Link>
           </div>

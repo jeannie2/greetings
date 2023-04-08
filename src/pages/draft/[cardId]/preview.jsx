@@ -4,9 +4,6 @@
 // use document id to retrieve contents of 1 document including iframe
 // dont show the other info... recipientemail, deliverydate, etc
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import { useRouter } from 'next/router'
 
 import { useCard } from '@/contexts/card'
@@ -52,7 +49,7 @@ export default function PreviewCardPage() {
           />
 
           <div className="border">To: {card.recipientName}</div>
-          <div className="border">Message: {card.message}</div>
+          <div className="border">{card.message}</div>
 
         </div>
         <div className="col-1" />
@@ -62,7 +59,12 @@ export default function PreviewCardPage() {
   )
 }
 
-/* <h1>PREVIEW PAGE</h1>
+/*
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
+<h1>PREVIEW PAGE</h1>
 ORIGINAL VERSION: <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)}
 
      <button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>

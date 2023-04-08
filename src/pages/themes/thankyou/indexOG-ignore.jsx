@@ -2,16 +2,18 @@
 // http://localhost:3000/api/test
 
 import Link from 'next/link'
-// import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import { useRouter } from 'next/router'
 
-/*
-
+/*   <div className="col-12 col-sm-6 col-lg-3">
+      <a className="card animate__animated animate__flipInX text-body" href="/listings/${listing.id}" style="text-decoration: none;">
+      <img id="workImage" className="mb-2 card-img-top" src="${listing.work}" alt="user work" />
+      <div className="card-body text-center">
       <img className="mb-2 rounded-circle" src="${listing.user.avatar}" alt="user avatar" width="50" height="50" />
-
+      <h6 className="card-title mb-2">${listing.title}</h6>
       </div>
       </a>
     </div>
@@ -25,10 +27,17 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   if (!templateFiles) return <div>No such template</div>
 
   return (
-    <div id="main" className="container p-3">
-      <div className="row border">
+    <Container>
+      <Row>
         {templateFiles.thankyou.map((template) => (
-          <div className="col-12 col-sm-6 col-lg-4 border">
+          <Col
+            lg={3}
+            xs={12}
+            sm={6}
+            className="border border-primary border-2"
+            height="50%"
+            key={template}
+          >
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
                 console.log('HOW')
@@ -39,17 +48,14 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
                   onClick={() => {
                     console.log('HOW')
                   }}
-                  className="border mb-2 card-img-top embed-responsive-item"
-                  allowFullScreen
                 />
-                <div className="card-body text-center" />
-                <h6 className="card-title mb-2 mx-auto text-center">send card</h6>
               </div>
             </Link>
-          </div>
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
+
   )
 }
 

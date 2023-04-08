@@ -57,7 +57,7 @@ function FormsAuthSignup() {
             </div>
 
             <div className="mb-3">
-              <label>Password Confirmation</label>
+              <label>Password confirmation</label>
               <Field
                 className={`form-control ${e?.passwordConfirmation && t?.passwordConfirmation && 'is-invalid'}`}
                 name="passwordConfirmation"

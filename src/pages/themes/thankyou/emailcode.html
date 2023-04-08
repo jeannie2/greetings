@@ -1,0 +1,133 @@
+$recipientName = $_POST['recipientName'];
+$recipientEmail = $_POST['recipientEmail'];
+$senderName = $_POST['senderName'];
+$senderEmail = $_POST['senderEmail'];
+$message = $_POST['message'];
+$theid = $_POST['theid'];
+$svgimage = $_POST['svgimage'];
+
+//new
+$arr = explode(' ',trim($recipientName));
+//echo $arr[0];
+$recipientNameFirst = $arr[0];
+
+try {
+$mail->isSMTP();
+$mail->Host = 'gator3009.hostgator.com'; // smtp.gmail.com
+$mail->SMTPAuth = true;
+//Gmail ID which you want to use as SMTP server
+$mail->Username = 'contact@thejokercards.com'; // pm05741@gmail.com candy@jiyoonnam.com info@thejokercards.com
+//Gmail password
+$mail->Password = 'riddler000'; // marshallgmail warrenworthington
+//$mail->SMTPSecure = 'ssl'; // PHPMailer::ENCRYPTION_STARTTLS;
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // changed on 16 August 2022
+$mail->Port = 465; // 587
+//$mail->SMTPDebug = 1; // list of logs. LIBRARIAN
+
+//Email ID from which you want to send the email
+$mail->setFrom('contact@thejokercards.com'); // pm05741@gmail.com candy@jiyoonnam.com
+//Email ID where you want to receive emails
+$mail->addAddress($recipientEmail); // addAddress('jnam820@gmail.com')
+$mail->isHTML(true);
+$mail->Subject = '- - - - - The JokerCard - - - - - '; /* - - - - - - - - - - - - */
+$mail->addEmbeddedImage('thejokercards.png', 'graphic');
+$mail->Body =
+"
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+  <title> TheJokerCards.com </title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+  <style type='text/css'>
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+    }
+
+  </style>
+
+</head>
+
+<body style='margin:0; padding:0'>
+  <table role='presentation' width='100%' height='100%' cellpadding='0' cellspacing='0' style='background:#000000'
+    border='0'>
+    <tr height='90%'>
+      <td style='padding:10px 10px 10px 10px'>
+        <table width='100%' height='100%' cellpadding='0' cellspacing='0' align='center' border='0'>
+
+      <tr height='10%'>
+            <td align='center' style='padding:40px 0 30px 0' bgcolor='#000000'>
+              <a href='#'><img src='cid:graphic' width='300' height='248' style='display:block' alt='envelope' /> </a>
+          </td>
+          </tr>
+
+          <tr>
+           <td>
+              <center>
+                <p style='margin:0; text-align:center; font-size:29px; font-family:Brush Script MT, cursive; color:#FFFFFF'
+                  border='0'>
+                  <font color='#FFFFFF'>You've got mail!<br> </font>
+                </p>
+              <a style='text-decoration:none; text-align:center; font-size: 15px; background:#FFFF00; color:#000000'
+                  href='https://thejokercards.com/cardTemplate_$svgimage.php?recipientNameFirst=$recipientNameFirst&svgimage=$svgimage&theid=$theid'>
+                  open sesame </a>
+              </center>
+           </td>
+          </tr>
+
+      <tr>
+           <td align='right'>
+              <a style='text-decoration:none; font-size:11px; font-family:Times New Roman; color:#FFFFFF'
+                href='https://www.thejokercards.com'>TheJokerCards.com</a>
+            </td>
+</tr>
+
+</td>
+    </tr>
+  </table>
+
+</body>
+
+</html>";
+
+// $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+$mail->send();
+
+$output = print '
+<link rel="icon" href="spade2.png">
+
+<style type="text/css">
+  ul li {
+    display: none;
+  }
+
+  #svgcontainer {
+    display: none;
+  }
+
+  button#sendButton {
+    display: none;
+  }
+
+  button#home {
+    overflow-y: hidden !important;
+  }
+
+  html,
+  body {
+    overflow: hidden !important;
+  }
+
+</style>
+
+<div id="sentDiv" style="visibility:visible">
+  <img id="sentImage" style="visibility:visible" src="envelopes.png">
+</div>
+
+<a href=/index.php> <button id="home"> </button> </a>'; // <a href=/ecardform/index.php>
+
+  } catch (Exception $e) {
+  $output = '<div class="alert alert-danger">
+    <h5>' . $e->getMessage() . '</h5>
+  </div>';
+  }

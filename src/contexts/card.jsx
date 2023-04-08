@@ -15,7 +15,8 @@ export function CardProvider({ children }) {
 
   const getCard = async (cardId) => {
     try {
-      const docRef = doc(db, 'greetingcards', cardId)
+    //  const docRef = doc(db, 'greetingcards', cardId)
+      const docRef = doc(db, 'greetings2', cardId)
       const docSnap = await getDoc(docRef)
       setCard(docSnap.data())
       setIsLoading(false)
@@ -28,7 +29,8 @@ export function CardProvider({ children }) {
   const editCard = async (cardId) => {
     try {
       // const db = getFirestore()
-      const docRef = doc(db, 'greetingcards', cardId)
+      // const docRef = doc(db, 'greetingcards', cardId)
+      const docRef = doc(db, 'greetings2', cardId)
       const newData = {
         iframe: 'PASTA'
       }

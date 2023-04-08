@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
       resolve(result)
       console.log('logged in')
       // said to do sth else? QQ
-      router.push('/test')
+      router.push('/') //   router.push('/test')
     }).catch((error) => {
       reject(error)
     })
@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
     createUserWithEmailAndPassword(auth, values.email, values.password).then((result) => {
       resolve(result)
       // router.push('/my/cards')
-      router.push('/test')
+      router.push('/') //   router.push('/test')
     }).catch((error) => {
       reject(error)
     })
