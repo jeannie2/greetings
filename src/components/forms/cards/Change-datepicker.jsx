@@ -1,47 +1,68 @@
 // import React from 'react'
 // ok to pass value like this to render iframe? QQ instead of getting param
-import { Formik, Field, Form, ErrorMessage, resetForm, useField } from 'formik'
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik' // resetForm
 import * as Yup from 'yup'
 
-import React, { useState, createContext, useContext, useEffect } from 'react'
+import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
+import { collection, addDoc } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
-import { useCard, UpdateCard } from '@/contexts/card'
+// update to react bootstrap code
 
-// dont pass iframe here?
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
+const MyDatePicker = () => {
+  // const [field, meta, helpers] = useField(name)
+  const [startDate, setStartDate] = useState(new Date())
+
+  // const { value } = meta
+  // const { setValue } = helpers
+
+  return (
+    <DatePicker {...field} selected={startDate} onChange={(date) => setStartDate(date)} />
+  )
+}
+const MyDatePickerOG = ({ name = '' }) => {
+  const [field, meta, helpers] = useField(name)
+
+  const { value } = meta
+  const { setValue } = helpers
+
+  return (
+    <DatePicker
+      {...field}
+      selected={value}
+      onChange={(date) => setValue(date)}
+    />
+  )
+}
+
+//      dateFormat="MM-dd-yyyy"
 /// www.draft/new?bday1
-function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
+function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doesnt get written to db. but how make work if use one form with props || initial values? props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
-  const { query: { cardId } } = useRouter()
-  // const { asPath, pathname } = useRouter()
-  // const useEditCard = useEditCardHook()
 
-  // const [isLoading, setIsLoading] = useState(true)
-  // const [error, setError] = useState(null)
-  // console.log(`aspath: ${asPath} pathname: ${pathname}`)
   // const param = router.query
 
   // console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  // useRecord if no work - hook
-  const updateRecord = async (values) => {
-    // cardId not docId or else cannot read properties of undefined - reading indexof error
-    // const { query: { docId } } = useRouter()
+  const createCard = async (values) => {
+    // const newValues = {
+    //   ...values,
+    //   userId: user.uid,
+    // }
+    console.log(values)
     try {
-      // const cardId = docId
-      console.log(`cardId: ${cardId}`)
-      // await updateDoc(doc(db, 'greetingcards', cardId), {
-      await updateDoc(doc(db, 'greetings2', cardId), {
-        ...values
-      })
-      router.push(`/draft/${cardId}/preview`)
+      // const docRef = await addDoc(collection(db, 'greetingcards'), values)
+      const docRef = await addDoc(collection(db, 'greetings2'), values)
+      console.log('Document written with ID: ', docRef.id) // cardId
+      router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
-      console.log(e)
+      console.error('Error adding document: ', e)
     }
   }
 
@@ -51,7 +72,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     recipientName: '',
     recipientEmail: '',
     message: '',
-    iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
+    iframe: iframe?.iframe || '', // param?.new || '',
     userId: user?.uid || '',
     deliveryDate: ''
     // date: new Date(new Date().toDateString()),
@@ -60,8 +81,8 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
 
   return (
     <Formik
-      initialValues={props.initialValues || initialValues}
-      onSubmit={updateRecord}
+      initialValues={initialValues} // props.initialValues ||initialValues
+      onSubmit={createCard}
       enableReinitialize
       validationSchema={
         Yup.object({
@@ -160,6 +181,12 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
               />
             </div>
 
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePickerOG name="date" />
+            </div>
+
             <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
@@ -168,57 +195,15 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
   )
 }
 
-export default FormsCardsEdit
+export default FormsCardsChange
 
 /*
-function EditCard() {
-  const router = useRouter()
-  console.log('WT')
-  const docRef = doc(db, 'greetingcards', cardId)
-  router.push(`/draft/${docRef.id}/preview`)
-}
-
- import useEditCardHook from '@/hooks/useEditCardHook'
- const { query: { cardId } } = useRouter()
- const router = useRouter()
-
-/* const reviseRecord2 = (values, docId) => new Promise((resolve, reject) => {
-  updateDoc(doc(db, 'greetingcards', docId), {
-    ...values
-  }).then((result) => {
-    resolve(result)
-    console.log('updated')
-    // said to do sth else? QQ
-    // router.push('/test')
-  }).catch((error) => {
-    reject(error)
-  })
-})
-
-  const editCardOG = async (cardId) => {
-    // const { query: { cardId } } = useRouter()
-    // const { card, isLoading, error } = useCard(cardId)
-
-    try {
-      // const db = getFirestore()
-      const docRef = doc(db, 'greetingcards', cardId)
-      const newData = {
-        iframe: 'PASTA'
-        // form data? QQ
-      }
-      updateDoc(docRef, newData)
-      // updateDoc(docRef, newData)
-      console.log('Value of an Existing Document Field has been updated')
-      router.push(`/draft/${docRef.id}/preview`)
-      // display the results of updated record
-      // setCard(docSnap.data())
-      // setIsLoading(false) need? QQ
-    } catch (err) {
-     console.log(err) // eslint-disable-line
-      // setError(err) need? QQ
-    }
-  }
-  */
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePicker name="deliveryDate" />
+            </div>
+*/
 // need is-invalid?
 /*
 const createCard2 = (values) => new Promise((resolve, reject) => {
@@ -232,9 +217,13 @@ const createCard2 = (values) => new Promise((resolve, reject) => {
   })
 })
 
-  const { id } = doc(collection(db, 'bloodDonation'))
- const newDonationRef = doc(db, 'bloodDonation', id)
-  await setDoc(newDonationRef, values)
-
-  -----------
+const { id } = doc(collection(db, 'bloodDonation'))
+const newDonationRef = doc(db, 'bloodDonation', id)
+await setDoc(newDonationRef, values)
  */
+
+/* references:
+  datepicker:
+  https://stackoverflow.com/a/68417318
+  https://codesandbox.io/s/f29k0?file=/src/App.js:832-864
+  */

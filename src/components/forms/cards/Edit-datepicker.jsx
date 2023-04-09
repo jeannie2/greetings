@@ -10,6 +10,49 @@ import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 import { useCard, UpdateCard } from '@/contexts/card'
 
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+const DatepickerField = ({
+  field,
+  form,
+  ...props
+}) => (
+  // OR const { setFieldValue } = form;
+  // OR const { value, name } = field;
+  <div>
+    <DatePicker
+      dateFormat="MM-dd-yyyy"
+      {...field}
+      selected={field.value}
+      onChange={(val) => form.setFieldValue(field.name, val)}
+    />
+  </div>
+)
+
+const MyDatePicker = () => {
+  const [startDate, setStartDate] = useState(new Date())
+  return (
+    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+  )
+}
+
+const MyDatePickerOG = ({ name = '' }) => {
+  const [field, meta, helpers] = useField(name)
+
+  const { value } = meta
+  const { setValue } = helpers
+
+  return (
+    <DatePicker
+      {...field}
+      selected={value}
+      dateFormat="MM-dd-yyyy"
+      onChange={(date) => setValue(date)}
+    />
+  )
+}
+
 // dont pass iframe here?
 
 /// www.draft/new?bday1
@@ -53,7 +96,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     message: '',
     iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
-    deliveryDate: ''
+    deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -160,6 +203,8 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
               />
             </div>
 
+            <Field name="date" component={DatepickerField} />
+
             <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
@@ -171,6 +216,12 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
 export default FormsCardsEdit
 
 /*
+      <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePickerOG name="date" />
+            </div>
+
 function EditCard() {
   const router = useRouter()
   console.log('WT')

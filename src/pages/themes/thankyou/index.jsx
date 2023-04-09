@@ -28,7 +28,7 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
     <div id="main" className="container p-3">
       <div className="row border">
         {templateFiles.thankyou.map((template) => (
-          <div className="col-12 col-sm-6 col-lg-4 border">
+          <div key={template} className="col-12 col-sm-6 col-lg-4 border">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
                 console.log('HOW')

@@ -1,12 +1,12 @@
 // import React from 'react'
 // ok to pass value like this to render iframe? QQ instead of getting param
-import { Formik, Field, Form, ErrorMessage, resetForm } from 'formik'
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik' // resetForm
 import * as Yup from 'yup'
 
-import React, { useState, createContext, useContext, useEffect } from 'react'
+import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
+import { collection, addDoc } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
@@ -45,6 +45,8 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     iframe: iframe?.iframe || '', // param?.new || '',
     userId: user?.uid || '',
     deliveryDate: ''
+    // date: new Date(new Date().toDateString()),
+    // deliveryDate: new Date(new Date().toDateString())
   }
 
   return (
@@ -61,7 +63,9 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           message: Yup.string().required().label('Message'),
           iframe: Yup.string(),
           userId: Yup.string(),
-          deliveryDate: Yup.string() // correct?
+          deliveryDate: Yup.string()
+          // date: Yup.date(),
+          // deliveryDate: Yup.date() // correct?
         })
       }
     >
@@ -157,6 +161,13 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
 export default FormsCardsChange
 
+/*
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePicker name="deliveryDate" />
+            </div>
+*/
 // need is-invalid?
 /*
 const createCard2 = (values) => new Promise((resolve, reject) => {
@@ -170,7 +181,13 @@ const createCard2 = (values) => new Promise((resolve, reject) => {
   })
 })
 
-  const { id } = doc(collection(db, 'bloodDonation'))
- const newDonationRef = doc(db, 'bloodDonation', id)
-  await setDoc(newDonationRef, values)
+const { id } = doc(collection(db, 'bloodDonation'))
+const newDonationRef = doc(db, 'bloodDonation', id)
+await setDoc(newDonationRef, values)
  */
+
+/* references:
+  datepicker:
+  https://stackoverflow.com/a/68417318
+  https://codesandbox.io/s/f29k0?file=/src/App.js:832-864
+  */

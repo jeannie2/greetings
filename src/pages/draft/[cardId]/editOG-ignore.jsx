@@ -1,7 +1,7 @@
 // get iframe from cardid not param?
 // fb edit record with form
 
-import FormsCardsChange from '@/components/forms/cards/Change'
+import FormsCardsChange from '@/components/forms/cards/Change-datepicker'
 
 import { useRouter } from 'next/router'
 
