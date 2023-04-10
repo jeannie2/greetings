@@ -7,8 +7,7 @@ import { MyCardProvider } from '@/contexts/myCard'
 import { CardProvider } from '@/contexts/card'
 
 import CompsLayoutsNavbar from '@/layouts/Navbar'
-
-// CardProvider correct order below? QQ
+//
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -16,7 +15,6 @@ function MyApp({ Component, pageProps }) {
         <CardProvider>
           <MyCardsProvider>
             <MyCardProvider>
-
               <CompsLayoutsNavbar />
               <Component {...pageProps} />
 

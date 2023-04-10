@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~react-toastify/dist/ReactToastify.css";
 
+// height row vh-100 https: //stackoverflow.com/a/69137399
+ //       <div className="row border vh-100">
 /*
 iframe{
 pointer-events: unset
@@ -12,3 +14,9 @@ pointer-events: unset
   font-family: arial;
   font-style: italic;
  }
+
+ /*iframe {
+  width: 100%;
+  height: 100%;
+ }
+ */

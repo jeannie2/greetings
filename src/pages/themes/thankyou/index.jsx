@@ -8,6 +8,7 @@ import Link from 'next/link'
 
 import { useRouter } from 'next/router'
 
+//  full screen iframe on thankyou index: className="border mb-2 card-img-top embed-responsive-item vh-100"
 /*
 
       <img className="mb-2 rounded-circle" src="${listing.user.avatar}" alt="user avatar" width="50" height="50" />
@@ -17,6 +18,7 @@ import { useRouter } from 'next/router'
     </div>
   */
 
+//     <div className="row border vh-100">
 // EXTRACT TEMPLATE NAME - more elegant way
 export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   const router = useRouter()
@@ -25,8 +27,9 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   if (!templateFiles) return <div>No such template</div>
 
   return (
-    <div id="main" className="container p-3">
-      <div className="row border">
+    <div id="main" className="container p-3 border vh-100">
+      <div className="row border h-50">
+
         {templateFiles.thankyou.map((template) => (
           <div key={template} className="col-12 col-sm-6 col-lg-4 border">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
@@ -48,6 +51,7 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
             </Link>
           </div>
         ))}
+
       </div>
     </div>
   )

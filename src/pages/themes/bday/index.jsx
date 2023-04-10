@@ -43,6 +43,7 @@ export default function BdayIndexPage({ templateFiles }) { // props: cards
                   }}
                   className="border mb-2 card-img-top embed-responsive-item"
                   allowFullScreen
+
                 />
                 <div className="card-body text-center" />
                 <h6 className="card-title mb-2 mx-auto text-center">send card</h6>

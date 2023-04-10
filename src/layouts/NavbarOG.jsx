@@ -4,7 +4,6 @@ import Link from 'next/link'
 // import Container from 'react-bootstrap/Container'
 // import Nav from 'react-bootstrap/Nav'
 
-// <FontAwesomeIcon icon="fa-solid fa-face-grin-wide" spin style={{ color: '#000000' }} />
 import { useAuth } from '@/contexts/auth'
 
 export default function CompsLayoutsNavbar() {
@@ -13,8 +12,8 @@ export default function CompsLayoutsNavbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-
         <Link href="/" className="navbar-brand">Home Greeting Cards</Link>
+
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
