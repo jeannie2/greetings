@@ -4,4 +4,4 @@
 #GMAIL_APP_PASSWORD=
 
 SMTP_USER="jeanniejnam@gmail.com"
-#SMTP_PASSWORD="tzfibnbranwafymp"
+SMTP_PASSWORD="tzfibnbranwafymp"
