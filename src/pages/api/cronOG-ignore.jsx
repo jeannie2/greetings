@@ -20,6 +20,7 @@ export default function Cron() {
     } catch (err) {
       console.log(err) // eslint-disable-line
       //  setError(err)
+      // set
     }
   }
 
