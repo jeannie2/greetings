@@ -8,7 +8,8 @@ export default function Home() {
     message: ''
   })
 
-  const [form, setForm] = useState('')
+  //  const [form, setForm] = useState('')
+  const [setForm] = useState('')
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -100,5 +101,5 @@ export default function Home() {
         ) : form.state === 'error' ? (
           <div>{form.message}</div>
         ) : (
-				  form.state === 'success' && <div>Sent successfully</div>
+				form.state === 'success' && <div>Sent successfully</div>
         )} */

@@ -8,12 +8,12 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 import { useCard } from '@/contexts/card'
 
 export default function PreviewPage() {
-  const router = useRouter()
+  // const router = useRouter()
   const { card, isLoading, error } = useCard()
 
   // console.log(`MYCARDCONTEN${card}`) // null

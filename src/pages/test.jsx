@@ -3,7 +3,8 @@ import { db } from '@/services/firebase'
 import { getDocs, collection } from 'firebase/firestore'
 
 export default function Test() {
-  const [wishlists, setWishlists] = useState([])
+  // wishlists,
+  const [setWishlists] = useState([])
   const [isWishlistLoading, setIsWishlistLoading] = useState(true)
 
   useEffect(() => {

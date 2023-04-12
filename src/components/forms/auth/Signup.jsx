@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/auth'
 
 function FormsAuthSignup() {
   const { apiSignup } = useAuth()
-#
+
   return (
     <Formik
       initialValues={{

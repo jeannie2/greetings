@@ -1,8 +1,8 @@
 // get iframe from cardid not param?
 // fb edit record with form
 
-import { useRouter } from 'next/router'
-import FormsCardsChange from '@/components/forms/cards/Change-datepicker'
+// import { useRouter } from 'next/router'
+// import FormsCardsChange from '@/components/forms/cards/Change-datepicker'
 
 /*
 // create context
@@ -24,9 +24,9 @@ const updateRecord() {
 
 } */
 
-export default function EditPage() {
+/* export default function EditPage() {
   const { query: { cardId } } = useRouter()
-  const { card, isLoading, error } = useCard(cardId)
+  // const { card, isLoading, error } = useCard(cardId)
   const router = useRouter()
 
   // added
@@ -45,12 +45,13 @@ export default function EditPage() {
     <>
       <h1>EDIT PAGE</h1>
       <iframe className="border" />
-      <FormsCardsChange />
 
     </>
   )
 }
-
+ */
 /*
+ <FormsCardsChange />
+
 initialValues={data?.}
  onSubmit={updateRecord} */
