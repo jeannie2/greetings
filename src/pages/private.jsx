@@ -10,3 +10,4 @@ function Private() {
 }
 
 export default withAuth(Private)
+// test
