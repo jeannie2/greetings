@@ -125,6 +125,30 @@ export default function Home() {
     }
   }
 
+  const getDocsByDate = async () => {
+    const [cards, setCards] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    console.log('LEOMNDATE')
+    try {
+      const newCards = []
+      const q = query(collection(db, 'greetings2'), where('message', '==', 'rainbow'))
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => newCards.push({
+        id: doc.id,
+        ...doc.data()
+
+      }))
+      setCards(newCards)
+      console.log(`NEWCARDS: ${newCards}`)
+      setIsLoading(false)
+    } catch (err) {
+          console.log(err) // eslint-disable-line
+      setError(err)
+    }
+  }
+
   /*  // setForm({
           state: 'error',
        // //  message: 'Something went wrong'
@@ -203,6 +227,7 @@ export default function Home() {
       <button onClick={updateRecord} type="button">Update record</button>
 
       <button onClick={sendEmail} type="button">send email </button>
+      <button onClick={getDocsByDate} type="button">doc by date </button>
     </div>
   )
 }

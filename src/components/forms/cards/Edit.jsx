@@ -10,6 +10,7 @@ import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 import { useCard, UpdateCard } from '@/contexts/card'
 
+import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -45,12 +46,17 @@ const MyDatePicker = ({ name = '' }) => {
   const { value } = meta
   const { setValue } = helpers
 
+  console.log(value)
+
   return (
     <DatePicker
       {...field}
       selected={value}
       dateFormat="MM-dd-yyyy"
-      onChange={(date) => setValue(date)}
+      onChange={(date) => {
+        setValue(moment(date).valueOf()
+        )
+      }}
     />
   )
 }
@@ -73,6 +79,19 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
   // console.log(`router query${router.query}`)
 
   // useRecord if no work - hook
+
+  const insertDeliveryDate = async (values) => {
+    console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
+    const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
+    try {
+      await updateDoc(doc(db, 'greetings2', cardId), {
+        deliveryDate: convertedDate
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   const updateRecord = async (values) => {
     // cardId not docId or else cannot read properties of undefined - reading indexof error
     // const { query: { docId } } = useRouter()
@@ -83,6 +102,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
       await updateDoc(doc(db, 'greetings2', cardId), {
         ...values
       })
+      insertDeliveryDate(values)
       push(`/draft/${cardId}/preview`)
     } catch (e) {
       console.log(e)
@@ -97,7 +117,9 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     message: '',
     iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
-    deliveryDate: new Date()
+    date: moment().valueOf(),
+    deliveryDate: ''
+    // deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -116,6 +138,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
           message: Yup.string().required().label('Message'),
           iframe: Yup.string(),
           userId: Yup.string(),
+          date: Yup.string(),
           deliveryDate: Yup.string()
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?

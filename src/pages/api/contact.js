@@ -8,8 +8,8 @@ export default async (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: 'jeanniejnam@gmail.com', // process.env.SMTP_USER,
-      pass: 'tzfibnbranwafymp'// application specific password. process.env.SMTP_PASSWORD
+      user: 'jeanniejnam@gmail.com' // process.env.SMTP_USER,
+      // pass: 'tzfibnbranwafymp'// application specific password. process.env.SMTP_PASSWORD
     }
   })
 

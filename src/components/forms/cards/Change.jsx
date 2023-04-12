@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 
 import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
-import { collection, addDoc, Timestamp, toDate, firebase } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { collection, addDoc, Timestamp, toDate, firebase, updateDoc, doc } from 'firebase/firestore' // getDocs, doc, updateDoc
 import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
 
@@ -43,11 +43,27 @@ const MyDatePicker = ({ name = '' }) => {
       selected={value}
       dateFormat="MM-dd-yyyy"
       onChange={(date) => {
-        setValue(moment(date).valueOf())
+        setValue(moment(date).valueOf()
+        )
       }}
     />
   )
 }
+
+//    moment(1454521239279).format("DD MMM YYYY hh:mm a") moment(date).valueOf()
+/*
+return (
+    <DatePicker
+      {...field}
+      selected={value}
+      dateFormat="MM-dd-yyyy"
+      onChange={(date) => {
+        setValue(moment(date).valueOf()
+        )
+      }}
+    />
+  )
+} */
 // Timestamp.fromDate(date).toDate(date)
 // selected={initiated_Date ? new Date(initiated_Date) : null}
 // moment.unix(date).format('MM-dd-yyy')
@@ -61,9 +77,20 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
   const { user } = useAuth()
 
   // const param = router.query
-
   // console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
+
+  const insertDeliveryDate = async (values, docRef) => {
+    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
+    const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
+    try {
+      await updateDoc(doc(db, 'greetings2', docRef.id), {
+        deliveryDate: convertedDate
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   const createCard = async (values) => {
     // const newValues = {
@@ -75,6 +102,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
       const docRef = await addDoc(collection(db, 'greetings2'), values)
       console.log('Document written with ID: ', docRef.id) // cardId
+      insertDeliveryDate(values, docRef)
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
       console.error('Error adding document: ', e)
@@ -89,7 +117,8 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     message: '',
     iframe: iframe?.iframe || '', // param?.new || '',
     userId: user?.uid || '',
-    date: moment().valueOf()
+    date: moment().valueOf(),
+    deliveryDate: ''
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -108,7 +137,8 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           message: Yup.string().required().label('Message'),
           iframe: Yup.string(),
           userId: Yup.string(),
-          date: Yup.string()
+          date: Yup.string(),
+          deliveryDate: Yup.string()
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?
         })
