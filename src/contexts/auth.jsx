@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
   const apiSignIn = (values) => new Promise((resolve, reject) => {
     signInWithEmailAndPassword(auth, values.email, values.password).then((result) => {
       resolve(result)
-      console.log('logged in')
+      console.log('logged in') // eslint-disable-line
       // said to do sth else? QQ
       router.push('/') //   router.push('/test')
     }).catch((error) => {

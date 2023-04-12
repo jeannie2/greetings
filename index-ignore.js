@@ -14,9 +14,9 @@ const msg = {
 sgMail
   .send(msg)
   .then((response) => {
-    console.log(response[0].statusCode)
-    console.log(response[0].headers)
+    console.log(response[0].statusCode) // eslint-disable-line
+    console.log(response[0].headers) // eslint-disable-line
   })
   .catch((error) => {
-    console.error(error)
+    console.error(error) // eslint-disable-line
   })

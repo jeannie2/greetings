@@ -17,7 +17,7 @@ export default function EditCardPage() {
   const { card, isLoading, error } = useCard(cardId)
   // const router = useRouter()
 
-  console.log(`card${card}`)
+  console.log(`card${card}`) // eslint-disable-line
   // added
   const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
 

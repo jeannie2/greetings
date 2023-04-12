@@ -17,17 +17,17 @@ function FormsCardsChange(iframe) { // props //{ iframe } ({ iframe }) <- DOESNT
 
   // const param = router.query
 
-  console.log(`iframe: ${iframe?.iframe}`)
+  console.log(`iframe: ${iframe?.iframe}`) // eslint-disable-line
   // console.log(`router query${router.query}`)
   const createCard = async (values) => {
     // const newValues = {
     //   ...values,
     //   userId: user.uid,
     // }
-    console.log(values)
+    console.log(values) // eslint-disable-line
     try {
       const docRef = await addDoc(collection(db, 'greetingcards'), values)
-      console.log('Document written with ID: ', docRef.id) // cardId
+      console.log('Document written with ID: ', docRef.id) // eslint-disable-line cardId
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
       console.error('Error adding document: ', e)

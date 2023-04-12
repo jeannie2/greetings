@@ -43,7 +43,7 @@ export function CardProvider({ children }) {
           // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
           const documentSnapshot = await getDoc(q)
           // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
-          console.log(documentSnapshot)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          console.log(documentSnapshot) // eslint-disable-line /// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
           // newMyCard.push(querySnapshot)
           /* querySnapshot.forEach((doc) => newMyCard.push({
             id: doc.id,

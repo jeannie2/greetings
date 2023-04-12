@@ -43,7 +43,7 @@ export default function BdayIndex({ templateFiles }) { // props: cards
                 <iframe
                   src={`/templates/bday/${template}`}
                   onClick={() => {
-                    console.log('HOW')
+                    console.log('HOW') // eslint-disable-line
                   }}
                 />
               </Card>

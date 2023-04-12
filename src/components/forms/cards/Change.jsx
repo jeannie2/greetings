@@ -35,7 +35,7 @@ const MyDatePicker = ({ name = '' }) => {
   const { value } = meta
   const { setValue } = helpers
 
-  console.log(value)
+  console.log(value)  // eslint-disable-line
 
   return (
     <DatePicker
@@ -81,14 +81,14 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
   // console.log(`router query${router.query}`)
 
   const insertDeliveryDate = async (values, docRef) => {
-    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
+    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)  // eslint-disable-line
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
       await updateDoc(doc(db, 'greetings3', docRef.id), {
         deliveryDate: convertedDate
       })
     } catch (e) {
-      console.log(e)
+      console.log(e)  // eslint-disable-line
     }
   }
 
@@ -97,7 +97,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     //   ...values,
     //   userId: user.uid,
     // }
-    console.log(values)
+    console.log(values)  // eslint-disable-line
     try {
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
       const docRef = await addDoc(collection(db, 'greetings3'), values)

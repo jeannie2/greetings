@@ -16,10 +16,10 @@ export default function Home() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        console.log(user)
+        console.log(user) // eslint-disable-line
       } else {
         // User is signed out
-        console.log('User is signed out')
+        console.log('User is signed out') // eslint-disable-line
       }
     })
   }, [])
@@ -28,12 +28,12 @@ export default function Home() {
     createUserWithEmailAndPassword(auth, 'd.s.h.cheung@gmail.com', '12345678').then((result) => {
       const { user } = result
 
-      console.log(user)
+      console.log(user) // eslint-disable-line
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
 
-      console.log(errorCode, errorMessage)
+      console.log(errorCode, errorMessage) // eslint-disable-line
     })
   }
 
@@ -41,12 +41,12 @@ export default function Home() {
     signInWithPopup(auth, googleProvider).then((result) => {
       const { user } = result
 
-      console.log(user)
+      console.log(user) // eslint-disable-line
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
 
-      console.log(errorCode, errorMessage)
+      console.log(errorCode, errorMessage) // eslint-disable-lines
     })
   }
 
@@ -59,16 +59,16 @@ export default function Home() {
         age: 23,
         height: 150
       })
-      console.log('Document written with ID: ', docRef.id)
+      console.log('Document written with ID: ', docRef.id)// eslint-disable-line
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.error('Error adding document: ', e) // eslint-disable-line
     }
   }
 
   const getUsers = async () => {
     const querySnapshot = await getDocs(collection(db, 'users'))
     querySnapshot.forEach(() => { // querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => `, doc.data())
+      console.log(`${doc.id} => `, doc.data()) // eslint-disable-line
     })
   }
 
@@ -77,7 +77,7 @@ export default function Home() {
 
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach(() => { // querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => `, doc.data())
+      console.log(`${doc.id} => `, doc.data()) // eslint-disable-line
     })
   }
 
@@ -92,7 +92,7 @@ export default function Home() {
       })
       // router.push('/test')
     } catch (e) {
-      console.log(e)// console.log(error)
+      console.log(e) // eslint-disable-line
     }
   }
 
@@ -121,7 +121,7 @@ export default function Home() {
         return
       }
     } catch (error) {
-      console.log(error)
+      console.log(error) // eslint-disable-line
     }
   }
 
@@ -130,7 +130,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    console.log('LEOMNDATE')
+    console.log('LEOMNDATE') // eslint-disable-line
     try {
       const newCards = []
       const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))

@@ -36,7 +36,7 @@ export function MyCardProvider({ children }) {
 export function useMyCard(cardId) {
   const { getMyCard, ...rest } = useContext(MyCardContext)
 
-  console.log('hook', cardId, rest)
+  console.log('hook', cardId, rest) // eslint-disable-line
 
   useEffect(() => {
     if (cardId) getMyCard(cardId)

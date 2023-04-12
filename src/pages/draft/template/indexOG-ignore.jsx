@@ -30,9 +30,9 @@ export default function IndexTemplate() {
   const { iframe } = url.query
   const folder = iframe?.replace(/\d+/g, '') // iframe keyword minus number eg bday3 -> bday
 
-  console.log(`rquery : ${url.query}`)
-  console.log(`rquery WILBUR: ${url.query.iframe}`)
-  console.log(`iframe: ${iframe}`)
+  console.log(`rquery : ${url.query}`) // eslint-disable-line
+  console.log(`rquery WILBUR: ${url.query.iframe}`) // eslint-disable-line
+  console.log(`iframe: ${iframe}`) // eslint-disable-line
 
   return (
     <>

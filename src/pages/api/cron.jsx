@@ -3,7 +3,7 @@ import { db } from '@/services/firebase'
 
 export default async function Cron(req, res) {
   try {
-    const q = query(collection(db, 'greetings2'), where('message', '==', 'rainbow'))
+    const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       const data = {

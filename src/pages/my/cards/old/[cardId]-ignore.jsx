@@ -24,7 +24,7 @@ export default function MyCardShow() {
   // const { myCards, isLoading, error } = useMyCards()
   const url = asPath.split('/').pop()
   // const url = urlOG.pop()
-  console.log(`URL: ${url}`)
+  console.log(`URL: ${url}`) // eslint-disable-line
 
   // const [myCard, setMyCard] = useState(null)
   // const [isLoading, setIsLoading] = useState(true)

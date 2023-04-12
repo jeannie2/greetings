@@ -10,12 +10,12 @@ const MyCardContext = createContext()
 export function MyCardProvider({ children }) {
   // const router = useRouter()
   const { asPath } = useRouter()
-  console.log(`PUTTY${asPath}`)
+  console.log(`PUTTY${asPath}`) // eslint-disable-line
   // console.log(pathname)
   // const url = router.query
 
   const putty = asPath.split('/').pop()
-  console.log(`puttyfinal${putty}`)
+  console.log(`puttyfinal${putty}`) // eslint-disable-line
 
   // const urlOG = pathname.split('/')
   // const url = urlOG.pop()
@@ -38,7 +38,7 @@ export function MyCardProvider({ children }) {
           // const newMyCard = docSnap
           // const newMyCard = documentSnapshot
           // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
-          console.log(`docsnapshot${documentSnapshot}`)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          console.log(`docsnapshot${documentSnapshot}`) // eslint-disable-line /// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
           // newMyCard.push(documentSnapshot)
           // newMyCard.push(docSnap)
           /* querySnapshot.forEach((doc) => newMyCard.push({

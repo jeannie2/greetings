@@ -46,7 +46,7 @@ const MyDatePicker = ({ name = '' }) => {
   const { value } = meta
   const { setValue } = helpers
 
-  console.log(value)
+  console.log(value)  // eslint-disable-line
 
   return (
     <DatePicker
@@ -81,14 +81,14 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
   // useRecord if no work - hook
 
   const insertDeliveryDate = async (values) => {
-    console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
+    console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)  // eslint-disable-line
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
       await updateDoc(doc(db, 'greetings3', cardId), {
         deliveryDate: convertedDate
       })
     } catch (e) {
-      console.log(e)
+      console.log(e)  // eslint-disable-line
     }
   }
 
@@ -97,7 +97,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     // const { query: { docId } } = useRouter()
     try {
       // const cardId = docId
-      console.log(`cardId: ${cardId}`)
+      console.log(`cardId: ${cardId}`)  // eslint-disable-line
       // await updateDoc(doc(db, 'greetingcards', cardId), {
       await updateDoc(doc(db, 'greetings3', cardId), {
         ...values
@@ -105,7 +105,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
       insertDeliveryDate(values)
       push(`/draft/${cardId}/preview`)
     } catch (e) {
-      console.log(e)
+      console.log(e)  // eslint-disable-line
     }
   }
 

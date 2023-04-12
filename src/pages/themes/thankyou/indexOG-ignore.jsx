@@ -40,13 +40,13 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
           >
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
-                console.log('HOW')
+                console.log('HOW') // eslint-disable-line
               }}
               >
                 <iframe
                   src={`/templates/thankyou/${template}`}
                   onClick={() => {
-                    console.log('HOW')
+                    console.log('HOW') // eslint-disable-line
                   }}
                 />
               </div>

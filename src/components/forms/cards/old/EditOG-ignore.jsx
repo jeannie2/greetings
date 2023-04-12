@@ -35,7 +35,7 @@ import { useAuth } from '@/contexts/auth'
 
 function EditCard() {
   const router = useRouter()
-  console.log('WT')
+  console.log('WT') // eslint-disable-line
   const docRef = doc(db, 'greetingcards', cardId)
   router.push(`/draft/${docRef.id}/preview`)
 }
@@ -50,10 +50,10 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
 
   // const [isLoading, setIsLoading] = useState(true)
   // const [error, setError] = useState(null)
-  console.log(`aspath: ${asPath} pathname: ${pathname}`)
+  console.log(`aspath: ${asPath} pathname: ${pathname}`) // eslint-disable-line
   // const param = router.query
 
-  console.log(`iframe: ${iframe?.iframe}`)
+  console.log(`iframe: ${iframe?.iframe}`) // eslint-disable-line
   // console.log(`router query${router.query}`)
 
   const editCardOG = async () => {
@@ -69,7 +69,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
       }
       updateDoc(docRef, newData)
       // updateDoc(docRef, newData)
-      console.log('Value of an Existing Document Field has been updated')
+      console.log('Value of an Existing Document Field has been updated') // eslint-disable-line
       router.push(`/draft/${docRef.id}/preview`)
       // display the results of updated record
       // setCard(docSnap.data())
@@ -80,8 +80,8 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
     }
   }
 
-  console.log(EditCard())
-  console.log(editCardOG())
+  console.log(EditCard()) // eslint-disable-line
+  console.log(editCardOG()) // eslint-disable-line
 
   // useRecord if no work - hook
   const updateRecord = async (values) => {
@@ -89,13 +89,13 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
     // const { query: { docId } } = useRouter()
     try {
       // const cardId = docId
-      console.log(`cardId: ${cardId}`)
+      console.log(`cardId: ${cardId}`) // eslint-disable-line
       await updateDoc(doc(db, 'greetingcards', cardId), {
         ...values
       })
     // router.push('/test')
     } catch (e) {
-      console.log(e)
+      console.log(e) // eslint-disable-line
     }
   }
 

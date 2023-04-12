@@ -34,14 +34,14 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     // const { query: { docId } } = useRouter()
     try {
       // const cardId = docId
-      console.log(`cardId: ${cardId}`)
+      console.log(`cardId: ${cardId}`)// eslint-disable-line
       // await updateDoc(doc(db, 'greetingcards', cardId), {
       await updateDoc(doc(db, 'greetings3', cardId), {
         ...values
       })
       router.push(`/draft/${cardId}/preview`)
     } catch (e) {
-      console.log(e)
+      console.log(e) // eslint-disable-line
     }
   }
 

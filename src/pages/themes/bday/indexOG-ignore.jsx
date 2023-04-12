@@ -42,13 +42,13 @@ export default function BdayIndexPage({ templateFiles }) { // props: cards
           >
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
-                console.log('HOW')
+                console.log('HOW') // eslint-disable-line
               }}
               >
                 <iframe
                   src={`/templates/bday/${template}`}
                   onClick={() => {
-                    console.log('HOW')
+                    console.log('HOW') // eslint-disable-line
                   }}
                 />
               </div>

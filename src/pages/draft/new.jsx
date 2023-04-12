@@ -16,8 +16,8 @@ function NewCardPage() {
   const folder = iframe?.replace(/\d+/g, '')
 
   // const { createCard } = '@/contexts/card'
-  console.log(`url: ${url.query}`)
-  console.log(`iframe on new page: ${iframe}`)
+  console.log(`url: ${url.query}`) // eslint-disable-line
+  console.log(`iframe on new page: ${iframe}`) // eslint-disable-line
 
   return (
     <div id="pages-auth-signup" className="container text-center mt-2 border">

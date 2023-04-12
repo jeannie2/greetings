@@ -29,7 +29,7 @@ export default function Contact() {
           },
           body: JSON.stringify(values)
         })
-        console.log(response)
+        console.log(response) // eslint-disable-line
         setSubmitted(true)
       }}
 

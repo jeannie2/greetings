@@ -34,13 +34,13 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
           <div key={template} className="col-12 col-sm-6 col-lg-4 border">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
-                console.log('HOW')
+                console.log('HOW') // eslint-disable-line
               }}
               >
                 <iframe
                   src={`/templates/thankyou/${template}`}
                   onClick={() => {
-                    console.log('HOW')
+                    console.log('HOW') // eslint-disable-line
                   }}
                   className="border mb-2 card-img-top embed-responsive-item"
                   allowFullScreen

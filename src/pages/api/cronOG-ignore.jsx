@@ -16,7 +16,7 @@ export default function Cron() {
         id: doc.id,
         ...doc.data()
       }))
-      console.log(`cardsgroup: ${cardsGroup}`)
+      console.log(`cardsgroup: ${cardsGroup}`) // eslint-disable-line
     } catch (err) {
       console.log(err)
       //  setError(err)

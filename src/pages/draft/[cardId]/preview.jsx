@@ -25,7 +25,7 @@ export default function PreviewCardPage() {
   // added
   // OLD: const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
 
-  console.log(`iframe on preview page: ${card?.iframe}`)
+  console.log(`iframe on preview page: ${card?.iframe}`) // eslint-disable-line
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
