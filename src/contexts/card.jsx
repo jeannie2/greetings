@@ -2,7 +2,7 @@
 // can use for final?cardId: show page as well?
 
 import React, { useEffect, useState, createContext, useContext } from 'react'
-import { getDoc, doc, updateDoc, getFirestore } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 
 import { db } from '@/services/firebase'
 
@@ -16,7 +16,7 @@ export function CardProvider({ children }) {
   const getCard = async (cardId) => {
     try {
     //  const docRef = doc(db, 'greetingcards', cardId)
-      const docRef = doc(db, 'greetings2', cardId)
+      const docRef = doc(db, 'greetings3', cardId)
       const docSnap = await getDoc(docRef)
       setCard(docSnap.data())
       setIsLoading(false)
@@ -30,7 +30,7 @@ export function CardProvider({ children }) {
     try {
       // const db = getFirestore()
       // const docRef = doc(db, 'greetingcards', cardId)
-      const docRef = doc(db, 'greetings2', cardId)
+      const docRef = doc(db, 'greetings3', cardId)
       const newData = {
         iframe: 'PASTA'
       }
@@ -69,6 +69,7 @@ export function useCard(cardId) {
 
 // export default function updateCard(cardId)
 
+/*
 export function updateCard(cardId) {
   const { editCard, ...rest } = useContext(CardContext)
 
@@ -79,4 +80,4 @@ export function updateCard(cardId) {
   }, [cardId])
 
   return rest
-}
+} */

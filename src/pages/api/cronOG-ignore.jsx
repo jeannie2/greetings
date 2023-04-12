@@ -1,5 +1,5 @@
 import { getDocs, query, where, collection } from 'firebase/firestore'
-import React, { useState, createContext, useContext, useEffect } from 'react'
+// import React, { useState, createContext, useContext, useEffect } from 'react'
 import { db } from '@/services/firebase'
 
 export default function Cron() {
@@ -10,7 +10,7 @@ export default function Cron() {
     try {
       const cardsGroup = []
 
-      const q = query(collection(db, 'greetings2'), where('message', '==', 'rainbow'))
+      const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => cardsGroup.push({
         id: doc.id,

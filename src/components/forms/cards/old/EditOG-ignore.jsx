@@ -1,15 +1,15 @@
 // import React from 'react'
 // ok to pass value like this to render iframe? QQ instead of getting param
-import { Formik, Field, Form, ErrorMessage, resetForm } from 'formik'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
-import React, { useState, createContext, useContext, useEffect } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
-import { useCard, UpdateCard } from '@/contexts/card'
+// import { useCard, UpdateCard } from '@/contexts/card'
 
 // import useEditCardHook from '@/hooks/useEditCardHook'
 
@@ -56,7 +56,7 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
   console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
-  const editCardOG = async (cardId) => {
+  const editCardOG = async () => {
     // const { query: { cardId } } = useRouter()
     // const { card, isLoading, error } = useCard(cardId)
 
@@ -79,6 +79,9 @@ function FormsCardsEdit(props, iframe) { // props //{ iframe } ({ iframe }) <- D
       // setError(err) need? QQ
     }
   }
+
+  console.log(EditCard())
+  console.log(editCardOG())
 
   // useRecord if no work - hook
   const updateRecord = async (values) => {

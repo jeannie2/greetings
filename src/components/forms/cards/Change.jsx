@@ -3,9 +3,9 @@
 import { Formik, Field, Form, ErrorMessage, useField } from 'formik' // resetForm
 import * as Yup from 'yup'
 
-import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
+import React from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
-import { collection, addDoc, Timestamp, toDate, firebase, updateDoc, doc } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore' // getDocs, doc, updateDoc
 import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
 
@@ -84,7 +84,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
-      await updateDoc(doc(db, 'greetings2', docRef.id), {
+      await updateDoc(doc(db, 'greetings3', docRef.id), {
         deliveryDate: convertedDate
       })
     } catch (e) {

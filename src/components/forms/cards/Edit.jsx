@@ -1,14 +1,14 @@
 // import React from 'react'
 // ok to pass value like this to render iframe? QQ instead of getting param
-import { Formik, Field, Form, ErrorMessage, resetForm, useField } from 'formik'
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik'
 import * as Yup from 'yup'
 
-import React, { useState, createContext, useContext, useEffect } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
-import { useCard, UpdateCard } from '@/contexts/card'
+// import { useCard, UpdateCard } from '@/contexts/card'
 
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
@@ -84,7 +84,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
-      await updateDoc(doc(db, 'greetings2', cardId), {
+      await updateDoc(doc(db, 'greetings3', cardId), {
         deliveryDate: convertedDate
       })
     } catch (e) {
@@ -99,7 +99,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
       // const cardId = docId
       console.log(`cardId: ${cardId}`)
       // await updateDoc(doc(db, 'greetingcards', cardId), {
-      await updateDoc(doc(db, 'greetings2', cardId), {
+      await updateDoc(doc(db, 'greetings3', cardId), {
         ...values
       })
       insertDeliveryDate(values)

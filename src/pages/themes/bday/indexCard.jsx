@@ -78,7 +78,7 @@ export async function getStaticPropsOG() {
 
   return {
     props: {
-      templateFiles
+    //  templateFiles
     }
   }
 }

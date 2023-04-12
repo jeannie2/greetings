@@ -1,9 +1,9 @@
 // import React from 'react'
 // ok to pass value like this to render iframe? QQ instead of getting param
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik' // resetForm
+import { Formik, Field, Form, ErrorMessage } from 'formik' // resetForm
 import * as Yup from 'yup'
 
-import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
+import React from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
 import { collection, addDoc } from 'firebase/firestore' // getDocs, doc, updateDoc
 import { db } from '@/services/firebase' // auth, googleProvider,
@@ -28,7 +28,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     console.log(values)
     try {
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
-      const docRef = await addDoc(collection(db, 'greetings2'), values)
+      const docRef = await addDoc(collection(db, 'greetings3'), values)
       console.log('Document written with ID: ', docRef.id) // cardId
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {

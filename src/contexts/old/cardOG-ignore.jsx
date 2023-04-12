@@ -1,9 +1,8 @@
 // get card based on router query cardId
 // can use for final?cardId: show page as well?
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, documentId } from 'firebase/firestore'
-
-import { useAuth } from '@/contexts/auth'
+import { collection, query, where, getDoc, documentId } from 'firebase/firestore'
+// mport { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
 import { useRouter } from 'next/router'
 
@@ -31,7 +30,7 @@ export function CardProvider({ children }) {
   // console.log(`URL${url}`)
   // const { user } = useAuth()
 
-  const [card, setCard] = useState(null)
+  const [card] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -39,7 +38,7 @@ export function CardProvider({ children }) {
     if (docId) {
       const getCard = async () => {
         try {
-          const newCard = []
+          // const newCard = []
           const q = query(collection(db, 'greetingcards'), where(documentId(), '==', docId))
           // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
           const documentSnapshot = await getDoc(q)

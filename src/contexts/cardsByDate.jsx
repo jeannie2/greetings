@@ -19,7 +19,7 @@ export function CardsByDateProvider({ children }) {
       try {
         const newCards = []
         // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
-        const q = query(collection(db, 'greetings2'), where('message', '==', 'rainbow'))
+        const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach((doc) => newCards.push({
           id: doc.id,

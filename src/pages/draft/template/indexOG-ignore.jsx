@@ -4,11 +4,11 @@
 // rename all to pages like project3? QQ
 import { useRouter } from 'next/router'
 
-const whatever = () => {
+/* const whatever = () => {
   const router = useRouter()
   router.push('/test')
   console.log('matter')
-}
+} */
 /* const addUser = async () => {
   try {
     const docRef = await addDoc(collection(db, 'users'), {

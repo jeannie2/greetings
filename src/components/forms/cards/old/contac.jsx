@@ -29,8 +29,10 @@ export default function Contact() {
           },
           body: JSON.stringify(values)
         })
+        console.log(response)
         setSubmitted(true)
       }}
+
     >
       {(formik) => (
         <Form>

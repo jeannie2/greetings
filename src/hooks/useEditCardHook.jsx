@@ -1,18 +1,18 @@
-import React, { useState, createContext, useContext, useEffect } from 'react'
+// import React, { useState, createContext, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
-import { useAuth } from 'c@/contexts/auth'
+// import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
+// import { auth, googleProvider, db } from '@/services/firebase'
+// import { useAuth } from 'c@/contexts/auth'
 
 const useEditCardHook = async () => {
   const { query: { cardId } } = useRouter()
   console.log('WHEREVEREEE YOU ARE')
 
-  const docRef = doc(db, 'greetingcards', cardId)
+  // const docRef = doc(db, 'greetingcards', cardId)
 
-  await updateDoc(docRef, {
+  // await updateDoc(docRef, {
   //  message: 'rasputin'
-  })
+  // })
   /*
     firebase.firestore().collection('users').where('uid', '==', payload.uid)
       .get()

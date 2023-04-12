@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { collection, getDocs, query, where, getDoc, documentId } from 'firebase/firestore'
+import { collection, query, where, getDoc, documentId } from 'firebase/firestore'
 
-import { useAuth } from '@/contexts/auth'
+// import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
 import { useRouter } from 'next/router'
 
@@ -22,7 +22,7 @@ export function MyCardProvider({ children }) {
   // console.log(`URL${url}`)
   // const { user } = useAuth()
 
-  const [myCard, setMyCard] = useState(null)
+  // const [myCard, setMyCard] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -30,7 +30,7 @@ export function MyCardProvider({ children }) {
     if (putty) {
       const getCard = async () => {
         try {
-          const newMyCard = []
+          /// const newMyCard = []
           const q = query(collection(db, 'greetingcards'), where(documentId(), '==', putty))
           // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
           // const docSnap = await getDoc(q)
@@ -59,7 +59,7 @@ export function MyCardProvider({ children }) {
   }, [])
 
   const data = {
-    myCard,
+    // myCard,
     isLoading,
     error
   }

@@ -13,7 +13,7 @@ export function MyCardProvider({ children }) {
   const getMyCard = async (cardId) => {
     try {
       // const docRef = doc(db, 'greetingcards', cardId)
-      const docRef = doc(db, 'greetings2', cardId)
+      const docRef = doc(db, 'greetings3', cardId)
       const docSnap = await getDoc(docRef)
       setMyCard(docSnap.data())
       setIsLoading(false)
@@ -46,7 +46,7 @@ export function useMyCard(cardId) {
 }
 
 /*
- useEffectOG(() => {
+useEffectOG(() => {
     if (putty) {
       const getCard = async () => {
         try {

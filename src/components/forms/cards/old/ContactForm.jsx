@@ -4,7 +4,7 @@ import sendEmail from '@/lib/sendEmail'
 
 const ContactForm = () => {
   const { values, handleChange } = useContactForm()
-  const [responseMessage, setResponseMessage] = useState(
+  const [setResponseMessage] = useState(
     { isSuccessful: false, message: '' })
 
   const handleSubmit = async (e) => {
@@ -15,8 +15,8 @@ const ContactForm = () => {
         setResponseMessage(
           { isSuccessful: true, message: 'Thank you for your message.' })
       }
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      // console.log(e)
       setResponseMessage({
         isSuccessful: false,
         message: 'Oops something went wrong. Please try again.'

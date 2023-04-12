@@ -8,14 +8,14 @@
 import FormsCardsEdit from '@/components/forms/cards/Edit'
 
 import { useRouter } from 'next/router'
-import { useCard, UpdateCard, editCard } from '@/contexts/card'
+import { useCard } from '@/contexts/card'
 // import {UpdateCard} from '@/hooks/card'
 // import updateRecord from '@/hooks/updateRecord'
 
 export default function EditCardPage() {
   const { query: { cardId } } = useRouter()
   const { card, isLoading, error } = useCard(cardId)
-  const router = useRouter()
+  // const router = useRouter()
 
   console.log(`card${card}`)
   // added

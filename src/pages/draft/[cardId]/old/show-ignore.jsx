@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { apiGetCard } from '@/lib/cards'
+// import { apiGetCard } from '@/lib/cards'
 // import { apiGetTodosIds } from '@/lib/todos'
 
 export default function SSGShow({ card }) {
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+/* export async function getStaticProps({ params }) {
   const card = await apiGetCard(params.id)
 
   return {
@@ -41,4 +41,4 @@ export async function getStaticProps({ params }) {
       card
     }
   }
-}
+} */

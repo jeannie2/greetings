@@ -67,7 +67,7 @@ export default function Home() {
 
   const getUsers = async () => {
     const querySnapshot = await getDocs(collection(db, 'users'))
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(() => { // querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => `, doc.data())
     })
   }
@@ -76,7 +76,7 @@ export default function Home() {
     const q = query(collection(db, 'users'), where('first', '==', 'sarah'))
 
     const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(() => { // querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => `, doc.data())
     })
   }
@@ -87,12 +87,12 @@ export default function Home() {
     try {
       const docId = '70IUJ0slyirjNjr1XnG3'
       //   await updateDoc(doc(db, 'greetingcards', docId), {
-      await updateDoc(doc(db, 'greetings2', docId), {
+      await updateDoc(doc(db, 'greetings3', docId), {
         message: 'skidmore'
       })
       // router.push('/test')
     } catch (e) {
-      console.log(error)
+      console.log(e)// console.log(error)
     }
   }
 
@@ -133,7 +133,7 @@ export default function Home() {
     console.log('LEOMNDATE')
     try {
       const newCards = []
-      const q = query(collection(db, 'greetings2'), where('message', '==', 'rainbow'))
+      const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => newCards.push({
         id: doc.id,

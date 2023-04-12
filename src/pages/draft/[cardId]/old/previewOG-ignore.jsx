@@ -35,9 +35,13 @@ export default function PreviewPage() {
           </>
         ))}
       </Row>
-      <button onClick={() => router.push(`/draft/${card.id}/submitted?iframe=${item.iframe}`)} type="button">SEND</button>
-      <button onClick={() => router.push(`/draft/${card.id}/edit?iframe=${item.iframe}`)} type="button">EDIT</button>
+
     </Container>
 
   )
 }
+
+/*
+<button onClick={() => router.push(`/draft/${card.id}/submitted?iframe=${item.iframe}`)} type="button">SEND</button>
+      <button onClick={() => router.push(`/draft/${card.id}/edit?iframe=${item.iframe}`)} type="button">EDIT</button>
+      */

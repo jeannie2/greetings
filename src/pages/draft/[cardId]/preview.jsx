@@ -67,7 +67,7 @@ import Col from 'react-bootstrap/Col'
 <h1>PREVIEW PAGE</h1>
 ORIGINAL VERSION: <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)}
 
-     <button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>
+<button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>
       <div>{(card.iframe).replace(/\d+/g, '')}</div>
 
   <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>

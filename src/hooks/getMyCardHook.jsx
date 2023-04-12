@@ -1,12 +1,12 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useAuth } from '@/contexts/auth'
+// import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
 
 const getMyCardHook = async () => {
-  const { user } = useAuth()
+  // const { user } = useAuth()
   // console.log(user.uid)
   // const q = query(collection(db, 'users'), where('first', '==', 'sarah')) // userId == currently logged in user
-  const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+  // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
   // console.log(q)
   const querySnapshot = await getDocs(q)
   // console.log(`q${q}`)

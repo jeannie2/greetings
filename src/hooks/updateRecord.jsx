@@ -1,6 +1,6 @@
 // create context
 import { updateDoc, doc, getFirestore } from 'firebase/firestore'
-import useRouter from 'next/router'
+// import useRouter from 'next/router'
 // docRef = cardId
 
 export default function updateRecord(cardId) {

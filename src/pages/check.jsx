@@ -90,14 +90,15 @@ export default function Home() {
           required
         />
         <input type="submit" className={styles.button} />
-        {form.state === 'loading' ? (
+
+      </form>
+    </div>
+  )
+}
+/*  {form.state === 'loading' ? (
           <div>Sending....</div>
         ) : form.state === 'error' ? (
           <div>{form.message}</div>
         ) : (
 				  form.state === 'success' && <div>Sent successfully</div>
-        )}
-      </form>
-    </div>
-  )
-}
+        )} */

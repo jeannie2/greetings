@@ -1,17 +1,17 @@
 // card would have a cardId at this point, use to display individual one
 // iframe src wld be in db, get from cardId
-import React, { useState, createContext, useContext, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
 
-import withAuth from '@/hoc/withAuth'
+// import withAuth from '@/hoc/withAuth'
 // get id of logged in user and display all cards with that userId
-import Container from 'react-bootstrap/Container'
+/* import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Link from 'next/link'
+import Link from 'next/link' */
 
-import { useMyCards } from '@/contexts/myCards'
+// import { useMyCards } from '@/contexts/myCards'
 import { useRouter } from 'next/router'
-import { doc, getDoc } from 'firebase/firestore'
+// import { doc, getDoc } from 'firebase/firestore'
 
 export default function MyCardShow() {
   // const card = //url param
@@ -26,12 +26,13 @@ export default function MyCardShow() {
   // const url = urlOG.pop()
   console.log(`URL: ${url}`)
 
-  const [myCard, setMyCard] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error</div>
+  // const [myCard, setMyCard] = useState(null)
+  // const [isLoading, setIsLoading] = useState(true)
+  // const [error, setError] = useState(null)
+  // if (isLoading) return <div>Loading...</div>
+  // if (error) return <div>Error</div>
 
+  /*
   useEffect(() => {
     if (url) {
       const getCard = async () => {
@@ -43,7 +44,7 @@ export default function MyCardShow() {
           /* querySnapshot.forEach((doc) => newMyCard.push({
           id: doc.id,
           ...doc.data()
-        })) */
+        }))
           setMyCard(newMyCard)
           setIsLoading(false)
         } catch (err) {
@@ -54,7 +55,7 @@ export default function MyCardShow() {
 
       getCard()
     }
-  }, [])
+  }, []) */
 
   /* const data = {
     myCard,
@@ -62,11 +63,9 @@ export default function MyCardShow() {
     error
   } */
   // const data = getCard()
-  return (
-    <div>{myCard} </div>
-  )
 }
 
+// <div>{myCard} </div>
 /*
   return (
     <Container>
