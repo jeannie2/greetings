@@ -36,7 +36,7 @@ import { useAuth } from '@/contexts/auth'
 function EditCard() {
   const router = useRouter()
   console.log('WT') // eslint-disable-line
-  const docRef = doc(db, 'greetingcards', cardId)
+  const docRef = doc(db, 'greetingcards') //  const docRef = doc(db, 'greetingcards', cardId)
   router.push(`/draft/${docRef.id}/preview`)
 }
 

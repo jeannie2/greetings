@@ -17,7 +17,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
   // const param = router.query
 
-  console.log(`iframe: ${iframe?.iframe}`)  // eslint-disable-line
+  console.log(`iframe: ${iframe?.iframe}`) // eslint-disable-line
   // console.log(`router query${router.query}`)
 
   const createCard = async (values) => {
@@ -32,7 +32,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
       console.log('Document written with ID: ', docRef.id) // eslint-disable-line. cardId
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.error('Error adding document: ', e) // eslint-disable-line
     }
   }
 

@@ -35,7 +35,7 @@ const MyDatePicker = ({ name = '' }) => {
   const { value } = meta
   const { setValue } = helpers
 
-  console.log(value)  // eslint-disable-line
+  console.log(value) // eslint-disable-line
 
   return (
     <DatePicker
@@ -88,7 +88,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
         deliveryDate: convertedDate
       })
     } catch (e) {
-      console.log(e)  // eslint-disable-line
+      console.log(e) // eslint-disable-line
     }
   }
 
@@ -101,11 +101,11 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     try {
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
       const docRef = await addDoc(collection(db, 'greetings3'), values)
-      console.log('Document written with ID: ', docRef.id) // cardId
+      console.log('Document written with ID: ', docRef.id) // eslint-disable-line cardId
       insertDeliveryDate(values, docRef)
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.error('Error adding document: ', e) // eslint-disable-line
     }
   }
 

@@ -38,7 +38,7 @@ export function MyCardProvider({ children }) {
           // const newMyCard = docSnap
           // const newMyCard = documentSnapshot
           // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
-          console.log(`docsnapshot${documentSnapshot}`) // eslint-disable-line /// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          console.log(`docsnapshot${documentSnapshot}`) // eslint-disable-line. THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
           // newMyCard.push(documentSnapshot)
           // newMyCard.push(docSnap)
           /* querySnapshot.forEach((doc) => newMyCard.push({

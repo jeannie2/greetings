@@ -10,7 +10,7 @@ export default async function Cron(req, res) {
         id: doc.id,
         ...doc.data()
       }
-      console.log(data)
+      console.log(data) // eslint-disable-line
     // mailer
     })
     res.json('Job Completed')

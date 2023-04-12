@@ -18,7 +18,7 @@ export default function Cron() {
       }))
       console.log(`cardsgroup: ${cardsGroup}`) // eslint-disable-line
     } catch (err) {
-      console.log(err)
+      console.log(err) // eslint-disable-line
       //  setError(err)
     }
   }
