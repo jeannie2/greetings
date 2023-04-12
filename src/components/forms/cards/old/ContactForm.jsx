@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import useContactForm from '@/hooks/useContactForm'
+/* import { useState } from 'react'
+// import useContactForm from '@/hooks/useContactForm'
 import sendEmail from '@/lib/sendEmail'
 
 const ContactForm = () => {
-  const { values, handleChange } = useContactForm()
+  // const { values, handleChange } = useContactForm()
   const [setResponseMessage] = useState(
     { isSuccessful: false, message: '' })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const req = await sendEmail(values.email, values.subject, values.message)
+    //  const req = await sendEmail(values.email, values.subject, values.message)
       if (req.status === 250) {
         setResponseMessage(
           { isSuccessful: true, message: 'Thank you for your message.' })
@@ -56,4 +56,4 @@ const ContactForm = () => {
   )
 }
 
-export default ContactForm
+export default ContactForm */

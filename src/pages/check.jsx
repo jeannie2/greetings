@@ -101,5 +101,5 @@ export default function Home() {
         ) : form.state === 'error' ? (
           <div>{form.message}</div>
         ) : (
-				form.state === 'success' && <div>Sent successfully</div>
+form.state === 'success' && <div>Sent successfully</div>
         )} */
