@@ -46,6 +46,7 @@ export function useMyCard(cardId) {
 }
 
 console.log(howdy) // eslint-disable-line
+console.log(howdy) // eslint-disable-line
 /* HELLO
 useEffectOG(() => {
     if (putty) {
