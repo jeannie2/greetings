@@ -45,7 +45,8 @@ export function useMyCard(cardId) {
   return rest
 }
 
-/*
+console.log(howdy) // eslint-disable-line
+/* HELLO
 useEffectOG(() => {
     if (putty) {
       const getCard = async () => {
