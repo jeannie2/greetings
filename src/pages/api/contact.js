@@ -9,7 +9,7 @@ export default async (req, res) => {
     secure: true,
     auth: {
       user: 'jeanniejnam@gmail.com' // process.env.SMTP_USER,
-      // pass: 'tzfibnbranwafymp'// application specific password. process.env.SMTP_PASSWORD
+      // pass:  application specific password. process.env.SMTP_PASSWORD
     }
   })
 
