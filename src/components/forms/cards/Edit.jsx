@@ -10,13 +10,57 @@ import { auth, googleProvider, db } from '@/services/firebase'
 import { useAuth } from '@/contexts/auth'
 import { useCard, UpdateCard } from '@/contexts/card'
 
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+/*
+const DatepickerField = ({
+  field,
+  form,
+  ...props
+}) => (
+  // OR const { setFieldValue } = form;
+  // OR const { value, name } = field;
+  <div>
+    <DatePicker
+      dateFormat="MM-dd-yyyy"
+      {...field}
+      selected={field.value}
+      onChange={(val) => form.setFieldValue(field.name, val)}
+    />
+  </div>
+)
+
+const MyDatePicker2 = () => {
+  const [startDate, setStartDate] = useState(new Date())
+  return (
+    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+  )
+}
+ */
+
+const MyDatePicker = ({ name = '' }) => {
+  const [field, meta, helpers] = useField(name)
+
+  const { value } = meta
+  const { setValue } = helpers
+
+  return (
+    <DatePicker
+      {...field}
+      selected={value}
+      dateFormat="MM-dd-yyyy"
+      onChange={(date) => setValue(date)}
+    />
+  )
+}
+
 // dont pass iframe here?
 
 /// www.draft/new?bday1
 function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
-  const router = useRouter()
   const { user } = useAuth()
-  const { query: { cardId } } = useRouter()
+  const { query: { cardId }, push } = useRouter()
   // const { asPath, pathname } = useRouter()
   // const useEditCard = useEditCardHook()
 
@@ -39,7 +83,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
       await updateDoc(doc(db, 'greetings2', cardId), {
         ...values
       })
-      router.push(`/draft/${cardId}/preview`)
+      push(`/draft/${cardId}/preview`)
     } catch (e) {
       console.log(e)
     }
@@ -53,7 +97,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     message: '',
     iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
-    deliveryDate: ''
+    deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -85,7 +129,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
               <label>Sender Name</label>
               <Field
                 id="senderName"
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.senderName && t?.senderName && 'is-invalid'}`}
                 name="senderName"
               />
               <ErrorMessage
@@ -98,7 +142,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
             <div>
               <label>Sender Email</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.senderEmail && t?.senderEmail && 'is-invalid'}`}
                 name="senderEmail"
                 id="senderEmail"
                 type="email"
@@ -114,7 +158,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
             <div className="mb-3">
               <label>Recipient Name</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.recipientName && t?.recipientName && 'is-invalid'}`}
                 name="recipientName"
                 id="recipientName"
               />
@@ -128,7 +172,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
             <div className="mb-3">
               <label>Recipient Email</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.recipientEmail && t?.recipientEmail && 'is-invalid'}`}
                 name="recipientEmail"
                 type="email"
                 id="recipientEmail"
@@ -160,6 +204,12 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
               />
             </div>
 
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePicker name="date" />
+            </div>
+
             <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
@@ -171,6 +221,13 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
 export default FormsCardsEdit
 
 /*
+  <Field name="date" component={DatepickerField} />
+      <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePickerOG name="date" />
+            </div>
+
 function EditCard() {
   const router = useRouter()
   console.log('WT')

@@ -5,11 +5,56 @@ import * as Yup from 'yup'
 
 import React, { useState } from 'react' // { useState, createContext, useContext, useEffect }
 import { useRouter } from 'next/router'
-import { collection, addDoc } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { collection, addDoc, Timestamp, toDate, firebase } from 'firebase/firestore' // getDocs, doc, updateDoc
 import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
+
+import moment from 'moment'
+// import firebase from 'firebase/app';
+// import 'firebase/firestore'
 // update to react bootstrap code
 
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+/* const MyDatePicker = () => {
+  // const [field, meta, helpers] = useField(name)
+  const [startDate, setStartDate] = useState(new Date())
+
+  // const { value } = meta
+  // const { setValue } = helpers
+
+  return (
+    <DatePicker {...field} selected={startDate} onChange={(date) => setStartDate(date)} />
+  )
+} */
+
+const MyDatePicker = ({ name = '' }) => {
+  const [field, meta, helpers] = useField(name)
+
+  const { value } = meta
+  const { setValue } = helpers
+
+  console.log(value)
+
+  return (
+    <DatePicker
+      {...field}
+      selected={value}
+      dateFormat="MM-dd-yyyy"
+      onChange={(date) => {
+        setValue(moment(date).valueOf())
+      }}
+    />
+  )
+}
+// Timestamp.fromDate(date).toDate(date)
+// selected={initiated_Date ? new Date(initiated_Date) : null}
+// moment.unix(date).format('MM-dd-yyy')
+// setValue(new Date(Date.parse(date)))}
+// HH:mm:ss
+// new Date(date * 1000))
+//
 /// www.draft/new?bday1
 function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doesnt get written to db. but how make work if use one form with props || initial values? props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
@@ -17,7 +62,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
   // const param = router.query
 
-  console.log(`iframe: ${iframe?.iframe}`)
+  // console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
   const createCard = async (values) => {
@@ -44,7 +89,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     message: '',
     iframe: iframe?.iframe || '', // param?.new || '',
     userId: user?.uid || '',
-    deliveryDate: ''
+    date: moment().valueOf()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -63,7 +108,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           message: Yup.string().required().label('Message'),
           iframe: Yup.string(),
           userId: Yup.string(),
-          deliveryDate: Yup.string()
+          date: Yup.string()
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?
         })
@@ -76,7 +121,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
               <label>Sender Name</label>
               <Field
                 id="senderName"
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.senderName && t?.senderName && 'is-invalid'}`}
                 name="senderName"
               />
               <ErrorMessage
@@ -89,7 +134,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
             <div>
               <label>Sender Email</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.senderEmail && t?.senderEmail && 'is-invalid'}`}
                 name="senderEmail"
                 id="senderEmail"
                 type="email"
@@ -105,7 +150,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
             <div className="mb-3">
               <label>Recipient Name</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.recipientName && t?.recipientName && 'is-invalid'}`}
                 name="recipientName"
                 id="recipientName"
               />
@@ -119,7 +164,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
             <div className="mb-3">
               <label>Recipient Email</label>
               <Field
-                className={`form-control ${e?.email && t?.email && 'is-invalid'}`}
+                className={`form-control ${e?.recipientEmail && t?.recipientEmail && 'is-invalid'}`}
                 name="recipientEmail"
                 type="email"
                 id="recipientEmail"
@@ -149,6 +194,12 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
                 name="message"
                 component="div"
               />
+            </div>
+
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePicker name="date" />
             </div>
 
             <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>

@@ -105,6 +105,32 @@ export default function Home() {
   } */
 
   const { apiSignOut } = useAuth()
+
+  const sendEmail = async () => {
+    try {
+      const res = await fetch('api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify('WHATEVER')
+      })
+      const { error } = await res.json()
+
+      if (error) {
+        return
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  /*  // setForm({
+          state: 'error',
+       // //  message: 'Something went wrong'
+      //  })
+      //  }
+  } */
   // where equal to param. preview the card
   /* const getUser = async () => {
     const q = query(collection(db, 'users'), where('first', '==', 'sarah'))
@@ -124,7 +150,45 @@ export default function Home() {
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => `, doc.data())
     })
-  } */
+  }
+
+   setForm({ state: 'loading' })
+      try {
+        const res = await fetch('api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(inputs)
+        })
+
+        const { error } = await res.json()
+
+        if (error) {
+          setForm({
+            state: 'error',
+            message: error
+          })
+          return
+        }
+
+        setForm({
+          state: 'success',
+          message: 'Your message was sent successfully.'
+        })
+        setInputs({
+          name: '',
+          email: '',
+          message: ''
+        })
+      } catch (error) {
+        setForm({
+          state: 'error',
+          message: 'Something went wrong'
+        })
+      }
+
+      */
 
   return (
     <div>
@@ -137,6 +201,8 @@ export default function Home() {
       <button onClick={getUser} type="button">Get 1 User</button>
       <button onClick={apiSignOut} type="button">Logout</button>
       <button onClick={updateRecord} type="button">Update record</button>
+
+      <button onClick={sendEmail} type="button">send email </button>
     </div>
   )
 }

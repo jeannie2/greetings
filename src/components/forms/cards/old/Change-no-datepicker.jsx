@@ -10,36 +10,6 @@ import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
 // update to react bootstrap code
 
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-
-const MyDatePicker = () => {
-  // const [field, meta, helpers] = useField(name)
-  const [startDate, setStartDate] = useState(new Date())
-
-  // const { value } = meta
-  // const { setValue } = helpers
-
-  return (
-    <DatePicker {...field} selected={startDate} onChange={(date) => setStartDate(date)} />
-  )
-}
-const MyDatePickerOG = ({ name = '' }) => {
-  const [field, meta, helpers] = useField(name)
-
-  const { value } = meta
-  const { setValue } = helpers
-
-  return (
-    <DatePicker
-      {...field}
-      selected={value}
-      onChange={(date) => setValue(date)}
-    />
-  )
-}
-
-//      dateFormat="MM-dd-yyyy"
 /// www.draft/new?bday1
 function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doesnt get written to db. but how make work if use one form with props || initial values? props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
@@ -47,7 +17,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 
   // const param = router.query
 
-  // console.log(`iframe: ${iframe?.iframe}`)
+  console.log(`iframe: ${iframe?.iframe}`)
   // console.log(`router query${router.query}`)
 
   const createCard = async (values) => {
@@ -179,12 +149,6 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
                 name="message"
                 component="div"
               />
-            </div>
-
-            <div className="mb-3">
-              <label>Delivery date</label>
-              <br />
-              <MyDatePickerOG name="date" />
             </div>
 
             <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
