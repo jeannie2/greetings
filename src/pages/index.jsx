@@ -37,7 +37,7 @@ export default function Home() {
     })
   }
 
-  const signInGP = () => {
+  /* const signInGP = () => {
     signInWithPopup(auth, googleProvider).then((result) => {
       const { user } = result
 
@@ -48,7 +48,7 @@ export default function Home() {
 
       console.log(errorCode, errorMessage) // eslint-disable-lines
     })
-  }
+  } */
 
   const addUser = async () => {
     try {
@@ -218,7 +218,6 @@ export default function Home() {
     <div>
       <h1 className="text-center my-5">Home Page | Test</h1>
       <button onClick={signInEP} type="button">Email Sign in</button>
-      <button onClick={signInGP} type="button">Google Sign in</button>
 
       <button onClick={addUser} type="button">Add User</button>
       <button onClick={getUsers} type="button">Get Users</button>
@@ -227,7 +226,12 @@ export default function Home() {
       <button onClick={updateRecord} type="button">Update record</button>
 
       <button onClick={sendEmail} type="button">send email </button>
-      <button onClick={getDocsByDate} type="button">doc by date </button>
+
     </div>
   )
 }
+
+/*
+ <button onClick={signInGP} type="button">Google Sign in</button>
+   <button onClick={getDocsByDate} type="button">doc by date </button>
+*/

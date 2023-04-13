@@ -81,7 +81,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
   // console.log(`router query${router.query}`)
 
   const insertDeliveryDate = async (values, docRef) => {
-    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)  // eslint-disable-line
+    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`) // eslint-disable-line
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
       await updateDoc(doc(db, 'greetings3', docRef.id), {
@@ -97,11 +97,12 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     //   ...values,
     //   userId: user.uid,
     // }
-    console.log(values)  // eslint-disable-line
+    console.log(values) // eslint-disable-line
     try {
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
       const docRef = await addDoc(collection(db, 'greetings3'), values)
-      console.log('Document written with ID: ', docRef.id) // eslint-disable-line cardId
+      // cardId
+      console.log('Document written with ID: ', docRef.id) // eslint-disable-line
       insertDeliveryDate(values, docRef)
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {

@@ -25,11 +25,12 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     //   ...values,
     //   userId: user.uid,
     // }
-    console.log(values)  // eslint-disable-line
+    console.log(values) // eslint-disable-line
     try {
       // const docRef = await addDoc(collection(db, 'greetingcards'), values)
       const docRef = await addDoc(collection(db, 'greetings3'), values)
-      console.log('Document written with ID: ', docRef.id) // eslint-disable-line. cardId
+      // cardId
+      console.log('Document written with ID: ', docRef.id) // eslint-disable-line
       router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
     } catch (e) {
       console.error('Error adding document: ', e) // eslint-disable-line

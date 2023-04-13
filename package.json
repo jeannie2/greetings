@@ -24,6 +24,7 @@
     "next-auth": "^4.20.1",
     "next-connect": "^0.13.0",
     "next-i18next": "^13.2.2",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
