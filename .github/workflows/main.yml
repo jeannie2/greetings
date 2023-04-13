@@ -1,9 +1,8 @@
-name:
-  First Cron Job
+name: First Cron Job
 on:
   schedule:
-    - cron: "*/5 * * * *"
- 
+    - cron: '*/5 * * * *'
+
 jobs:
   cron:
     runs-on: ubuntu-latest
@@ -11,4 +10,4 @@ jobs:
       - name: Run a one-line script
         run: |
           curl --request POST \
-          --url 'https://greetings-rho.vercel.app/api/cron' 
+          --url 'https://greetings-rho.vercel.app/api/cron'
