@@ -15,6 +15,5 @@ export default (req, res) => {
   } catch (err) {
     console.log(err) // eslint-disable-line
     res.status(400).json(err)
-    // ss
   }
 }

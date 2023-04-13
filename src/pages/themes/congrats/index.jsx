@@ -55,7 +55,7 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
 
 export async function getStaticProps() {
   // const templateFiles = await apiGetFiles()
-  const res = await fetch('http://localhost:3000/pages/api/allTemplates')
+  const res = await fetch('http://localhost:3000/api/allTemplates')
 
   const templateFiles = await res.json()
   // console.log(`HANN${apiGetFiles()}`)

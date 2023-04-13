@@ -2,7 +2,7 @@ import '@/styles/globals.scss'
 import { ToastContainer } from 'react-toastify'
 
 import { AuthProvider } from '@/contexts/auth'
-import { CardsByDateProvider } from '@/contexts/cardsByDate'
+// import { CardsByDateProvider } from '@/contexts/cardsByDate'
 import { MyCardsProvider } from '@/contexts/myCards'
 import { MyCardProvider } from '@/contexts/myCard'
 import { CardProvider } from '@/contexts/card'
@@ -14,16 +14,16 @@ function MyApp({ Component, pageProps }) {
     <>
       <AuthProvider>
         <CardProvider>
-          <CardsByDateProvider>
-            <MyCardsProvider>
-              <MyCardProvider>
 
-                <CompsLayoutsNavbar />
-                <Component {...pageProps} />
+          <MyCardsProvider>
+            <MyCardProvider>
 
-              </MyCardProvider>
-            </MyCardsProvider>
-          </CardsByDateProvider>
+              <CompsLayoutsNavbar />
+              <Component {...pageProps} />
+
+            </MyCardProvider>
+          </MyCardsProvider>
+
         </CardProvider>
       </AuthProvider>
       <ToastContainer
@@ -42,3 +42,5 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
+
+/* <CardsByDateProvider>    </CardsByDateProvider> */

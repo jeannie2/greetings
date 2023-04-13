@@ -20,3 +20,14 @@ export default async function Cron(req, res) {
     return res.status(400).json(err)
   }
 }
+
+/*
+var transporter = nodemailer.createTransport({
+   service: 'gmail',
+   auth: {
+           user: 'xyz@gmail.com',   //put your mail here
+           pass: 'xyz'              //password here
+         }
+});
+
+*/
