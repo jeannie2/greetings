@@ -125,7 +125,7 @@ export default function Home() {
     }
   }
 
-  const getDocsByDate = async () => {
+  /* const getDocsByDate = async () => {
     const [cards, setCards] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -141,13 +141,13 @@ export default function Home() {
 
       }))
       setCards(newCards)
-      console.log(`NEWCARDS: ${newCards}`)
+      console.log(`NEWCARDS: ${newCards}`) // eslint-disable-line
       setIsLoading(false)
     } catch (err) {
           console.log(err) // eslint-disable-line
       setError(err)
     }
-  }
+  } */
 
   /*  // setForm({
           state: 'error',

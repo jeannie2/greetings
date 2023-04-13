@@ -1,5 +1,5 @@
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '@/services/firebase'
+// import { collection, getDocs, query, where } from 'firebase/firestore' // eslint-disable-line
+// import { db } from '@/services/firebase' // eslint-disable-line
 
 export default async function Cron(req, res) {
   try {

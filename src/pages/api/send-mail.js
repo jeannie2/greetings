@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer')
+/* const nodemailer = require('nodemailer')
 
 export default function handler(req, res) {
   const message = {
@@ -31,3 +31,4 @@ export default function handler(req, res) {
     })
   }
 }
+ */
