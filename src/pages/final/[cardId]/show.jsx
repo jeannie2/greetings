@@ -14,7 +14,7 @@ export default function FinalCardShowPage() {
 
   const folder = card?.iframe.replace(/\d+/g, '')
 
-  console.log(`iframe on final card show page: ${card?.iframe}`) // eslint-disable-line
+  // console.log(`iframe on final card show page: ${card?.iframe}`) // eslint-disable-line
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
