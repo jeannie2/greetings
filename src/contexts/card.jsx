@@ -26,7 +26,7 @@ export function CardProvider({ children }) {
     }
   }
 
-  const editCard = async (cardId) => {
+  /* const editCard = async (cardId) => {
     try {
       // const db = getFirestore()
       // const docRef = doc(db, 'greetingcards', cardId)
@@ -42,14 +42,14 @@ export function CardProvider({ children }) {
      console.log(err) // eslint-disable-line
       setError(err)
     }
-  }
+  } */
 
   const data = {
     card,
     isLoading,
     error,
-    getCard,
-    editCard
+    getCard
+    // editCard
   }
 
   return <CardContext.Provider value={data}>{children}</CardContext.Provider>
