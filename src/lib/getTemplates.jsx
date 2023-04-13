@@ -5,11 +5,11 @@ const getTemplates = () => {
   const structure = {}
 
   try {
-    const folders = fs.readdirSync(path.join(__dirname, '../../../../public/templates'))
+    const folders = fs.readdirSync(path.join(__dirname, '../api/templates'))
     folders.forEach((folder) => {
-      structure[folder] = fs.readdirSync(path.join(__dirname, `../../../../public/templates/${folder}`))
+      structure[folder] = fs.readdirSync(path.join(__dirname, `../api/templates/${folder}`)).map((n) => n.split('.')[0])
     })
-    return { data: structure }
+    return structure
   } catch (err) {
     console.log(err) // eslint-disable-line
     return { error: err }

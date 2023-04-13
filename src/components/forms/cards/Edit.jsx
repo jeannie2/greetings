@@ -85,7 +85,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
       await updateDoc(doc(db, 'greetings3', cardId), {
-        deliveryDate: convertedDate
+        deliveryDate: `[${convertedDate}]`
       })
     } catch (e) {
       console.log(e)  // eslint-disable-line

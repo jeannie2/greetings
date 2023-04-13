@@ -21,10 +21,8 @@ import getTemplates from '@/lib/getTemplates'
   */
 
 //     <div className="row border vh-100">
-
 // EXTRACT TEMPLATE NAME - more elegant way
-export default function ThankYouIndexPage() { // props: cards
-  const templateFiles = getTemplates()
+export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   const router = useRouter()
 
   if (router.isFallback) return <div>Loading...</div>
@@ -37,10 +35,9 @@ export default function ThankYouIndexPage() { // props: cards
         {templateFiles.thankyou.map((template) => (
           <div key={template} className="col-12 col-sm-6 col-lg-4 border">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
-              <div
-                onClick={() => {
+              <div onClick={() => {
                 console.log('HOW') // eslint-disable-line
-                }}
+              }}
               >
                 <iframe
                   src={`/templates/thankyou/${template}`}
