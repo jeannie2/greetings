@@ -8,6 +8,8 @@ import Link from 'next/link'
 
 import { useRouter } from 'next/router'
 
+import getTemplates from '@/lib/getTemplates'
+
 /*
 
       <img className="mb-2 rounded-circle" src="${listing.user.avatar}" alt="user avatar" width="50" height="50" />
@@ -55,10 +57,12 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
 
 export async function getStaticProps() {
   // const templateFiles = await apiGetFiles()
-  const res = await fetch('http://localhost:3000/api/allTemplates')
+  // const res = await fetch('http://localhost:3000/api/allTemplates')
 
-  const templateFiles = await res.json()
+  // const templateFiles = await res.json()
   // console.log(`HANN${apiGetFiles()}`)
+
+  const templateFiles = getTemplates()
 
   return {
     props: {

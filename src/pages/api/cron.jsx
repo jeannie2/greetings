@@ -22,12 +22,33 @@ export default async function Cron(req, res) {
 }
 
 /*
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
+
 var transporter = nodemailer.createTransport({
-   service: 'gmail',
-   auth: {
-           user: 'xyz@gmail.com',   //put your mail here
-           pass: 'xyz'              //password here
-         }
+  service: 'hotmail',
+  auth: {
+           user: process.env.EMAIL_USER, //put your mail here
+           pass: process.env.EMAIL_PASSWORD,        //password here
+  }
 });
 
+const setMailOptions = (data) => {
+let mailOptions = {
+from: xx,
+to: data.recipientEmail,
+subject: "New Greeting Card",
+html: data.message
+}
+// '<p>hi your meeting in just 15 min</p>'
+}
+
+below inside cron.schedule:
+transporter.sendMail(mailOptions, function (err, info) {
+    if(err)
+      console.log(err);
+    else
+      console.log(info);
+});
 */

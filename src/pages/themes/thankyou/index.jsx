@@ -8,6 +8,8 @@ import Link from 'next/link'
 
 import { useRouter } from 'next/router'
 
+import getTemplates from '@/lib/getTemplates'
+
 //  full screen iframe on thankyou index: className="border mb-2 card-img-top embed-responsive-item vh-100"
 /*
 
@@ -57,12 +59,13 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
   )
 }
 
-export async function getStaticProps() {
+export function getStaticProps() {
   // const templateFiles = await apiGetFiles()
-  const res = await fetch('http://localhost:3000/api/allTemplates')
-
-  const templateFiles = await res.json()
+  // const res = await fetch('http://localhost:3000/api/allTemplates')
+  // const templateFiles = await res.json()
   // console.log(`HANN${apiGetFiles()}`)
+
+  const templateFiles = getTemplates()
 
   return {
     props: {

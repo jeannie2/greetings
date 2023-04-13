@@ -1,19 +1,9 @@
-// RENAME THIS FILE
-import path from 'path'
-import fs from 'fs'
+import getTemplates from '@/lib/getTemplates'
 
-// const apiGetFiles = async (req, res) => {
 export default (req, res) => {
-  const structure = {}
+  const { data, error } = getTemplates()
 
-  try {
-    const folders = fs.readdirSync(path.join(__dirname, '../../../../public/templates'))
-    folders.forEach((folder) => {
-      structure[folder] = fs.readdirSync(path.join(__dirname, `../../../../public/templates/${folder}`))
-    })
-    res.json(structure)
-  } catch (err) {
-    console.log(err) // eslint-disable-line
-    res.status(400).json(err)
-  }
+  if (error) return res.status(400).json(error)
+
+  return res.json(data)
 }
