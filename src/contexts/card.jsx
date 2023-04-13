@@ -2,7 +2,7 @@
 // can use for final?cardId: show page as well?
 
 import React, { useEffect, useState, createContext, useContext } from 'react'
-import { getDoc, doc, updateDoc } from 'firebase/firestore'
+import { getDoc, doc } from 'firebase/firestore'
 
 import { db } from '@/services/firebase'
 
