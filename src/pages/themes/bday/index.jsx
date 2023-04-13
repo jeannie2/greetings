@@ -57,7 +57,7 @@ export default function BDayIndexPage({ templateFiles }) { // props: cards
   )
 }
 
-export async function getStaticProps() {
+export function getStaticProps() {
   // const templateFiles = await apiGetFiles()
   // const res = await fetch('http://localhost:3000/api/allTemplates')
 

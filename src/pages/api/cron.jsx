@@ -34,6 +34,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+a function below:
 const setMailOptions = (data) => {
 let mailOptions = {
 from: xx,
@@ -41,14 +42,18 @@ to: data.recipientEmail,
 subject: "New Greeting Card",
 html: data.message
 }
-// '<p>hi your meeting in just 15 min</p>'
-}
 
-below inside cron.schedule:
+above console.log:
+let mailOptions = setMailOptions(data)
+
 transporter.sendMail(mailOptions, function (err, info) {
     if(err)
       console.log(err);
     else
       console.log(info);
 });
+
+// '<p>hi your meeting in just 15 min</p>'
+}
+
 */
