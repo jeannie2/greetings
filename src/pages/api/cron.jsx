@@ -38,7 +38,7 @@ const markAsScheduled = async (doc) => {
 }
 
 try {
-  const q = query(collection(db, 'greetings3'), where('scheduled', '==', false).where('deliveryDate', 'array-contains', currentDate))
+  const q = query(collection(db, 'greetings3'), where('scheduled', '==', false), where('deliveryDate', 'array-contains', currentDate))
   const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       const data = {
