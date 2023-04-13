@@ -55,3 +55,5 @@ const updateRecord() {
 
 initialValues={data?.}
  onSubmit={updateRecord} */
+
+export default () => {}
