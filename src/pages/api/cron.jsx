@@ -29,8 +29,8 @@ dotenv.config();
 var transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
-           user: process.env.EMAIL_USER, //put your mail here
-           pass: process.env.EMAIL_PASSWORD,        //password here
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   }
 });
 
@@ -52,7 +52,7 @@ transporter.sendMail(mailOptions, function (err, info) {
     else
       console.log(info);
 });
-
+MARK AS SCHEDULED
 // '<p>hi your meeting in just 15 min</p>'
 }
 
