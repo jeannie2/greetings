@@ -17,7 +17,7 @@ export default (req, res) => {
   <title>TEMPLATE 4</title>
 
   <style>
- html { height: 100%; }
+html { height: 100%; }
 
 body {
   background: #333;
@@ -39,7 +39,7 @@ text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
   span:hover {
     opacity: 1;
-   text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 40px #ffffff, 0 0 10px #fdfdfd, 0 0 20px #fafafa, 0 0 80px #ffffff, 0 0 70px white
+  text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 40px #ffffff, 0 0 10px #fdfdfd, 0 0 20px #fafafa, 0 0 80px #ffffff, 0 0 70px white
   }
 
 
@@ -54,7 +54,7 @@ text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color: #000;
   background-clip: text;
   -webkit-background-clip: text;
- /* -webkit-text-fill-color: transparent;
+/* -webkit-text-fill-color: transparent;
 
 
   animation: shine 1s linear infinite;
@@ -124,8 +124,6 @@ text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     const moveCursor = (e) => {
       const mouseY = e.clientY;
       const mouseX = e.clientX;
-
-      cursorRounded.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
     }
 

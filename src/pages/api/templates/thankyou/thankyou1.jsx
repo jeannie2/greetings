@@ -31,19 +31,19 @@ export default (req, res) => {
     #containerEnvelope {
   position: absolute;
   left: 50%;
-   top: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 
-  .triangle-right {
+.triangle-right {
   -webkit-box-reflect: right;
-position: absolute;
-    display: inline-block;
-	width: 0;
-	height: 0;
-	border-top: 100px solid transparent; /* THESE VLAUES OTHERS DEPEND ON */
-	border-left: 200px solid #F4F0E0; /* seems be this value width. change color here. ideally responsive */
-	border-bottom: 100px solid transparent;
+  position: absolute;
+  display: inline-block;
+width: 0;
+height: 0;
+border-top: 100px solid transparent; /* THESE VLAUES OTHERS DEPEND ON */
+border-left: 200px solid #F4F0E0; /* seems be this value width. change color here. ideally responsive */
+border-bottom: 100px solid transparent;
 }
 
 #note {
@@ -58,15 +58,15 @@ position: absolute;
 }
 
 .triangle-left {
-position: absolute;
-    float: right;
-	width: 0;
-	height: 0;
-	border-top: 25px solid transparent;
-	border-right: 50px solid red;
-	border-bottom: 25px solid transparent;
-    left: 70px;
-  	top: 65px;
+  position: absolute;
+  float: right;
+width: 0;
+height: 0;
+border-top: 25px solid transparent;
+border-right: 50px solid red;
+border-bottom: 25px solid transparent;
+  left: 70px;
+  top: 65px;
     transform: translateX(-10px);
 }
 
@@ -81,12 +81,12 @@ position: absolute;
 
 .triangle-down {
   display: none;
- z-index: 10;
+z-index: 10;
   width: 0;
-	height: 0;
-	border-left: 25px solid transparent;
-	border-right: 25px solid transparent;
-	border-top: 50px solid red;
+height: 0;
+border-left: 25px solid transparent;
+border-right: 25px solid transparent;
+border-top: 50px solid red;
 
 }
 
@@ -100,7 +100,7 @@ position: absolute;
 }
 
 #letter {
- visibility: hidden;
+visibility: hidden;
 transform: translateY(400px);
 width: 600px;
 height: 300px;
@@ -117,10 +117,10 @@ height: 300px;
 @keyframes slide {
   0%{
   /*   z-index: -100;
-   opacity: 0;*/
+opacity: 0;*/
   }
 
-   100% {
+100% {
    /*  opacity: 1; */
     visibility: visible;
     transform: translatey(-15vmin);
@@ -141,7 +141,7 @@ height: 300px;
   0% {
   transform: translateY(-200px) rotateX(0deg);
   transform-origin:center top;
-     z-index: 50;
+  z-index: 50;
 }
 
   100% {

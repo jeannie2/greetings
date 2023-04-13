@@ -2,7 +2,7 @@
 export default (req, res) => {
   res.setHeader('content-type', 'text/html')
   res.end(`
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,17 +26,17 @@ export default (req, res) => {
 
     @keyframes color {
     0% { color: red; }
-   20% { color: fuchsia; }
+  20% { color: fuchsia; }
     30% { color: red; }
-       40% { color: orange; }
+    40% { color: orange; }
         70% { color: aquamarine }
-         80% { color: green; }
+      80% { color: green; }
           90% { color: yellow }
     100% { color: red; }
     }
 
       @media only screen and (max-width: 600px) {
- #content {
+#content {
     font-size: 0.3rem;
   }
 }

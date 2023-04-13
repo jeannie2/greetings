@@ -2,7 +2,7 @@
 export default (req, res) => {
   res.setHeader('content-type', 'text/html')
   res.end(`
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -36,12 +36,12 @@ export default (req, res) => {
 
     h1 {
 
-            font-size: 5em;
-            color: black;
-           font-family: impact;
-           position: relative;
-           top: 10%;
-             transform: translateY(-10%);
+      font-size: 5em;
+      color: black;
+      font-family: impact;
+      position: relative;
+      top: 10%;
+      transform: translateY(-10%);
        /*  animation:  glow 0.5s ease-in-out infinite alternate; */
     }
 
@@ -71,5 +71,6 @@ span {
 </html>
 
 <!--<h1>Congrats template 1</h1> -->
+
   `)
 }

@@ -39,7 +39,7 @@ export default (req, res) => {
   <linearGradient id="e" x1="40" y1="210" x2="460" y2="290" gradientUnits="userSpaceOnUse">
     <stop stop-color="red" offset="0" />
       <stop stop-color="aquamarine" offset="0.2" />
-   <stop stop-color="steelblue" offset="0.5" />
+  <stop stop-color="steelblue" offset="0.5" />
     <stop stop-color="yellow" offset="0.8" />
     <stop stop-color="#6e88ff" offset="1" />
   </linearGradient>

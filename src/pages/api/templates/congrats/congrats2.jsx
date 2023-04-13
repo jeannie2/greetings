@@ -27,8 +27,8 @@ export default (req, res) => {
     }
 
     h1 {
-     text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
-     font-size: 3rem;
+    text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+    font-size: 3rem;
    /* font-family: xxx */
     }
 </style>

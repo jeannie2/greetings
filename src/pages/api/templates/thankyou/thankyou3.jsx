@@ -2,7 +2,7 @@
 export default (req, res) => {
   res.setHeader('content-type', 'text/html')
   res.end(`
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,7 +26,7 @@ export default (req, res) => {
     }
 
       @media only screen and (max-width: 600px) {
- #content {
+#content {
     font-size: 0.3rem;
   }
 }
