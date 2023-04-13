@@ -85,7 +85,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
     try {
       await updateDoc(doc(db, 'greetings3', docRef.id), {
-        deliveryDate: convertedDate
+        deliveryDate: [convertedDate]
       })
     } catch (e) {
       console.log(e) // eslint-disable-line

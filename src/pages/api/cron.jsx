@@ -1,5 +1,5 @@
-// import { collection, getDocs, query, where } from 'firebase/firestore' // eslint-disable-line
-// import { db } from '@/services/firebase' // eslint-disable-line
+import { collection, getDocs, query, where } from 'firebase/firestore' // eslint-disable-line
+import { db } from '@/services/firebase' // eslint-disable-line
 // import moment from 'moment'
 // import nodemailer from 'nodemailer';
 // import dotenv from 'dotenv';
@@ -8,7 +8,7 @@
 export default async function Cron(req, res) {
   // const currentDate = moment().format('DD MM YYYY')
   try {
-    /* const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow')
+    const q = query(collection(db, 'greetings3'), where('message', '==', 'rainbow'))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       const data = {
@@ -17,7 +17,7 @@ export default async function Cron(req, res) {
       }
       console.log(data) // eslint-disable-line
     // mailer
-    }) */
+    })
     res.json('Job CompletedEX')
     //  )
   } catch (err) {
