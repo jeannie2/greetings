@@ -19,9 +19,9 @@ export default async function Cron(req, res) {
 const setMailOptions = (doc) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: doc.recipientEmail,
-    subject: 'New Greeting Card',
-    html: "<p>you've received a new card! <a href=https://greetings-rho.vercel/final/{doc.id}.app>Click here</a> to view </p>"
+    to: process.env.EMAIL_USER,
+    subject: doc.message,
+    html: "<p>you've received a new card! <a href='https://greetings-rho.vercel/final/{doc.id}.app>Click here</a> to view </p>"
   }
   return mailOptions
 }
