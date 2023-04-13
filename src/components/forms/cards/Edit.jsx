@@ -118,7 +118,8 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
     date: moment().valueOf(),
-    deliveryDate: ''
+    deliveryDate: '',
+    scheduled: false
     // deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
@@ -139,7 +140,8 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
           iframe: Yup.string(),
           userId: Yup.string(),
           date: Yup.string(),
-          deliveryDate: Yup.string()
+          deliveryDate: Yup.string(),
+          scheduled: Yup.bool
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?
         })
