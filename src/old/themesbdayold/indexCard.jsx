@@ -85,7 +85,7 @@ export async function getStaticPropsOG() {
 
 export async function getStaticProps() {
   // const templateFiles = await apiGetFiles()
-  const res = await fetch('http://localhost:3000/api/test')
+  const res = await fetch('http://localhost:3000/api/allTemplates')
 
   const templateFiles = await res.json()
   // console.log(`HANN${apiGetFiles()}`)
