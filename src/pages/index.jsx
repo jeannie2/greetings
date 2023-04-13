@@ -7,9 +7,9 @@
 
 import { useAuth } from '@/contexts/auth'
 import { useEffect } from 'react'
-import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'firebase/auth'
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth' // signInWithPopup,
 import { collection, query, where, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '@/services/firebase'
+import { auth, db } from '@/services/firebase' // googleProvider
 
 export default function Home() {
   useEffect(() => {
