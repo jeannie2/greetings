@@ -39,7 +39,8 @@ export default function BDayIndexPage({ templateFiles }) { // props: cards
               }}
               >
                 <iframe
-                  src={`/api/templates/bday/${template}`}
+                  src={`/templates/bday/${template.replace(/\.[^/.]+$/, '')}.html`}
+                 // src={`/api/templates/bday/${template}`}
                   onClick={() => {
                     console.log('HOW') // eslint-disable-line
                   }}
