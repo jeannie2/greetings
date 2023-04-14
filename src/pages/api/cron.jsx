@@ -50,7 +50,7 @@ try {
       }
   console.log(`data${data}`)
   // mailOptions = setMailOptions(data)
-  transporter.sendMail(setMailOptions(data), (err, info) => {
+  transporter.sendMail(setMailOptions(doc), (err, info) => { // setMailOptions(data)
     if (err) {
       console.log(err)  // eslint-disable-line
     } else { console.log(info) }  // eslint-disable-line
