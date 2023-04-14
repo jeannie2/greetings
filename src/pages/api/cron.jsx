@@ -2,9 +2,9 @@ import { collection, getDocs, query, where, updateDoc } from 'firebase/firestore
 import { db } from '@/services/firebase' // eslint-disable-line
 import moment from 'moment'
 import nodemailer from 'nodemailer'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
-dotenv.config()
+// dotenv.config()
 
 export default async function Cron(req, res) {
   const currentDate = moment().format('DD MM YYYY')
