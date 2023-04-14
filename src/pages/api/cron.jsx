@@ -22,7 +22,12 @@ const setMailOptions = (doc) => {
     from: 'new-greetings@outlook.com',
     to: 'new-greetings@outlook.com',
     subject: doc.message,
-    html: `<p>you've received a new card! <a href='https://greetings-rho.vercel.app/final/${doc.id}'>Click here</a> to view </p>`
+    html: `
+    <html>
+    <body>
+    <p>you've received a new card! <a href='https://greetings-rho.vercel.app/final/${doc.id}'>Click here</a> to view </p>
+    </body>
+    </html>`
   }
   return mailOptions
 }
