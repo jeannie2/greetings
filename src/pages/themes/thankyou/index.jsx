@@ -39,7 +39,7 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
               }}
               >
                 <iframe
-                  src={`/api/templates/thankyou/${template}`}
+                  src={`/templates/thankyou/${template.replace(/\.[^/.]+$/, '')}.html`} // src={`/api/templates/thankyou/${template}`}
                   onClick={() => {
                     console.log('HOW') // eslint-disable-line
                   }}
