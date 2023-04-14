@@ -21,7 +21,7 @@ const setMailOptions = (doc) => {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
     subject: doc.message,
-    html: "<p>you've received a new card! <a href='https://greetings-rho.vercel/final/{doc.id}.app>Click here</a> to view </p>"
+    html: `<p>you've received a new card! <a href='https://greetings-rho.vercel.app/final/${doc.id}'>Click here</a> to view </p>`
   }
   return mailOptions
 }
