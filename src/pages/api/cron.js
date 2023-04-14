@@ -54,7 +54,7 @@ const transporter = nodemailer.createTransport({
       id: doc.id,
       ...doc.data()
     }
-    console.log(data)
+    console.log(data) //eslint-disable-line
   /* querySnapshot.forEach(doc => {
       let data = doc.data()
     }) */
