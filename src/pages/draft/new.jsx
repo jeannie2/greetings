@@ -3,9 +3,9 @@ import React from 'react'
 import FormsCardsChange from '@/components/forms/cards/Change'
 import { useRouter } from 'next/router'
 // import { createCard } from '@/contexts/card'
-/// draft/new?iframe=bday1
+// draft/new?iframe=bday1
 
-/// /iframe src= queryparam
+// iframe src= queryparam
 // actual card on the side with iframe
 
 // rename iframe argument QQ
@@ -32,8 +32,3 @@ function NewCardPage() {
 }
 
 export default NewCardPage
-//          <h1 className="text-center">New Card Page</h1>
-// onSubmit={createCard}
-/*  <FormsAuthSignup
-            onSubmit={apiSignup}
-          /> */

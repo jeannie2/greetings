@@ -1,5 +1,4 @@
-// iframe src= queryparam
-// show 1 card
+// iframe src= query param
 // button to send option which directs to create new card with iframe as param
 // rename all to pages like project3? QQ
 import { useRouter } from 'next/router'
@@ -29,6 +28,4 @@ export default function TemplateIndexPage() {
 }
 
 // iframe: height: 400px
-//  <h1>Themes: 1 card view</h1>
-// export default IndexTemplate
-/* className="btn btn-primary float-end" type="submit" disabled={isSubmitting}> */
+// <h1>Themes: 1 card view</h1>

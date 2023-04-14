@@ -1,11 +1,5 @@
-// get iframe from cardid not param?
-// how to get cardid when click preview after filing out form..hv query db
-
-// use document id to retrieve contents of 1 document including iframe
-// dont show the other info... recipientemail, deliverydate, etc
-
+// get iframe from cardid not param
 import { useRouter } from 'next/router'
-
 import { useCard } from '@/contexts/card'
 
 export default function PreviewCardPage() {
@@ -13,19 +7,7 @@ export default function PreviewCardPage() {
   const { card, isLoading, error } = useCard(cardId)
   const router = useRouter()
 
-  // const iframe = card?.iframe
   const folder = card?.iframe.replace(/\d+/g, '')
-
-  /*
-  const url = useRouter()
-  const { iframe } = url.query
-  const folder = iframe?.replace(/\d+/g, '')
- */
-
-  // added
-  // OLD: const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
-
-  // console.log(`iframe on preview page: ${card?.iframe}`) // eslint-disable-line
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
@@ -60,16 +42,25 @@ export default function PreviewCardPage() {
 }
 
 /*
+const iframe = card?.iframe
+
+const url = useRouter()
+const { iframe } = url.query
+const folder = iframe?.replace(/\d+/g, '')
+
+added
+OLD: const folder = card?.iframe?.replace(/\d+/g, '') // question mark after card or no work
+
+console.log(`iframe on preview page: ${card?.iframe}`) // eslint-disable-line
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-<h1>PREVIEW PAGE</h1>
 ORIGINAL VERSION: <button onClick={() => router.push(`/draft/${cardId}/edit?iframe=${card.iframe}`)}
 
 <button onClick={() => router.push(`/draft/${cardId}/submitted?iframe=${card.iframe}/`)} type="button">SEND</button>
-      <div>{(card.iframe).replace(/\d+/g, '')}</div>
+<div>{(card.iframe).replace(/\d+/g, '')}</div>
 
-  <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
-
-  */
+<div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+*/

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import FormsAuthSignup from '@/components/forms/auth/Signup'
 
 function PagesAuthSignup() {
@@ -19,7 +18,3 @@ function PagesAuthSignup() {
 }
 
 export default PagesAuthSignup
-
-/*  <FormsAuthSignup
-            onSubmit={apiSignup}
-          /> */

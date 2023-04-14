@@ -18,7 +18,7 @@ function FormsAuthSignup() {
       enableReinitialize
       validationSchema={
         Yup.object({
-          email: Yup.string().required().label('Email'), // Title
+          email: Yup.string().required().label('Email'),
           password: Yup.string().min(6).required().label('Password'),
           passwordConfirmation: Yup.string().oneOf([Yup.ref('password')], 'Passwords need to match').required().label('Password Confirmation')
         })

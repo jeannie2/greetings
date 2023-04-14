@@ -1,10 +1,3 @@
-// get iframe from cardid not param?
-// fb edit record with form
-// or cld do another way to get the iframe QQQQ WWW
-
-// To simultaneously write to specific children of a node without overwriting other child nodes, use the update() method.
-
-// import FormsCardsChange from '@/components/forms/cards/Change'
 import FormsCardsEdit from '@/components/forms/cards/Edit'
 
 import { useRouter } from 'next/router'
@@ -24,13 +17,6 @@ export default function EditCardPage() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
 
-  /*
-  // get docid from param
-  const docId = router.query.cardId
-  // console.log(`router.query?.draft${router.query.cardId}`)
-  console.log(`docId: ${docId}`)
- */
-
   return (
     <div id="pages-auth-signup" className="container text-center mt-2 border">
 
@@ -45,13 +31,12 @@ export default function EditCardPage() {
     </div>
   )
 }
-/*  <h3 className="text-center">Edit Card</h3>
-  <FormsCardsChange
-    initialValues={card}
-    onSubmit={editCard}
-  /> */
-// C45VQv5yF8AgGlTRq2yH
+
 /*
-initialValues={data?.}
- onSubmit={updateRecord}
- enableReinitialize */
+get iframe from cardid not param
+or cld do another way to get the iframe QQQQ WWW
+
+const docId = router.query.cardId
+console.log(`router.query?.draft${router.query.cardId}`)
+console.log(`docId: ${docId}`)
+*/

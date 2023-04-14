@@ -17,20 +17,22 @@ export default async function Cron(req, res) {
   }
 })
 
-const setMailOptions = (doc) => {
+const mailOptions = {
+    from: 'new-greetings@outlook.com',
+    to: 'new-greetings@outlook.com',
+    subject: 'HELLO',
+    text: 'ee'
+  }
+
+/* const setMailOptions = (doc) => {
   const mailOptions = {
     from: 'new-greetings@outlook.com',
     to: 'new-greetings@outlook.com',
-    subject: doc.message,
-    html: `
-    <html>
-    <body>
-    <p>you've received a new card! <a href='https://greetings-rho.vercel.app/final/${doc.id}'>Click here</a> to view </p>
-    </body>
-    </html>`
+    subject: "HELLO"
+
   }
   return mailOptions
-}
+} */
 
 const markAsScheduled = async (doc) => {
   console.log("doc.id: " + doc.id) //eslint-disable-line
@@ -56,12 +58,12 @@ try {
       }
   console.log(`data${data}`)
   // mailOptions = setMailOptions(data)
-  transporter.sendMail(setMailOptions(doc), (err, info) => { // setMailOptions(data)
+  transporter.sendMail(mailOptions, (err, info) => { // setMailOptions(data)
     if (err) {
       console.log(err)  // eslint-disable-line
     } else { console.log(info) }  // eslint-disable-line
   })
-  markAsScheduled(doc) // how run after above done?
+ // markAsScheduled(doc) // how run after above done?
 })
 
 res.json('Job Completed')
@@ -93,3 +95,10 @@ export default async function Cron(req, res) {
   }
 }
 */
+
+/* html: `
+    <html>
+    <body>
+    <p>you've received a new card! <a href='https://greetings-rho.vercel.app/final/${doc.id}'>Click here</a> to view </p>
+    </body>
+    </html>` */
