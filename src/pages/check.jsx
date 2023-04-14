@@ -28,8 +28,8 @@ export default function Home() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(inputs)
+          }
+         // body: JSON.stringify(inputs)
         })
 
         const { error } = await res.json()

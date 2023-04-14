@@ -1,10 +1,3 @@
-/* export default function Home() {
-  return (
-    <h1 className="text-center my-5">Home Page</h1>
-  )
-}
-*/
-
 import { useAuth } from '@/contexts/auth'
 import { useEffect } from 'react'
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth' // signInWithPopup,
@@ -15,10 +8,8 @@ export default function Home() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
         console.log(user) // eslint-disable-line
       } else {
-        // User is signed out
         console.log('User is signed out') // eslint-disable-line
       }
     })
@@ -232,6 +223,12 @@ export default function Home() {
 }
 
 /*
- <button onClick={signInGP} type="button">Google Sign in</button>
-   <button onClick={getDocsByDate} type="button">doc by date </button>
+<button onClick={signInGP} type="button">Google Sign in</button>
+<button onClick={getDocsByDate} type="button">doc by date </button>
+
+export default function Home() {
+  return (
+    <h1 className="text-center my-5">Home Page</h1>
+  )
+}
 */

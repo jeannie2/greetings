@@ -2,7 +2,6 @@ import '@/styles/globals.scss'
 import { ToastContainer } from 'react-toastify'
 
 import { AuthProvider } from '@/contexts/auth'
-// import { CardsByDateProvider } from '@/contexts/cardsByDate'
 import { MyCardsProvider } from '@/contexts/myCards'
 import { MyCardProvider } from '@/contexts/myCard'
 import { CardProvider } from '@/contexts/card'
@@ -43,4 +42,5 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 
-/* <CardsByDateProvider> </CardsByDateProvider> */
+// import { CardsByDateProvider } from '@/contexts/cardsByDate'
+// <CardsByDateProvider> </CardsByDateProvider>
