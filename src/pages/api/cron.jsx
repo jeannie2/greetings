@@ -9,7 +9,7 @@ export default async function Cron(req, res) {
   const currentDate = moment().format('DD MM YYYY')
 
   const transporter = nodemailer.createTransport({
-  service: 'hotmail',
+  service: 'outlook',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
