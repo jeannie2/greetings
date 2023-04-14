@@ -81,11 +81,12 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
   // console.log(`router query${router.query}`)
 
   const insertDeliveryDate = async (values, docRef) => {
-    console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`) // eslint-disable-line
-    const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
+    // console.log(`insertDeliveryDate: ${moment(values.date).format('DD MMM YYYY')}`) // eslint-disable-line
+    // format('DD MMM YYYY hh:mm a')}`)
+    const convertedDate = moment(values.date).format('DD MMM YYYY')
     try {
       await updateDoc(doc(db, 'greetings3', docRef.id), {
-        deliveryDate: [convertedDate]
+        deliveryDate: convertedDate // [convertedDate]
       })
     } catch (e) {
       console.log(e) // eslint-disable-line
@@ -120,7 +121,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     userId: user?.uid || '',
     date: moment().valueOf(),
     deliveryDate: '',
-    scheduled: 'false'
+    scheduled: false
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -141,7 +142,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           userId: Yup.string(),
           date: Yup.string(),
           deliveryDate: Yup.string(),
-          scheduled: Yup.string()
+          scheduled: Yup.bool()
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?
         })

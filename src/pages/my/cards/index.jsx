@@ -8,6 +8,7 @@ import { useMyCards } from '@/contexts/myCards'
 
 function MyCardsIndex() { // export default function MyCardsIndex() {
   // const { cards, isLoading, error } = useCardsByDate()
+
   const { myCards, isLoading, error } = useMyCards()
 
   if (isLoading) return <div>Loading...</div>

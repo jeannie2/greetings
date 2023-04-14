@@ -25,7 +25,6 @@ export default function FinalCardShowPage() {
         <div className="col-1" />
 
         <div className="col-lg-10">
-          <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
 
           <iframe
             src={`/templates/${folder}/${card.iframe}.html`}
@@ -46,6 +45,8 @@ export default function FinalCardShowPage() {
 }
 
 /*
+<div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
+
 <div className="border">To: {card.recipientName}</div>
 
 import { getFirestore, doc, updateDoc } from "firebase/firestore";

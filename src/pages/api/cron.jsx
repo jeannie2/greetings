@@ -38,13 +38,17 @@ const markAsScheduled = async (doc) => {
 }
 
 try {
-  const q = query(collection(db, 'greetings3'), where('scheduled', '==', false), where('deliveryDate', 'array-contains', currentDate))
+  const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
+  // const q = query(collection(db, 'greetings3'), where('scheduled', '==', 'false'), where('deliveryDate', 'array-contains', currentDate))
+  // .where('deliveryDate', '<=', currentDate)) // where('scheduled', '==', false))
+  // where('deliveryDate', 'array-contains', currentDate))
   const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       const data = {
         id: doc.id,
         ...doc.data()
       }
+  console.log(`data${data}`)
   // mailOptions = setMailOptions(data)
   transporter.sendMail(setMailOptions(data), (err, info) => {
     if (err) {

@@ -81,11 +81,11 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
   // useRecord if no work - hook
 
   const insertDeliveryDate = async (values) => {
-    console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY hh:mm a')}`)  // eslint-disable-line
-    const convertedDate = moment(values.date).format('DD MMM YYYY hh:mm a')
+    // console.log(`insertDeliveryDate from edit file: ${moment(values.date).format('DD MMM YYYY')}`)  // eslint-disable-line
+    const convertedDate = moment(values.date).format('DD MMM YYYY')
     try {
       await updateDoc(doc(db, 'greetings3', cardId), {
-        deliveryDate: [convertedDate]
+        deliveryDate: convertedDate // [convertedDate]
       })
     } catch (e) {
       console.log(e)  // eslint-disable-line
@@ -118,7 +118,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     iframe: '', // wld never be blank? iframe?.iframe || ''. param?.new || '',
     userId: user?.uid || '',
     date: moment().valueOf(),
-    deliveryDate: '',
+    deliveryDate: '', // moment().valueOf(),
     scheduled: false
     // deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
@@ -139,9 +139,9 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
           message: Yup.string().required().label('Message'),
           iframe: Yup.string(),
           userId: Yup.string(),
-          date: Yup.string(),
+          date: Yup.string(), // moment().valueOf()
           deliveryDate: Yup.string(),
-          scheduled: Yup.bool
+          scheduled: Yup.bool()
           // date: Yup.date(),
           // deliveryDate: Yup.date() // correct?
         })
