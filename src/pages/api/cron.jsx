@@ -34,7 +34,7 @@ const mailOptions = {
   return mailOptions
 } */
 
-const markAsScheduled = async (doc) => {
+/* const markAsScheduled = async (doc) => {
   console.log("doc.id: " + doc.id) //eslint-disable-line
   try {
     await updateDoc(doc(db, 'greetings3', doc.id), {
@@ -43,7 +43,7 @@ const markAsScheduled = async (doc) => {
   } catch (e) {
     console.log(e) //eslint-disable-line
   }
-}
+} */
 
 try {
   const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
@@ -56,7 +56,7 @@ try {
         id: doc.id,
         ...doc.data()
       }
-  console.log(`data${data}`)
+  console.log(`data${data}`) //eslint-disable-line
   // mailOptions = setMailOptions(data)
   transporter.sendMail(mailOptions, (err, info) => { // setMailOptions(data)
     if (err) {
