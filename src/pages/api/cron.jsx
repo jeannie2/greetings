@@ -31,7 +31,7 @@ export default async function Cron(req, res) {
   try {
   const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
   const querySnapshot = await getDocs(q)
-   querySnapshot.forEach((doc) => { // keep doc
+   querySnapshot.forEach((doc) => { //eslint-disable-line
   const data = {
       id: doc.id,
       ...doc.data()
