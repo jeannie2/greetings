@@ -1,12 +1,10 @@
 import React from 'react'
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik' // resetForm
+import * as Yup from 'yup'
 import { useRouter } from 'next/router'
 
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik'
-import * as Yup from 'yup'
-
-import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
-import { db } from '@/services/firebase'
-
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore' // getDocs, doc, updateDoc
+import { db } from '@/services/firebase' // auth, googleProvider,
 import { useAuth } from '@/contexts/auth'
 
 import moment from 'moment'
@@ -35,6 +33,28 @@ const MyDatePicker = ({ name = '' }) => {
   )
 }
 
+//    moment(1454521239279).format("DD MMM YYYY hh:mm a") moment(date).valueOf()
+/*
+return (
+    <DatePicker
+      {...field}
+      selected={value}
+      dateFormat="MM-dd-yyyy"
+      onChange={(date) => {
+        setValue(moment(date).valueOf()
+        )
+      }}
+    />
+  )
+} */
+// Timestamp.fromDate(date).toDate(date)
+// selected={initiated_Date ? new Date(initiated_Date) : null}
+// moment.unix(date).format('MM-dd-yyy')
+// setValue(new Date(Date.parse(date)))}
+// HH:mm:ss
+// new Date(date * 1000))
+//
+/// www.draft/new?bday1
 function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doesnt get written to db. but how make work if use one form with props || initial values? props //{ iframe } ({ iframe }) <- DOESNT WORK QQQQ Www
   const router = useRouter()
   const { user } = useAuth()
@@ -105,7 +125,9 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           userId: Yup.string(),
           date: Yup.string(),
           deliveryDate: Yup.string(),
-          scheduled: Yup.bool() //  Yup.date()
+          scheduled: Yup.bool()
+          // date: Yup.date(),
+          // deliveryDate: Yup.date() // correct?
         })
       }
     >
@@ -206,3 +228,34 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
 }
 
 export default FormsCardsChange
+
+/*
+            <div className="mb-3">
+              <label>Delivery date</label>
+              <br />
+              <MyDatePicker name="deliveryDate" />
+            </div>
+*/
+// need is-invalid?
+/*
+const createCard2 = (values) => new Promise((resolve, reject) => {
+  const router = useRouter()
+  addCard(values.senderName, values.senderEmail, values.recipientName, values.recipientEmail, values.message).then((result) => {
+    resolve(result)
+    resetForm()
+    router.push('/test')
+  }).catch((error) => {
+    reject(error)
+  })
+})
+
+const { id } = doc(collection(db, 'bloodDonation'))
+const newDonationRef = doc(db, 'bloodDonation', id)
+await setDoc(newDonationRef, values)
+ */
+
+/* references:
+  datepicker:
+  https://stackoverflow.com/a/68417318
+  https://codesandbox.io/s/f29k0?file=/src/App.js:832-864
+  */
