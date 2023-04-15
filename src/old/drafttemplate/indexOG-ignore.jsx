@@ -7,6 +7,10 @@ export default function TemplateIndexPage() {
   const { iframe } = url.query
   const folder = iframe?.replace(/\d+/g, '') // iframe keyword minus number eg bday3 -> bday
 
+  // console.log(`url query : ${url.query}`)
+  // console.log(`url.query.iframe : ${url.query.iframe}`) // eslint-disable-line
+  // console.log(`iframe iframe: ${iframe}`) // eslint-disable-line
+
   return (
     <div className="container mt-5 mx-auto text-center border">
       <div className="row">
@@ -21,6 +25,4 @@ export default function TemplateIndexPage() {
 }
 
 // iframe: height: 400px
-// console.log(`url query : ${url.query}`)
-// console.log(`url.query.iframe : ${url.query.iframe}`) // eslint-disable-line
-// console.log(`iframe iframe: ${iframe}`) // eslint-disable-line
+// <h1>Themes: 1 card view</h1>

@@ -1,16 +1,9 @@
-// final card view for recipient (+ sender TBC)
-// iframe src wld be in db, get from cardid
-
-// create context
-
 import { useRouter } from 'next/router'
-
 import { useCard } from '@/contexts/card'
 
 export default function FinalCardShowPage() {
   const { query: { cardId } } = useRouter()
   const { card, isLoading, error } = useCard(cardId)
-  // const router = useRouter() // unlike preview page
 
   const folder = card?.iframe.replace(/\d+/g, '')
 
@@ -43,27 +36,3 @@ export default function FinalCardShowPage() {
     </div>
   )
 }
-
-/*
-<div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
-
-<div className="border">To: {card.recipientName}</div>
-
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
-...
-const data = {
-  province: "ON"
-};
-
-updateDoc(docRef, data)
-.then(docRef => {
-    console.log("Value of an Existing Document Field has been updated");
-})
-.catch(error => {
-    console.log(error);
-})
-
-export default FinalCardPage() {
-
-}
- */

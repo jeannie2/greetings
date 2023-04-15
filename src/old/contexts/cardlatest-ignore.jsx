@@ -21,11 +21,30 @@ export function CardProvider({ children }) {
     }
   }
 
+  /* const editCard = async (cardId) => {
+    try {
+      // const db = getFirestore()
+      // const docRef = doc(db, 'greetingcards', cardId)
+      const docRef = doc(db, 'greetings3', cardId)
+      const newData = {
+        iframe: 'PASTA'
+      }
+      updateDoc(docRef, newData)
+      console.log('Value of an Existing Document Field has been updated') // eslint-disable-line
+      // setCard(docSnap.data())
+      setIsLoading(false)
+    } catch (err) {
+     console.log(err) // eslint-disable-line
+      setError(err)
+    }
+  } */
+
   const data = {
     card,
     isLoading,
     error,
     getCard
+    // editCard
   }
 
   return <CardContext.Provider value={data}>{children}</CardContext.Provider>
@@ -42,3 +61,18 @@ export function useCard(cardId) {
 
   return rest
 }
+
+// export default function updateCard(cardId)
+
+/*
+export function updateCard(cardId) {
+  const { editCard, ...rest } = useContext(CardContext)
+
+  console.log('hook', cardId, rest)
+
+  useEffect(() => {
+    if (cardId) editCard(cardId)
+  }, [cardId])
+
+  return rest
+} */

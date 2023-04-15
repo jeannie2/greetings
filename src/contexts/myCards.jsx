@@ -1,8 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-
-import { useAuth } from '@/contexts/auth'
 import { db } from '@/services/firebase'
+import { useAuth } from '@/contexts/auth'
 
 const MyCardsContext = createContext()
 

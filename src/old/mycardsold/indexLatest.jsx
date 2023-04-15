@@ -36,3 +36,13 @@ function MyCardsIndex() { // export default function MyCardsIndex() {
 }
 
 export default withAuth(MyCardsIndex)
+
+//   <h6 className="card-title mb-2">PLACEHOLDER</h6>
+// <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+// export default withAuth(MyCardsIndex)
+/*
+ return myCards.map((card) => (
+    <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+  ))
+
+  */

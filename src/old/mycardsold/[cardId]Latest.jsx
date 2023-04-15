@@ -40,3 +40,40 @@ function MyCardShow() { // export default function MyCardSnow()
 }
 
 export default withAuth(MyCardShow)
+
+/* import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+*/
+//   <div key={myCard.id}>{myCard.id} | {myCard.recipientEmail} | {myCard.recipientName} | {myCard.iframe}</div>
+/*  <h1>  1 CARD SHOWING NOW</h1>
+question marks in above render each field? QQ
+ <h1>{myCard.iframe.replace(/\d+/g, '')} </h1>
+        <h1>{myCard.iframe} </h1> */
+// export default withAuth(MyCardShow)
+/*
+ <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+
+ return myCards.map((card) => (
+    <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+  ))
+  */
+
+/*
+  return (
+    <Container>
+      <Row xs={1} md={2} className="g-4">
+        {myCard.map((card) => (
+          <>
+            <div key={card.id}>{card.id} | {card.recipientEmail} | {card.recipientName} | {card.iframe}</div>
+            <Col>
+              <iframe
+                src={`${card.iframe}.html`}
+              />
+              <Link href={`/my/cards/${card.id}`}>1 CARD SHOWING NOW</Link>
+            </Col>
+          </>
+        ))}
+      </Row>
+    </Container>
+  ) */

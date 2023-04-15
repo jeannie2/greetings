@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
 import { getDoc, doc } from 'firebase/firestore'
+
 import { db } from '@/services/firebase'
 
 const MyCardContext = createContext()
@@ -11,6 +12,7 @@ export function MyCardProvider({ children }) {
 
   const getMyCard = async (cardId) => {
     try {
+      // const docRef = doc(db, 'greetingcards', cardId)
       const docRef = doc(db, 'greetings3', cardId)
       const docSnap = await getDoc(docRef)
       setMyCard(docSnap.data())
@@ -42,3 +44,31 @@ export function useMyCard(cardId) {
 
   return rest
 }
+
+/* HELLO
+useEffectOG(() => {
+    if (putty) {
+      const getCard = async () => {
+        try {
+          const newMyCard = []
+          const q = query(collection(db, 'greetingcards'), where(documentId(), '==', putty))
+          // const q = query(collection(db, 'greetingcards'), where('userId', '==', user.uid))
+          const querySnapshot = await getDocs(q)
+          // const querySnapshot = await getDoc(doc(db, 'greetingcards', putty))
+          console.log(querySnapshot)/// / THIS LINE HAS STH DO WITH my/cards/iframesrc showing up
+          // newMyCard.push(querySnapshot)
+          querySnapshot.forEach((doc) => newMyCard.push({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setMyCard(newMyCard)
+          setIsLoading(false)
+        } catch (err) {
+          console.log(err) // eslint-disable-line
+          setError(err)
+        }
+      }
+
+      getCard()
+    }
+  }, []) */

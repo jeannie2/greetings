@@ -18,3 +18,9 @@ function CardSubmittedPage() {
 }
 
 export default CardSubmittedPage
+
+/* get iframe from cardId not param?
+const [queries] = useSearchParams()
+const tipId = queries.get('tipId')
+diff way instead of tipId bc already have id at edit/preview stage
+*/

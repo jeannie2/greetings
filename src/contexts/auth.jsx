@@ -1,10 +1,9 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/router'
 
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/services/firebase'
 
-// const auth = getAuth();
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
@@ -22,13 +21,11 @@ export function AuthProvider({ children }) {
 
   const apiSignOut = () => signOut(auth)
 
-  // const apiSignIn = () => {}
   const apiSignIn = (values) => new Promise((resolve, reject) => {
     signInWithEmailAndPassword(auth, values.email, values.password).then((result) => {
       resolve(result)
       console.log('logged in') // eslint-disable-line
-      // said to do sth else? QQ
-      router.push('/') //   router.push('/test')
+      router.push('/')
     }).catch((error) => {
       reject(error)
     })
@@ -37,8 +34,7 @@ export function AuthProvider({ children }) {
   const apiSignup = (values) => new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, values.email, values.password).then((result) => {
       resolve(result)
-      // router.push('/my/cards')
-      router.push('/') //   router.push('/test')
+      router.push('/')
     }).catch((error) => {
       reject(error)
     })

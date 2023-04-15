@@ -7,7 +7,7 @@ import { MyCardProvider } from '@/contexts/myCard'
 import { CardProvider } from '@/contexts/card'
 
 import CompsLayoutsNavbar from '@/layouts/Navbar'
-//
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -41,6 +41,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
-
-// import { CardsByDateProvider } from '@/contexts/cardsByDate'
-// <CardsByDateProvider> </CardsByDateProvider>

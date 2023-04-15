@@ -9,6 +9,7 @@ const getTemplates = () => {
     /* folders.forEach((folder) => {
       structure[folder] = fs.readdirSync(path.join(__dirname, `../api/templates/${folder}`)).map((n) => n.split('.')[0])
     }) */
+
     const structure = {
       bday: ['bday1', 'bday2', 'bday3', 'bday4'],
       thankyou: ['thankyou1', 'thankyou2', 'thankyou3', 'thankyou4'],

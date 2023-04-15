@@ -8,7 +8,7 @@ function PagesAuthSignup() {
         <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
           <h1 className="text-center">Sign up</h1>
           <br />
-          <p className="fst-italic text-center">Register to view all your cards in one place, and unlock hidden content!</p>
+          <p className="fst-italic text-center">Register to view all your cards and unlock hidden content!</p>
           <br />
           <FormsAuthSignup />
         </div>
