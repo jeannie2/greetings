@@ -32,11 +32,11 @@ export default async function Cron(req, res) {
   const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
   const querySnapshot = await getDocs(q)
    querySnapshot.forEach((doc) => { // keep doc
-   const data = {
+  const data = {
       id: doc.id,
       ...doc.data()
     }
-    console.log(data)
+    console.log(data) //eslint-disable-line
     transporter.sendMail({
         from: process.env.EMAIL_USER,
         bcc: process.env.EMAIL_USER, // to
