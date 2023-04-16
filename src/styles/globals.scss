@@ -1,10 +1,86 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~react-toastify/dist/ReactToastify.css";
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
 
+body {
+  background: black;
+}
 
 #sent-message {
   font-family: arial;
   font-style: italic;
+}
+
+#slider1 {
+  height: 50vh;
+  animation: up 4s linear;
+  animation-fill-mode: forwards;
+  background: black;
+  animation-delay: 3s;
+}
+
+#slider2 {
+height: 50vh;
+animation: down 4s linear;
+  animation-fill-mode: forwards;
+  background: black;
+  animation-delay: 3s;
+}
+
+#navbar-svg {
+  margin-top: 20px;
+  margin-right: -10px;
+  width: 2rem;
+  height: 2rem;
+  animation: rotate 3s linear infinite;
+}
+
+#smile {
+width: 15rem;
+height: 15rem;
+left: 50%;
+top: 50%;
+position: absolute;
+transform: translate(-50%, -50%);
+animation: rotate 3s linear;
+animation-iteration-count: 5;
+animation-fill-mode: forwards;
+transform-origin: center;
+z-index: 10;
+-webkit-filter: drop-shadow( 10px 4px 3px rgba(0, 0, 0, 0.7));
+filter:   drop-shadow( 10px 4px 3px rgba(5, 5, 5, 0.7))
+}
+
+
+@keyframes up {
+  to {
+    transform: translateY(-200vh)
+  }
+}
+
+@keyframes down {
+  to {
+    transform: translateY(200vh)
+  }
+}
+
+@keyframes rotate {
+  0% {
+  transform: translate(-50%, -50%) rotate(0)
+  }
+
+  100% {
+  transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+#navbar {
+  font-family:  impact;
+}
+
+.navbar-nav {
+  font-family: 'Averia Sans Libre', cursive;
 }
 
 /*iframe {

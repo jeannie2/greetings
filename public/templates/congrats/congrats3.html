@@ -1,116 +1,314 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Test</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.css" rel="stylesheet">
+  <link href="https://unpkg.com/pattern.css" rel="stylesheet">
+  <title>Congrats</title>
+
   <style>
-    body {
-      margin: 0;
+  #content {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    /* font-family: impact; */
+    font-family: 'Edu QLD Beginner', cursive;
+
+width: 100%;
+height: 100%;
+
+background-color: #e5e5f7;
+opacity: 0.8;
+background-size: 20px 20px;
+background-image:  repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
+  }
+
+  h1 {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #444cf7;
+    font-size: 5rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 1.5rem;
+
     }
+  }
 
-    #instructions {
-      width: 100%;
-      height: 100%;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+  /* ENVELOPE CODE FROM HERE */
+  #containerEnvelope, #note {
+    display: none;
+  }
 
-      text-align: center;
-      font-size: 14px;
-      cursor: pointer;
-    }
+  #containerEnvelope {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
+  .triangle-right {
+    -webkit-box-reflect: right;
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 100px solid transparent; /* THESE VLAUES OTHERS DEPEND ON */
+    border-left: 200px solid #F4F0E0; /* seems be this value width. change color here. ideally responsive */
+    border-bottom: 100px solid transparent;
+  }
+
+  #note {
+    position: absolute;
+    text-align: center;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+    z-index: 100;
+    font-size: 40px;
+    font-family: 'Beth Ellen', cursive;
+  }
+
+  .triangle-left {
+    position: absolute;
+    float: right;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 50px solid red;
+    border-bottom: 25px solid transparent;
+    left: 70px;
+    top: 65px;
+    transform: translateX(-10px);
+  }
+
+  .rectangle {
+    border: 2px solid black;
+    background: red;
+    width: 95px;
+    height: 50px;
+    z-index: 5;
+    position: absolute;
+  }
+
+  .triangle-down {
+    display: none;
+    z-index: 10;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 50px solid red;
+  }
+
+  /* #lid:hover {
+    animation: open 3s forwards;
+  } */
+
+#envelope {
+  background:linear-gradient(to bottom right,grey 50%,#E7E0D3 50%);
+  z-index: 2;
+}
+
+#letter {
+  visibility: hidden;
+  transform: translateY(400px);
+  width: 600px;
+  height: 300px;
+  background-color: pink;
+  z-index: -30;
+  opacity: 0;
+  /*  animation: slide 3s; */
+}
+
+.animateLetter {
+  animation: slide 3s;
+}
+
+@keyframes slide {
+  0% {
+  /* z-index: -100;
+  opacity: 0;*/
+  }
+
+  100% {
+  /* opacity: 1; */
+    visibility: visible;
+    transform: translatey(-15vmin);
+  /*  z-index: 1; */
+  /* scale: 3; */
+  }
+}
+
+@keyframes slide-rev {
+  from {
+    transform: translatey(-15vmin);
+  }
+}
+
+/* UPDATE BELOW based on what others depend on */
+/*hard coded value from console.log triangle width */
+@keyframes open {
+  0% {
+  transform: translateY(-200px) rotateX(0deg);
+  transform-origin:center top;
+  z-index: 50;
+}
+
+  100% {
+    transform: translateY(-200px) rotateX(180deg);
+    /*  animation-fill-mode: forwards; */
+    transform-origin : center top;
+    z-index: 50;
+    /* border-top-color: blue; */
+  }
+}
+
+@keyframes close {
+  0% {
+    transform: translateY(-400px) rotateX(180deg);
+    /* animation-fill-mode: forwards; */
+    transform-origin : center top;
+      /* z-index: 50; */
+    border-top-color: blue;
+  }
+
+  100% {
+    transform: translateY(-400px) rotateX(0deg);
+    transform-origin:center top;
+    /*  z-index: 50;  */
+    border-top-color: #E7E0D3;
+  }
+}
   </style>
-
-  <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-
-  <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.skypack.dev/three@0.138.0/build/three.module",
-          "three/examples/jsm/controls/OrbitControls": "https://cdn.skypack.dev/three@0.138.0/examples/jsm/controls/OrbitControls",
-          "three/examples/jsm/libs/stats.module": "https://cdn.skypack.dev/three@0.138.0/examples/jsm/libs/stats.module",
-          "dat.gui": "https://cdn.skypack.dev/dat.gui"
-        }
-      }
-    </script>
 </head>
-
 <body>
 
-  <script type="module">
-    import * as THREE from "three";
-    import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-    import Stats from "three/examples/jsm/libs/stats.module";
-    import { GUI } from "dat.gui";
+<!-- ENVELOPE CODE FROM HERE-->
+<div id="containerEnvelope">
+  <div class="triangle-right"></div>
+</div>
+<p id="note">Open me! </p>
+<div class="triangle-down"> </div>
 
-    const scene = new THREE.Scene();
+<div id="content">
+<h1>Congratulations!</h1>
+</div>
 
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
-    );
-    camera.position.z = 2;
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+  </div>
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+<script>
+  function getParentUrl() {
+    let isInIframe = (parent !== window), // var
+      parentUrl = null;
 
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
-      wireframe: true,
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    window.addEventListener(
-      "resize",
-      () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        render();
-      },
-      false
-    );
-
-    const stats = Stats();
-    document.body.appendChild(stats.dom);
-
-    const gui = new GUI();
-
-    const cubeFolder = gui.addFolder("Cube");
-    cubeFolder.add(cube.rotation, "x", 0, Math.PI * 2, 0.01);
-    cubeFolder.add(cube.rotation, "y", 0, Math.PI * 2, 0.01);
-    cubeFolder.add(cube.rotation, "z", 0, Math.PI * 2, 0.01);
-    cubeFolder.open();
-
-    const cameraFolder = gui.addFolder("Camera");
-    cameraFolder.add(camera.position, "z", 0, 10, 0.01);
-    cameraFolder.open();
-
-    var animate = function () {
-      requestAnimationFrame(animate);
-      controls.update();
-      render();
-      stats.update();
-    };
-
-    function render() {
-      renderer.render(scene, camera);
+    if (isInIframe) {
+      parentUrl = document.referrer;
     }
+    console.log("parentURL" + parentUrl)  // eslint-disable-line
 
-    animate();
-  </script>
+    if ((parentUrl.indexOf("preview") > -1) || (parentUrl.indexOf("final")) > -1 || (parentUrl.indexOf("draft/template?iframe") > -1)) {
+      document.body.style.backgroundColor = "black"
+      document.getElementById("content").style.display = "none";
+      document.getElementById("containerEnvelope").style.display = "block";
+      document.getElementById("note").style.display = "block";
+      createEnvelope();
+      // document.body.style.backgroundColor = "red";// is anything other than preview or final
+    }
+    return parentUrl;
+  }
+
+  getParentUrl()
+
+  function createEnvelope() {
+    let triangle = document.querySelector(".triangle-right");
+    let triangleHeight = triangle.offsetHeight;
+    let triangleWidth = triangle.offsetWidth;
+    let containerEnvelope = document.getElementById("containerEnvelope")
+    let envelope = document.getElementById("envelope")
+    // console.log("triangle height: " + triangleHeight) / uncommented for fswdi
+    // console.log("triangle width: " + triangleWidth) / uncommented for fswdi
+
+    let rectangle = document.createElement("div");
+    rectangle.style.width = triangleHeight * 2 + "px"
+    rectangle.style.height = triangleWidth + "px";
+    rectangle.id = "envelope";
+    rectangle.style.zIndex = 5;
+    // rectangle.classList.add("animateLetter")
+    // rectangle.classList.add("rectangle")
+    rectangle.style.backgroundColor = "#EBE8E2";
+    // rectangle.style.position = "absolute";
+    containerEnvelope.appendChild(rectangle);
+
+    createLid();
+  }
+
+  function createLid() {
+    let triangle = document.querySelector(".triangle-right");
+    let triangleHeight = triangle.offsetHeight;
+    let triangleWidth = triangle.offsetWidth;
+
+    let lid = document.createElement("div");
+    let envelope = document.getElementById("envelope");
+
+    lid.style.width = 0;
+    lid.style.height = 0;
+    lid.id = "lid";
+    lid.style.position = "absolute";
+    lid.style.borderLeft = triangleHeight + "px solid transparent";
+    // lid.setAttribute("border-left", envelope.offsetWidth + "px solid transparent");
+    lid.style.borderRight = triangleHeight + "px solid transparent";
+
+    // lid.style.zIndex = -1;
+    // console.log(envelope.offsetWidth)
+    // lid.setAttribute("border-right", envelope.offsetWidth + "px solid transparent");
+    // lid.style.borderTop = "50px solid green";
+    lid.style.borderTop = triangleWidth / 2 + "px solid #E7E0D3";
+    // lid.setAttribute("border-top", + "100px solid green")
+
+    //  document.body.appendChild(lid)
+    lid.style.transform = "translateY(-" + triangleWidth + "px)";
+
+    lid.addEventListener("mouseover", function () {
+      this.style.animation = "open 2s forwards";
+      this.style.borderTopColor = "pink"
+      // document.getElementById("rectangle").classList.add("animateLetter")
+      // document.getElementById("letter").style.animationDelay = "3s";
+      setTimeout(showCard, 2000)
+      // document.getElementById("container").display = none;
+    })
+
+    lid.addEventListener("mouseleave", function () {
+      // this.style.animation = "close 2s"
+    })
+
+    // document.body.appendChild(lid);
+    containerEnvelope.appendChild(lid);
+    // lid.style.animation="open 5s forwards"
+  }
+
+  function showCard() {
+    document.getElementById("containerEnvelope").style.display = "none";
+    document.getElementById("note").style.display = "none";
+    // document.body.style.backgroundColor = "white" // added, tailor for each card
+    document.getElementById("content").style.display = "block";
+  }
+</script>
 </body>
-
 </html>

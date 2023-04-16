@@ -9,10 +9,10 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
   if (!templateFiles) return <div>No such template</div>
 
   return (
-    <div id="main" className="container p-3">
-      <div className="row border">
+    <div id="main2" className="container p-3">
+      <div className="row">
         {templateFiles.congrats.map((template) => (
-          <div key={template} className="col-12 col-sm-6 col-lg-4 border">
+          <div key={template} className="col-12 col-sm-6 col-lg-4">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
               <div onClick={() => {
                 console.log('HOW') // eslint-disable-line
@@ -27,7 +27,7 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
                   allowFullScreen
                 />
                 <div className="card-body text-center" />
-                <h6 className="card-title mb-2 mx-auto text-center">send card</h6>
+                <h6 className="card-title mb-2 mx-auto text-center send-link"> VIEW</h6>
               </div>
             </Link>
           </div>

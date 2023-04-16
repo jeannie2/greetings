@@ -18,8 +18,8 @@ export default function PreviewCardPage() {
         <div className="col-1" />
 
         <div className="col-lg-10">
-          <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button" className="btn btn-primary button mx-auto">SEND</button>
-          <button onClick={() => router.push(`/draft/${cardId}/edit`)} type="button" className="btn btn-primary button mx-2 float-right">EDIT</button>
+          <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button" className="btn btn-light button mx-auto">SEND</button>
+          <button onClick={() => router.push(`/draft/${cardId}/edit`)} type="button" className="btn btn-light button mx-2 float-right">EDIT</button>
           <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
 
           <iframe

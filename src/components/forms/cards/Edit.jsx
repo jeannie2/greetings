@@ -192,7 +192,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
               <MyDatePicker name="date" />
             </div>
 
-            <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
+            <button className="btn btn-light mx-auto d-block" type="submit" disabled={isSubmitting}>Preview</button>
           </Form>
         )
       }

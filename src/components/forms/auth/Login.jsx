@@ -54,7 +54,7 @@ function FormsAuthLogin() {
               />
             </div>
 
-            <button className="btn btn-primary mx-auto d-block" type="submit" disabled={isSubmitting}>Submit</button>
+            <button className="btn btn-light mx-auto d-block" type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )
       }

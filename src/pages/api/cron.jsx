@@ -39,9 +39,32 @@ export default async function Cron(req, res) {
     console.log(data) //eslint-disable-line
     transporter.sendMail({
         from: process.env.EMAIL_USER,
-        bcc: process.env.EMAIL_USER, // to
-        subject: 'New E-card Notificationxx',
-        text: data.recipientName
+        bcc: process.env.EMAIL_USER, // data.recipientEmail to
+        subject: 'New E-card Notification',
+        attachments: [{
+          filename: 'box.png',
+          path: 'https://i.imgur.com/dEwwHQT.png',
+          cid: 'box'
+      }],
+        html: `
+        <html>
+          <body>
+          <table width='100%' height='100%' border='0' cellspacing='0' cellpadding='0' style='background:#000000'>
+            <tr height='90%'>
+            <td style='padding:40px 40px 40px 40px'>
+            <tr height='10%'>
+            <td align='center'>
+            <img src="cid:box" style='width:250px; padding: 40px 40px 40px 40px'>
+            <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}'>Click here</a> to open
+            </p>
+            </td>
+            </tr>
+
+            </td>
+            </tr>
+          </table>
+          </body>
+      </html>`// text: data.recipientName
     })
     markAsScheduled(data)
   })

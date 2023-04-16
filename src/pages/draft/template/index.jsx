@@ -12,7 +12,7 @@ export default function TemplateIndexPage() {
       <div className="row">
         <div className="col-12">
           <iframe src={`/templates/${folder}/${iframe}.html`} className="border embed-responsive-item vh-90" allowFullScreen width="80%" height="500px" />
-          <button onClick={() => router.push(`/draft/new?iframe=${iframe}`)} type="button" className="btn btn-primary d-block mx-auto">Send</button>
+          <button onClick={() => router.push(`/draft/new?iframe=${iframe}`)} type="button" className="btn btn-light d-block mx-auto">Send</button>
         </div>
       </div>
     </div>
