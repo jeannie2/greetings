@@ -11,10 +11,10 @@ function MyCardsIndex() { // export default function MyCardsIndex() {
   // const folder = myCard.iframe?.replace(/\d+/g, '') // added
 
   return (
-    <div id="my-cards-index" className="container p-3">
+    <div id="my-cards-index" className="container-fluid p-3">
       <div className="row">
         {myCards.map((card) => (
-          <div key={card.id} className="col-12 col-sm-6 col-lg-3 border">
+          <div key={card.id} className="col-12 col-sm-6 col-lg-3">
 
             <iframe
               src={`/templates/${card?.iframe?.replace(/\d+/g, '')}/${card.iframe}.html`}

@@ -19,7 +19,7 @@ export default function BDayIndexPage({ templateFiles }) { // props: cards
 
               <iframe
                 src={`/templates/bday/${template.replace(/\.[^/.]+$/, '')}.html`} // JUST THIS PART: src={`/api/templates/bday/${template}`}
-                className="border mb-2 card-img-top embed-responsive-item"
+                className="border border-secondary mb-2 card-img-top embed-responsive-item"
                 height="200px"
                 allowFullScreen
               />

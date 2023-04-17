@@ -17,7 +17,7 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
 
               <iframe
                 src={`/templates/congrats/${template.replace(/\.[^/.]+$/, '')}.html`} // src={`/api/templates/congrats/${template}`}
-                className="border mb-2 card-img-top embed-responsive-item"
+                className="border border-secondary mb-2 card-img-top embed-responsive-item"
                 height="200px"
                 allowFullScreen
               />

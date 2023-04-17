@@ -17,7 +17,7 @@ export default function ThankYouIndexPage({ templateFiles }) { // props: cards
 
               <iframe
                 src={`/templates/thankyou/${template.replace(/\.[^/.]+$/, '')}.html`} // src={`/api/templates/thankyou/${template}`}
-                className="border mb-2 card-img-top embed-responsive-item"
+                className="border border-secondary mb-2 card-img-top embed-responsive-item"
                 height="200px"
                 allowFullScreen
               />
