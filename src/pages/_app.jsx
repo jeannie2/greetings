@@ -7,11 +7,16 @@ import { MyCardProvider } from '@/contexts/myCard'
 import { CardProvider } from '@/contexts/card'
 
 import CompsLayoutsNavbar from '@/layouts/Navbar'
-import Document from '@/pages/_document'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Document>
+    <>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre@1&display=swap" rel="stylesheet" />
+      </Head>
       <AuthProvider>
         <CardProvider>
 
@@ -37,8 +42,7 @@ function MyApp({ Component, pageProps }) {
         draggable
         pauseOnHover
       />
-    </Document>
-
+    </>
   )
 }
 
