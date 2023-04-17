@@ -11,8 +11,8 @@ function MyCardsIndex() { // export default function MyCardsIndex() {
   // const folder = myCard.iframe?.replace(/\d+/g, '') // added
 
   return (
-    <div id="my-cards-index" className="container p-3">
-      <div className="row">
+    <div id="main" className="container p-3">
+      <div className="row border">
         {myCards.map((card) => (
           <div key={card.id} className="col-12 col-sm-6 col-lg-3 border">
 
@@ -20,7 +20,8 @@ function MyCardsIndex() { // export default function MyCardsIndex() {
               src={`/templates/${card?.iframe?.replace(/\d+/g, '')}/${card.iframe}.html`}
               className="mb-2 card-img-top border embed-responsive-item"
               allowFullScreen
-              height="auto"
+              width="80%"
+              height="500px"
             />
 
             <div className="card-body text-center">

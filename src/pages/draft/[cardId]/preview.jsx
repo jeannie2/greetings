@@ -13,15 +13,16 @@ export default function PreviewCardPage() {
   if (error) return <div>Error</div>
 
   return (
-    <div className="container mt-5 mx-auto text-center border">
+    <div className="container mt-5 mx-auto text-center">
       <div className="row">
         <div className="col-1" />
 
         <div className="col-lg-10">
           <button onClick={() => router.push(`/draft/${cardId}/submitted`)} type="button" className="btn btn-light button mx-auto">SEND</button>
           <button onClick={() => router.push(`/draft/${cardId}/edit`)} type="button" className="btn btn-light button mx-2 float-right">EDIT</button>
-          <div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
-
+          <br />
+          <br />
+          <div />
           <iframe
             src={`/templates/${folder}/${card.iframe}.html`}
             className="border embed-responsive-item vh-90"
@@ -29,9 +30,13 @@ export default function PreviewCardPage() {
             width="80%"
             height="500px"
           />
+          <br />
+          <br />
 
-          <div className="border">To: {card.recipientName}</div>
-          <div className="border">{card.message}</div>
+          <div>To: {card.recipientName}</div>
+          <div>{card.message}</div>
+          <br />
+          <br />
 
         </div>
         <div className="col-1" />
@@ -42,6 +47,8 @@ export default function PreviewCardPage() {
 }
 
 /*
+<div key={cardId}>cardId: {cardId} | {card.senderName} | {card.senderEmail} | {card.recipientEmail} | {card.recipientName} | {card.message} | userId: {card.iframe} | {card.userId} </div>
+
 const iframe = card?.iframe
 
 const url = useRouter()

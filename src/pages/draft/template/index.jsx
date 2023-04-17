@@ -8,7 +8,7 @@ export default function TemplateIndexPage() {
   const folder = iframe?.replace(/\d+/g, '') // iframe keyword minus number eg bday3 -> bday
 
   return (
-    <div className="container mt-5 mx-auto text-center border">
+    <div className="container mt-5 mx-auto text-center">
       <div className="row">
         <div className="col-12">
           <iframe src={`/templates/${folder}/${iframe}.html`} className="border embed-responsive-item vh-90" allowFullScreen width="80%" height="500px" />

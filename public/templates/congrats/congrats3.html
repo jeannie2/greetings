@@ -23,13 +23,12 @@
     /* font-family: impact; */
     font-family: 'Edu QLD Beginner', cursive;
 
-width: 100%;
-height: 100%;
-
-background-color: #e5e5f7;
-opacity: 0.8;
-background-size: 20px 20px;
-background-image:  repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
+    width: 100%;
+    height: 100%;
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-size: 20px 20px;
+    background-image:  repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
   }
 
   h1 {
@@ -82,6 +81,7 @@ background-image:  repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5
     z-index: 100;
     font-size: 40px;
     font-family: 'Beth Ellen', cursive;
+    white-space: nowrap;
   }
 
   .triangle-left {
@@ -307,6 +307,7 @@ background-image:  repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5
     document.getElementById("containerEnvelope").style.display = "none";
     document.getElementById("note").style.display = "none";
     // document.body.style.backgroundColor = "white" // added, tailor for each card
+    document.body.backgroundImage = "repeating-linear-gradient(to right, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7)"
     document.getElementById("content").style.display = "block";
   }
 </script>

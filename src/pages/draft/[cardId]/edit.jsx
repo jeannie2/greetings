@@ -15,12 +15,12 @@ export default function EditCardPage() {
   if (error) return <div>Error</div>
 
   return (
-    <div id="pages-auth-signup" className="container text-center mt-2 border">
+    <div id="pages-auth-signup" className="container text-center mt-2">
 
       <div className="row">
         <div className="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
 
-          <iframe src={`/templates/${folder}/${card.iframe}.html`} className="border embed-responsive-item" allowFullScreen />
+          <iframe src={`/templates/${folder}/${card.iframe}.html`} className="embed-responsive-item" allowFullScreen />
           <FormsCardsEdit initialValues={card} />
 
         </div>

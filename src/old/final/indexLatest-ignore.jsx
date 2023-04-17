@@ -13,7 +13,7 @@ export default function FinalCardShowPage() {
   if (error) return <div>Error</div>
 
   return (
-    <div className="container mt-5 mx-auto text-center">
+    <div className="container mt-5 mx-auto text-center border">
       <div className="row">
         <div className="col-1" />
 
@@ -26,13 +26,8 @@ export default function FinalCardShowPage() {
             width="80%"
             height="500px"
           />
-          <br />
-          <br />
 
-          <div>To: {card.recipientName}</div>
-          <div>{card.message}</div>
-          <br />
-          <br />
+          <div className="border">{card.message}</div>
 
         </div>
         <div className="col-1" />

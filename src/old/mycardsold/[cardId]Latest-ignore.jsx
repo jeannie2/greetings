@@ -12,7 +12,7 @@ function MyCardShow() { // export default function MyCardSnow()
   if (error) return <div>Error</div>
 
   return (
-    <div className="container mt-5 mx-auto text-center">
+    <div className="container mt-5 mx-auto text-center border">
       <div className="row">
         <div className="col-1" />
 
@@ -20,16 +20,16 @@ function MyCardShow() { // export default function MyCardSnow()
 
           <iframe
             src={`/templates/${folder}/${myCard.iframe}.html`}
-            className="embed-responsive-item vh-90"
+            className="border embed-responsive-item vh-90"
             allowFullScreen
-            width="80%"
-            height="500px"
+            width="60%"
+            height="250px"
           />
 
           <div>To: {myCard.recipientName}</div>
           <div>Recipient email: {myCard.recipientEmail}</div>
           <div>Delivery date: {myCard.deliveryDate}</div>
-          <div>Message: <br />{myCard.message}</div>
+          <div className="border">{myCard.message}</div>
 
         </div>
         <div className="col-1" />

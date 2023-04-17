@@ -9,21 +9,26 @@ export default function CongratsIndexPage({ templateFiles }) { // props: cards
   if (!templateFiles) return <div>No such template</div>
 
   return (
-    <div id="congrats-index" className="container p-3">
+    <div id="main2" className="container p-3">
       <div className="row">
         {templateFiles.congrats.map((template) => (
           <div key={template} className="col-12 col-sm-6 col-lg-4">
             <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
-
-              <iframe
-                src={`/templates/congrats/${template.replace(/\.[^/.]+$/, '')}.html`} // src={`/api/templates/congrats/${template}`}
-                className="border mb-2 card-img-top embed-responsive-item"
-                height="200px"
-                allowFullScreen
-              />
-              <div className="card-body text-center" />
-              <h6 className="card-title mb-2 mx-auto text-center send-link"> VIEW</h6>
-
+              <div onClick={() => {
+                console.log('HOW') // eslint-disable-line
+              }}
+              >
+                <iframe
+                  src={`/templates/congrats/${template.replace(/\.[^/.]+$/, '')}.html`} // src={`/api/templates/congrats/${template}`}
+                  onClick={() => {
+                    console.log('HOW') // eslint-disable-line
+                  }}
+                  className="border mb-2 card-img-top embed-responsive-item"
+                  allowFullScreen
+                />
+                <div className="card-body text-center" />
+                <h6 className="card-title mb-2 mx-auto text-center send-link"> VIEW</h6>
+              </div>
             </Link>
           </div>
         ))}
