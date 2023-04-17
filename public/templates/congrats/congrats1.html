@@ -29,7 +29,7 @@ span {
   opacity: 0.02;
   color: white;
   font-family: impact;
-text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
   span:hover {
@@ -37,6 +37,11 @@ text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 40px #ffffff, 0 0 10px #fdfdfd, 0 0 20px #fafafa, 0 0 80px #ffffff, 0 0 70px white
   }
 
+  @media only screen and (max-width: 600px) {
+    .letter {
+      font-size: 2rem;
+    }
+  }
 
   /* ENVELOPE CODE FROM HERE */
   #containerEnvelope, #note {
