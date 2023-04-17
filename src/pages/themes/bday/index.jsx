@@ -16,8 +16,8 @@ export default function BDayIndexPage({ templateFiles }) { // props: cards
 
         {templateFiles.bday.map((template) => (
           <>
-            <div className="col-lg-2" />
-            <div key={template} className="col-12 col-sm-6 col-lg-8 border">
+            <div key={template} className="col-lg-2" />
+            <div className="col-12 col-sm-6 col-lg-8 border">
               <Link href={`/draft/template?iframe=${template.replace(/\.[^/.]+$/, '')}`}>
                 <div onClick={() => {
                 console.log('HOW') // eslint-disable-line. animate__animated animate__slideInUp
@@ -62,6 +62,8 @@ export function getStaticProps() {
   }
 }
 
-/*  <h6 className="card-title mb-2 mx-auto text-center">send card</h6>
+/*
+<div key={template} className="col-12 col-sm-6 col-lg-8 border">
+<h6 className="card-title mb-2 mx-auto text-center">send card</h6>
 bg-black [yellow] pattern-diagonal-lines-lg
 */

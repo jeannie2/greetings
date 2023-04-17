@@ -17,61 +17,67 @@ export default async function Cron(req, res) {
     }
   })
 
-  const markAsScheduled = async (data) => {
-    // console.log("doc.id: " + doc.id) //eslint-disable-line
-    try {
-      await updateDoc(doc(db, 'greetings3', data.id), {
-        scheduled: true
-      })
-    } catch (e) {
-      console.log(e) //eslint-disable-line
-    }
-  }
-
   try {
-  const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
-  const querySnapshot = await getDocs(q)
-   querySnapshot.forEach((doc) => { //eslint-disable-line
-  const data = {
-      id: doc.id,
-      ...doc.data()
-    }
-    console.log(data) //eslint-disable-line
-    transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        bcc: process.env.EMAIL_USER, // data.recipientEmail to
-        subject: 'New E-card Notification',
-        attachments: [{
-          filename: 'box.png',
-          path: 'https://i.imgur.com/dEwwHQT.png',
-          cid: 'box'
-      }],
-        html: `
-        <html>
-          <body>
-          <table width='100%' height='100%' border='0' cellspacing='0' cellpadding='0' style='background:#000000'>
-            <tr height='90%'>
-            <td style='padding:40px 40px 40px 40px'>
-            <tr height='10%'>
-            <td align='center'>
-            <img src="cid:box" style='width:250px; padding: 40px 40px 40px 40px'>
-            <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}'>Click here</a> to open
-            </p>
-            </td>
-            </tr>
+    const docsData = []
 
-            </td>
-            </tr>
-          </table>
-          </body>
-      </html>`// text: data.recipientName
-    })
-    markAsScheduled(data)
-  })
-return res.json('job completed')
-} catch (err) {
+    const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((result) => docsData.push({ id: result.id, ...result.data() }))
+
+    for (let i = 0; i < docsData.length; i += 1) {
+      const data = docsData[i]
+      console.log('Doc ID', data.id) // eslint-disable-line
+
+      try {
+        const mailResult = await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          bcc: process.env.EMAIL_USER, // data.recipientEmail to
+          subject: 'New E-card Notification',
+          attachments: [{
+            filename: 'box.png',
+            path: 'https://i.imgur.com/dEwwHQT.png',
+            cid: 'box'
+          }],
+          html: `
+            <html>
+              <body>
+              <table width='100%' height='100%' border='0' cellspacing='0' cellpadding='0' style='background:#000000'>
+                <tr height='90%'>
+                <td style='padding:40px 40px 40px 40px'>
+                <tr height='10%'>
+                <td align='center'>
+                <img src="cid:box" style='width:250px; padding: 40px 40px 40px 40px'>
+                <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}'>Click here</a> to open
+                </p>
+                </td>
+                </tr>
+
+                </td>
+                </tr>
+              </table>
+              </body>
+            </html>
+          `// text: data.recipientName
+        })
+        console.log('Mail Result', mailResult) // eslint-disable-line
+      } catch (mailErr) {
+        console.log('Mail Error', mailErr) // eslint-disable-line
+      }
+
+      try {
+        const updateResult = await updateDoc(doc(db, 'greetings3', data.id), {
+          scheduled: true
+        })
+        console.log('Update Result', updateResult) // eslint-disable-line
+      } catch (updateErr) {
+        console.log('Update Error', updateErr) // eslint-disable-line
+      }
+    }
+
+    return res.json('job completed')
+  } catch (err) {
     console.log(err) // eslint-disable-line
-  return res.status(400).json(err)
+    return res.status(400).json(err)
   }
 }
 

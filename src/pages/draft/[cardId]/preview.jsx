@@ -26,8 +26,8 @@ export default function PreviewCardPage() {
             src={`/templates/${folder}/${card.iframe}.html`}
             className="border embed-responsive-item vh-90"
             allowFullScreen
-            width="70%"
-            height="400px"
+            width="80%"
+            height="500px"
           />
 
           <div className="border">To: {card.recipientName}</div>

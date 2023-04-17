@@ -2,7 +2,9 @@ name: First Cron Job
 on:
   schedule:
     - cron: '*/5 * * * *'
-
+  push:
+    branches: [master]
+  workflow_dispatch:
 jobs:
   cron:
     runs-on: ubuntu-latest
