@@ -62,7 +62,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
         ...values
       })
       insertDeliveryDate(values)
-      push(`/draft/${cardId}/preview`)
+      push(`/draft/${cardId}/preview?recipient=${values.recipientName}`) // how to insert recipientName here?
     } catch (e) {
       console.log(e)  // eslint-disable-line
     }
@@ -142,7 +142,7 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
             </div>
 
             <div className="mb-3">
-              <label>Recipient Name</label>
+              <label>Recipient First Name</label>
               <Field
                 className={`form-control ${e?.recipientName && t?.recipientName && 'is-invalid'}`}
                 name="recipientName"

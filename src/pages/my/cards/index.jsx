@@ -26,7 +26,7 @@ function MyCardsIndex() { // export default function MyCardsIndex() {
             <div className="card-body text-center">
               <div>To: {card.recipientName} </div>
               <div>Delivery date: {card.deliveryDate} </div>
-              <Link href={`/my/cards/${card.id}`}>Details</Link>
+              <Link href={`/my/cards/${card.id}?recipient=${card.recipientName}`}>Details</Link>
             </div>
           </div>
         ))}

@@ -47,7 +47,7 @@ export default async function Cron(req, res) {
                 <tr height='10%'>
                 <td align='center'>
                 <img src="cid:box" style='width:250px; padding: 40px 40px 40px 40px'>
-                <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}'>Click here</a> to open
+                <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}?recipient=${data.recipientName}'>Click here</a> to open
                 </p>
                 </td>
                 </tr>
@@ -63,7 +63,7 @@ export default async function Cron(req, res) {
           from: process.env.EMAIL_USER,
           bcc: data.senderEmail, // data.recipientEmail to
           subject: 'E-card Scheduled Notification',
-          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview'>click here</a>. </p></html>`
+          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview?recipient=${data.recipientName}'>click here</a>. </p></html>`
         })
         console.log('Mail Result', mailResult, mailResult2) // eslint-disable-line
       } catch (mailErr) {

@@ -68,7 +68,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
       // cardId
       console.log('Document written with ID: ', docRef.id) // eslint-disable-line
       insertDeliveryDate(values, docRef)
-      router.push(`/draft/${docRef.id}/preview`) // router.push('/test')
+      router.push(`/draft/${docRef.id}/preview?recipient=${docRef.recipientName}`) // router.push('/test')
     } catch (e) {
       console.error('Error adding document: ', e) // eslint-disable-line
     }
@@ -147,7 +147,7 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
             </div>
 
             <div className="mb-3">
-              <label>Recipient Name</label>
+              <label>Recipient First Name</label>
               <Field
                 className={`form-control ${e?.recipientName && t?.recipientName && 'is-invalid'}`}
                 name="recipientName"

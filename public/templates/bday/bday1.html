@@ -274,6 +274,12 @@
     border-top-color: #E7E0D3;
   }
 }
+
+
+  #customName {
+    color: white;
+    font-size: 3rem;
+  }
   </style>
 </head>
 <body>
@@ -286,6 +292,7 @@
 <div class="triangle-down"> </div>
 
 <div id="content">
+
 <div class="letter letter1 magictime puffOut"><span>H</span></div>
 <div class="letter letter2"><span>A</span></div>
 <div class="letter letter3"><span>P</span></div>
@@ -301,14 +308,22 @@
 <div class="letter letter11"><span>D</span></div>
 <div class="letter letter12"><span>A</span></div>
 <div class="letter letter13"><span>Y</span></div>
+
+<div id="customName"></div>
+
 </div>
 
 <script>
-  /* window.onmessage = function(e) {
-  console.log("postmessage: " + e.dada)
-  } */
+  //console.log(getParentUrl())
 
-  function getParentUrl() {
+// add recipient name to card, add for cards that need it
+//let link = new URL(getParentUrl())
+//let searchParams = link.searchParams
+//let recipientFirst = searchParams.get('recipient')
+// console.log("recipient: " + recipient)
+//document.getElementById("customName").innerText = recipientFirst
+
+function getParentUrl() {
     let isInIframe = (parent !== window), // var
       parentUrl = null;
 
@@ -320,15 +335,29 @@
     if ((parentUrl.indexOf("preview") > -1) || (parentUrl.indexOf("final")) > -1 || (parentUrl.indexOf("draft/template?iframe") > -1)) {
       document.body.style.backgroundColor = "black"
       document.getElementById("content").style.display = "none";
+      //document.getElementById("customName").style.display = "none";
       document.getElementById("containerEnvelope").style.display = "block";
       document.getElementById("note").style.display = "block";
       createEnvelope();
       // document.body.style.backgroundColor = "red";// is anything other than preview or final
     }
-    return parentUrl;
+
+    // added recipient name to card, add for cards that need it
+    let link = new URL(parentUrl)
+    let searchParams = link.searchParams
+    let recipientFirst = searchParams.get('recipient')
+    // console.log("recipient: " + recipient)
+    document.getElementById("customName").innerText = recipientFirst
+
+    return parentUrl, recipientFirst;
   }
 
   getParentUrl()
+
+// console.log("recipientName in bday1: " + recipient)
+    /* window.onmessage = function(e) {
+    console.log("postmessage: " + e.dada)
+} */
 
   function createEnvelope() {
     let triangle = document.querySelector(".triangle-right");
@@ -402,7 +431,10 @@
     document.getElementById("note").style.display = "none";
     // document.body.style.backgroundColor = "white" // added, tailor for each card
     document.getElementById("content").style.display = "block";
+    //document.getElementById("customName").style.display = "block";
   }
+
+
 </script>
 </body>
 </html>

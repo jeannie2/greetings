@@ -20,7 +20,7 @@ function MyCardShow() { // export default function MyCardSnow()
 
           <iframe
             src={`/templates/${folder}/${myCard.iframe}.html`}
-            className="embed-responsive-item vh-90"
+            className="border embed-responsive-item vh-90"
             allowFullScreen
             width="80%"
             height="500px"
