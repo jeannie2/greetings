@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/services/firebase'
 
 const MyCardContext = createContext()

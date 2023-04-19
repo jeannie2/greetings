@@ -31,7 +31,7 @@ export default async function Cron(req, res) {
       try {
         const mailResult = await transporter.sendMail({
           from: process.env.EMAIL_USER,
-          bcc: data.recipientEmail, // process.env.EMAIL_USER
+          bcc: process.env.EMAIL_USER, // data.recipientEmail to
           subject: 'New E-card Notification',
           attachments: [{
             filename: 'box.png',
@@ -59,13 +59,7 @@ export default async function Cron(req, res) {
             </html>
           `// text: data.recipientName
         })
-        const mailResult2 = await transporter.sendMail({
-          from: process.env.EMAIL_USER,
-          bcc: data.senderEmail, // data.recipientEmail to
-          subject: 'E-card Scheduled Notification',
-          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview'>click here</a>. </p></html>`
-        })
-        console.log('Mail Result', mailResult, mailResult2) // eslint-disable-line
+        console.log('Mail Result', mailResult) // eslint-disable-line
       } catch (mailErr) {
         console.log('Mail Error', mailErr) // eslint-disable-line
       }

@@ -1,34 +1,11 @@
 import { useRouter } from 'next/router'
 import { useCard } from '@/contexts/card'
-import { useEffect } from 'react'
-
-import { updateDoc, doc } from 'firebase/firestore'
-import { db } from '@/services/firebase'
 
 export default function FinalCardShowPage() {
   const { query: { cardId } } = useRouter()
   const { card, isLoading, error } = useCard(cardId)
 
   const folder = card?.iframe.replace(/\d+/g, '')
-
-  useEffect(() => {
-    if (cardId) { // or else fires too soon before routing
-      const updateFirebase = async () => {
-        try {
-          await updateDoc(doc(db, 'greetings3', cardId), {
-            opened: true
-          })
-          return ('updated doc')
-          //  return ("update status", updateFirebaseDoc) // eslint-disable-line
-        } catch (updateDocErr) {
-          return ('error') // console.log("update error", updateDocErr) // eslint-disable-line
-          // return { error: updateDocErr }
-        }
-      }
-
-      updateFirebase()
-    }
-  }, [cardId])
 
   // console.log(`iframe on final card show page: ${card?.iframe}`) // eslint-disable-line
 

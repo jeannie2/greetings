@@ -84,7 +84,9 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
     userId: user?.uid || '',
     date: moment().valueOf(),
     deliveryDate: '',
-    scheduled: false
+    scheduled: false,
+    opened: false,
+    notifiedSender: false
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
   }
@@ -105,7 +107,9 @@ function FormsCardsChange(iframe) { // props, iframe. -> if use this, iframe doe
           userId: Yup.string(),
           date: Yup.string(),
           deliveryDate: Yup.string(),
-          scheduled: Yup.bool() //  Yup.date()
+          scheduled: Yup.bool(), //  Yup.date()
+          opened: Yup.bool(),
+          notifiedSender: Yup.bool()
         })
       }
     >

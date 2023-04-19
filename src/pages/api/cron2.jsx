@@ -1,10 +1,10 @@
 import { collection, getDocs, query, where, updateDoc, doc } from 'firebase/firestore'
 import { db } from '@/services/firebase'
 import nodemailer from 'nodemailer'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default async function Cron(req, res) {
-  const currentDate = moment().format('DD MMM YYYY') // not MM
+  // const currentDate = moment().format('DD MMM YYYY') // not MM
 
   const transporter = nodemailer.createTransport({
     pool: true,
@@ -20,7 +20,7 @@ export default async function Cron(req, res) {
   try {
     const docsData = []
 
-    const q = query(collection(db, 'greetings3'), where('deliveryDate', '==', currentDate), where('scheduled', '==', false))
+    const q = query(collection(db, 'greetings3'), where('opened', '==', true), where('notifiedSender', '==', false))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((result) => docsData.push({ id: result.id, ...result.data() }))
 
@@ -31,12 +31,12 @@ export default async function Cron(req, res) {
       try {
         const mailResult = await transporter.sendMail({
           from: process.env.EMAIL_USER,
-          bcc: data.recipientEmail, // process.env.EMAIL_USER
-          subject: 'New E-card Notification',
+          bcc: data.senderEmail, // process.env.EMAIL_USER
+          subject: 'E-card Opened Confirmation',
           attachments: [{
-            filename: 'box.png',
-            path: 'https://i.imgur.com/dEwwHQT.png',
-            cid: 'box'
+            filename: 'flowers.png',
+            path: 'https://i.imgur.com/3LBALRI.png',
+            cid: 'flowers'
           }],
           html: `
             <html>
@@ -46,8 +46,8 @@ export default async function Cron(req, res) {
                 <td style='padding:40px 40px 40px 40px'>
                 <tr height='10%'>
                 <td align='center'>
-                <img src="cid:box" style='width:250px; padding: 40px 40px 40px 40px'>
-                <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.recipientName}, there's an e-card waiting for you! <a style='text-decoration:none; color: #FF0000' href='https://greetings-rho.vercel.app/final/${data.id}'>Click here</a> to open
+                <img src="cid:flowers" style='width:250px; padding: 40px 40px 40px 40px'>
+                <p style='font-size:15px; font-family:arial black; color:#FFFFFF; font-style: italic'>Hi ${data.senderName}, <br> ${data.recipientName} has opened your e-card! <br> To browse more cards visit <a style='text-decoration:none; color: #ADD8E6' href='https://greetings-rho.vercel.app/'> our website </a>.
                 </p>
                 </td>
                 </tr>
@@ -59,20 +59,14 @@ export default async function Cron(req, res) {
             </html>
           `// text: data.recipientName
         })
-        const mailResult2 = await transporter.sendMail({
-          from: process.env.EMAIL_USER,
-          bcc: data.senderEmail, // data.recipientEmail to
-          subject: 'E-card Scheduled Notification',
-          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview'>click here</a>. </p></html>`
-        })
-        console.log('Mail Result', mailResult, mailResult2) // eslint-disable-line
+        console.log('Mail Result', mailResult) // eslint-disable-line
       } catch (mailErr) {
         console.log('Mail Error', mailErr) // eslint-disable-line
       }
 
       try {
         const updateResult = await updateDoc(doc(db, 'greetings3', data.id), {
-          scheduled: true
+          notifiedSender: true
         })
         console.log('Update Result', updateResult) // eslint-disable-line
       } catch (updateErr) {

@@ -1,16 +1,21 @@
 // get iframe from cardid not param
 import { useRouter } from 'next/router'
 import { useCard } from '@/contexts/card'
+// import { useRef } from 'react'
 
 export default function PreviewCardPage() {
   const { query: { cardId } } = useRouter()
   const { card, isLoading, error } = useCard(cardId)
   const router = useRouter()
-
+  // const myIframe = useRef(null)
   const folder = card?.iframe.replace(/\d+/g, '')
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
+
+  // const iframeElement = document.querySelector('iframe').document
+  // iframeElement.postMessage({ recipientName: card.recipientName })
+  // myIframe.document.postMessage({ recipientName: card.recipientName })
 
   return (
     <div className="container mt-5 mx-auto text-center">
@@ -24,6 +29,7 @@ export default function PreviewCardPage() {
           <br />
           <div />
           <iframe
+           // ref={myIframe}
             src={`/templates/${folder}/${card.iframe}.html`}
             className="border embed-responsive-item vh-90"
             allowFullScreen

@@ -78,7 +78,9 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
     userId: user?.uid || '',
     date: moment().valueOf(),
     deliveryDate: '', // moment().valueOf(),
-    scheduled: false
+    scheduled: false,
+    opened: false,
+    notifiedSender: false
     // deliveryDate: new Date()
     // date: new Date(new Date().toDateString()),
     // deliveryDate: new Date(new Date().toDateString())
@@ -100,7 +102,9 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
           userId: Yup.string(),
           date: Yup.string(), // moment().valueOf()
           deliveryDate: Yup.string(),
-          scheduled: Yup.bool()
+          scheduled: Yup.bool(),
+          opened: Yup.bool(),
+          notifiedSender: Yup.bool()
         })
       }
     >

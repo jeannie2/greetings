@@ -304,6 +304,10 @@
 </div>
 
 <script>
+  /* window.onmessage = function(e) {
+  console.log("postmessage: " + e.dada)
+  } */
+
   function getParentUrl() {
     let isInIframe = (parent !== window), // var
       parentUrl = null;
@@ -311,7 +315,7 @@
     if (isInIframe) {
       parentUrl = document.referrer;
     }
-    console.log("parentURL" + parentUrl)  // eslint-disable-line
+    //console.log("parentURL" + parentUrl) // eslint-disable-line
 
     if ((parentUrl.indexOf("preview") > -1) || (parentUrl.indexOf("final")) > -1 || (parentUrl.indexOf("draft/template?iframe") > -1)) {
       document.body.style.backgroundColor = "black"
