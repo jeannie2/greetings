@@ -63,7 +63,7 @@ export default async function Cron(req, res) {
           from: process.env.EMAIL_USER,
           bcc: data.senderEmail, // data.recipientEmail to
           subject: 'E-card Scheduled Notification',
-          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview?recipient=${data.recipientName}'>click here</a>. </p></html>`
+          html: ` <html><p>Your card to ${data.recipientName} has been scheduled! We will notify you when the card has been opened. <br> To view your e-card, <a style='color: #FF0000' href='https://greetings-rho.vercel.app/draft/${data.id}/preview-final?recipient=${data.recipientName}'>click here</a>. </p></html>`
         })
         console.log('Mail Result', mailResult, mailResult2) // eslint-disable-line
       } catch (mailErr) {
