@@ -173,7 +173,6 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
 
             <div className="mb-3">
               <label>Message</label>
-              <br />
               <Field
                 component="textarea"
                // className={`form-control ${e?.password && t?.password && 'is-invalid'}`}
@@ -192,7 +191,6 @@ function FormsCardsEdit(props) { // props, iframe.  props //{ iframe } ({ iframe
 
             <div className="mb-3">
               <label>Delivery date</label>
-              <br />
               <MyDatePicker name="date" />
             </div>
 

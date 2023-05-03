@@ -49,13 +49,9 @@ export default function FinalCardShowPage() {
             width="80%"
             height="500px"
           />
-          <br />
-          <br />
 
           <div>To: {card.recipientName}</div>
           <div>{card.message}</div>
-          <br />
-          <br />
 
         </div>
         <div className="col-1" />
