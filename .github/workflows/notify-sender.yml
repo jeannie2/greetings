@@ -1,7 +1,7 @@
 name: Notify Sender
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
   push:
     branches: [master]
   workflow_dispatch:
